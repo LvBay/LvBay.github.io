@@ -411,7 +411,8 @@ ROUTINE ======================== main.DFS in /home/skt/mygo/src/benchgraffiti/ha
 <blockquote>
 <p>意思是对于某些特殊查询,map不是最有效的选择.就像它们在编译器中一样，基本块结构具有分配给它们的唯一序列号.使用切片[]int是一个更好的选择. 在array或者slice可以解决的情况下,没理由去使用map.(但是我觉得map方便啊…捂脸)</p>
 </blockquote>
-<p>我的理解是因为数组是在内存中连续存储的,所以查询能在O(1)时间内完成,而map在数据量较大是,在对hash值进行查询的时候,性能可能会收到影响.在对havlak1修改以后,形式好了很多.具体修改哪些,可以看<a href="https://github.com/rsc/benchgraffiti/commit/58ac27bcac3ffb553c29d0b3fb64745c91c95948" target="_blank" rel="noopener">这里</a></p>
+<p>我的理解是因为数组是在内存中连续存储的,所以查询能在O(1)时间内完成,而map在数据量较大是,在对hash值进行查询的时候,性能可能会收到影响.</p>
+<h3 id="havlak2"><a href="#havlak2" class="headerlink" title="havlak2"></a>havlak2</h3><p>在对havlak1修改以后,形式好了很多.具体修改哪些,可以看<a href="https://github.com/rsc/benchgraffiti/commit/58ac27bcac3ffb553c29d0b3fb64745c91c95948" target="_blank" rel="noopener">这里</a></p>
 <p>看一下havlak2的pprof</p>
 <pre><code>➜  havlak go build havlak2.go
 ➜  havlak ./havlak2 -cpuprofile=havlak2.prof
@@ -435,7 +436,8 @@ Showing top 5 nodes out of 72
 </code></pre><p>哇哦! 之前的<strong>DFS</strong>和<strong>runtime.mapaccess1_fast64</strong>都不见了.现在被调用次数最多的是runtime.scanobject(15.56%)和main.FindLoops(11.34%).</p>
 <p><strong>我试了一下list main.FindLoops,显示了FindLoops之外的代码.应该是因为没有函数内联导致的.</strong></p>
 <p>先来分析runtime.scanobject,这个是和gc相关的扫描函数,有调度器调用,那么是什么导致调度器调用这个函数呢,应该是某些地方对象创建频繁,导致频繁gc.</p>
-<p>涉及到内存分配,单从cpu-pprof是不好找原因的,那么从mem-pprof入手. havlak3提供了memprofile参数,可以生成mem-pprof. (<a href="https://github.com/rsc/benchgraffiti/commit/b78dac106bea1eb3be6bb3ca5dba57c130268232" target="_blank" rel="noopener">这里</a>可以看havlak3.go和havlak2.go的区别)</p>
+<p>涉及到内存分配,单从cpu-pprof是不好找原因的,那么从mem-pprof入手. </p>
+<h3 id="havlak3"><a href="#havlak3" class="headerlink" title="havlak3"></a>havlak3</h3><p>havlak3提供了memprofile参数,可以生成mem-pprof. (<a href="https://github.com/rsc/benchgraffiti/commit/b78dac106bea1eb3be6bb3ca5dba57c130268232" target="_blank" rel="noopener">这里</a>可以看havlak3.go和havlak2.go的区别)</p>
 <pre><code>➜  havlak go build -gcflags &apos;-N -l&apos; havlak3.go //禁止内联优化
 ➜  havlak ./havlak3 -memprofile=havlak3.mprof
 ➜  havlak go tool pprof havlak3 havlak3.mprof
@@ -535,7 +537,10 @@ ROUTINE ======================== main.FindLoops in /home/skt/mygo/src/benchgraff
 <blockquote>
 <p>That’s reasonable when a map is being used to hold key-value pairs, but not when a map is being used as a stand-in for a simple set, as it is here.</p>
 </blockquote>
-<p>在havlak4.go中使用了数组来替代map,<a href="https://github.com/rsc/benchgraffiti/commit/245d899f7b1a33b0c8148a4cd147cb3de5228c8a" target="_blank" rel="noopener">这里</a>可以看到和havlak3.go的区别</p>
+<blockquote>
+<p>在处理key-value数据时,用map是合适的,但是在处理简单的set集合类型时,map不一定是好的选择</p>
+</blockquote>
+<h3 id="havlak4"><a href="#havlak4" class="headerlink" title="havlak4"></a>havlak4</h3><p>在havlak4.go中使用了数组来替代map,<a href="https://github.com/rsc/benchgraffiti/commit/245d899f7b1a33b0c8148a4cd147cb3de5228c8a" target="_blank" rel="noopener">这里</a>可以看到和havlak3.go的区别</p>
 <p>最开始我是想一个map和array差别真的就这么大么,有点不相信哎.</p>
 <p>恰好在这个项目中执行xtime,可以输出二进制文件的耗时和内存占用情况</p>
 <pre><code>➜  havlak ./xtime ./havlak3
@@ -551,7 +556,7 @@ ROUTINE ======================== main.FindLoops in /home/skt/mygo/src/benchgraff
 <li>real_time 实际花费时间</li>
 <li>memory 运行内存 </li>
 </ul>
-<p>可以看到havlak4提高了将近40%的性能…啪啪啪,脸有点疼</p>
+<p>可以看到havlak4提高了将近40%的性能…捂脸</p>
 <p>现在,比较<strong>havlak4</strong>和<strong>havlak2</strong>. 跳过<strong>havlak3</strong>版本,因为该版本只是加了一个memprof参数,</p>
 <pre><code>➜  havlak go build -gcflags &apos;-N -l&apos; havlak4.go
 ➜  havlak ./havlak4 -cpuprofile=havlak4.prof
@@ -619,7 +624,7 @@ ROUTINE ======================== main.FindLoops in /home/skt/mygo/src/benchgraff
 </blockquote>
 <p>每次调用<strong>FindLoops</strong>都会创建大量的对象(278,280),连续调用<strong>FindLoops</strong>后,就有可能<br>触发GC.</p>
 <p>虽然golang是一门自带垃圾回收的语言,但是这不代表我们可以随意的创建对象.如果可以的话,应该考虑对象重用,或者创建一个cache缓存.</p>
-<p>可以创建一个本地的cache对象</p>
+<h3 id="havlak5"><a href="#havlak5" class="headerlink" title="havlak5"></a>havlak5</h3><p>可以创建一个本地的cache对象</p>
 <pre><code>var cache struct {
     size int
     nonBackPreds [][]int
@@ -668,8 +673,7 @@ nodes := cache.nodes[:size]
 # of loops: 76000 (including 1 artificial root node)
 7.27u 0.06s 5.48r 171320kB ./havlak5
 </code></pre><p>运行时间从8.11s到5.48s,提升了%25的性能,但是不知道为什么,内存占用反而更多了.</p>
-<p>下面是最终版本<strong>havlak6</strong>的分析</p>
-<p>官博中提到,havlak6主要是对迭代做了一些优化,因为具体代码我没仔细研究,所以这里就不介绍了</p>
+<h3 id="havlak6"><a href="#havlak6" class="headerlink" title="havlak6"></a>havlak6</h3><p>官博中提到,havlak6主要是对迭代做了一些优化,因为具体代码我没仔细研究,所以这里就不介绍了</p>
 <p>以及使用了更地道的Go风格,数据结构+方法的形式,这个对运行时影响不大</p>
 <p>比较一下和上个版本的性能</p>
 <pre><code>➜  havlak ./xtime ./havlak5
@@ -690,8 +694,7 @@ nodes := cache.nodes[:size]
 <li>函数内部的其他函数比较耗时</li>
 <li>函数中golang的内置函数比较费时,例如make,append,new,map寻值</li>
 </ul>
-<p>###　<strong>什么时候用cpupprof,什么时候用mempprof</strong></p>
-<p>可以先分析cpupprof,如果其中发现gc相关的代码占用时间较多的话,可以再去分析mempprof</p>
+<h3 id="什么时候用cpupprof-什么时候用mempprof"><a href="#什么时候用cpupprof-什么时候用mempprof" class="headerlink" title="什么时候用cpupprof,什么时候用mempprof"></a><strong>什么时候用cpupprof,什么时候用mempprof</strong></h3><p>可以先分析cpupprof,如果其中发现gc相关的代码占用时间较多的话,可以再去分析mempprof</p>
 <h3 id="如果在topN中显示标准包的一些函数占用时间较多-怎么去优化我的程序呢"><a href="#如果在topN中显示标准包的一些函数占用时间较多-怎么去优化我的程序呢" class="headerlink" title="如果在topN中显示标准包的一些函数占用时间较多,怎么去优化我的程序呢."></a><strong>如果在topN中显示标准包的一些函数占用时间较多,怎么去优化我的程序呢.</strong></h3><p>先用pprof web runtime.xxx命令,找到是哪些程序调用了这个标准包函数,然后依次向上层寻找跟我的程序有关的函数名</p>
 <h3 id="已经定位到了某个函数有问提-怎么确定是哪一行"><a href="#已经定位到了某个函数有问提-怎么确定是哪一行" class="headerlink" title="已经定位到了某个函数有问提,怎么确定是哪一行?"></a><strong>已经定位到了某个函数有问提,怎么确定是哪一行?</strong></h3><p>可以用pprof list xxx, 注意编译的时候禁止函数内联,否则list会展示其他函数名</p>
 <h3 id="平时写代码-需要注意哪些坑呢"><a href="#平时写代码-需要注意哪些坑呢" class="headerlink" title="平时写代码,需要注意哪些坑呢"></a><strong>平时写代码,需要注意哪些坑呢</strong></h3><ul>
