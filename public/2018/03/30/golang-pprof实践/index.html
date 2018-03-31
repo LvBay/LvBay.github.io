@@ -89,7 +89,7 @@
 <meta property="og:image" content="http://yoursite.com/2018/03/30/golang-pprof实践/havlak1_mapaccess1_fast64.svg">
 <meta property="og:image" content="http://yoursite.com/2018/03/30/golang-pprof实践/havlak4_scanobject.svg">
 <meta property="og:image" content="http://yoursite.com/2018/03/30/golang-pprof实践/havlak4_mallocgc.svg">
-<meta property="og:updated_time" content="2018-03-31T05:15:07.105Z">
+<meta property="og:updated_time" content="2018-03-31T05:31:03.067Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="golang-pprof实践">
 <meta name="twitter:description" content="准备工作在 golang官方博客的一篇文章中看到了详细使用go tool pprof优化程序的过程.于是我把代码clone下来,在本地实践了一次. ➜  ~ go env GOARCH=&amp;quot;amd64&amp;quot; GOBIN=&amp;quot;&amp;quot; GOEXE=&amp;quot;&amp;quot; GOHOSTARCH=&amp;quot;amd64&amp;quot; GOHOSTOS=&amp;quot;linux&amp;q">
@@ -336,7 +336,8 @@ CGO_CXXFLAGS=&quot;-g -O2&quot;
 CGO_FFLAGS=&quot;-g -O2&quot;
 CGO_LDFLAGS=&quot;-g -O2&quot;
 PKG_CONFIG=&quot;pkg-config&quot;
-</code></pre><h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><h3 id="havlak1"><a href="#havlak1" class="headerlink" title="havlak1"></a>havlak1</h3><p>切换到项目目录</p>
+</code></pre><h2 id="havlak背景"><a href="#havlak背景" class="headerlink" title="havlak背景"></a>havlak背景</h2><p>项目havlak,在C++版本的运行时间是17.8s,花费了700M的内存, Go版本花费了25.20s,使用了1302M内存,接下来会使用go tool pprof工具,对Go程序进行优化</p>
+<h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><h3 id="havlak1"><a href="#havlak1" class="headerlink" title="havlak1"></a>havlak1</h3><p>切换到项目目录</p>
 <pre><code>➜  ~ cd mygo/src/benchgraffiti/havlak 
 ➜  havlak 
 </code></pre><p>这里我直接用go build ,而不是博客中的make</p>
@@ -740,6 +741,10 @@ nodes := cache.nodes[:size]
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2018/03/31/golang-map/" rel="prev" title="golang-map">
+                golang-map <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -819,7 +824,7 @@ nodes := cache.nodes[:size]
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -865,7 +870,7 @@ nodes := cache.nodes[:size]
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#准备工作"><span class="nav-number">1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开始"><span class="nav-number">2.</span> <span class="nav-text">开始</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#havlak1"><span class="nav-number">2.1.</span> <span class="nav-text">havlak1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#havlak2"><span class="nav-number">2.2.</span> <span class="nav-text">havlak2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#havlak3"><span class="nav-number">2.3.</span> <span class="nav-text">havlak3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#havlak4"><span class="nav-number">2.4.</span> <span class="nav-text">havlak4</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#havlak5"><span class="nav-number">2.5.</span> <span class="nav-text">havlak5</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#havlak6"><span class="nav-number">2.6.</span> <span class="nav-text">havlak6</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#优化思路"><span class="nav-number">3.1.</span> <span class="nav-text">优化思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优化的时候-是看主要flat列还是cum列"><span class="nav-number">3.2.</span> <span class="nav-text">优化的时候,是看主要flat列还是cum列?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cum值较高-可能的原因是什么"><span class="nav-number">3.3.</span> <span class="nav-text">cum值较高,可能的原因是什么?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么时候用cpupprof-什么时候用mempprof"><span class="nav-number">3.4.</span> <span class="nav-text">什么时候用cpupprof,什么时候用mempprof</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如果在topN中显示标准包的一些函数占用时间较多-怎么去优化我的程序呢"><span class="nav-number">3.5.</span> <span class="nav-text">如果在topN中显示标准包的一些函数占用时间较多,怎么去优化我的程序呢.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#已经定位到了某个函数有问提-怎么确定是哪一行"><span class="nav-number">3.6.</span> <span class="nav-text">已经定位到了某个函数有问提,怎么确定是哪一行?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#平时写代码-需要注意哪些坑呢"><span class="nav-number">3.7.</span> <span class="nav-text">平时写代码,需要注意哪些坑呢</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后"><span class="nav-number">4.</span> <span class="nav-text">最后</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关链接"><span class="nav-number">5.</span> <span class="nav-text">相关链接</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#准备工作"><span class="nav-number">1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#havlak背景"><span class="nav-number">2.</span> <span class="nav-text">havlak背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开始"><span class="nav-number">3.</span> <span class="nav-text">开始</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#havlak1"><span class="nav-number">3.1.</span> <span class="nav-text">havlak1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#havlak2"><span class="nav-number">3.2.</span> <span class="nav-text">havlak2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#havlak3"><span class="nav-number">3.3.</span> <span class="nav-text">havlak3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#havlak4"><span class="nav-number">3.4.</span> <span class="nav-text">havlak4</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#havlak5"><span class="nav-number">3.5.</span> <span class="nav-text">havlak5</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#havlak6"><span class="nav-number">3.6.</span> <span class="nav-text">havlak6</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#优化思路"><span class="nav-number">4.1.</span> <span class="nav-text">优化思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优化的时候-是看主要flat列还是cum列"><span class="nav-number">4.2.</span> <span class="nav-text">优化的时候,是看主要flat列还是cum列?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cum值较高-可能的原因是什么"><span class="nav-number">4.3.</span> <span class="nav-text">cum值较高,可能的原因是什么?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么时候用cpupprof-什么时候用mempprof"><span class="nav-number">4.4.</span> <span class="nav-text">什么时候用cpupprof,什么时候用mempprof</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如果在topN中显示标准包的一些函数占用时间较多-怎么去优化我的程序呢"><span class="nav-number">4.5.</span> <span class="nav-text">如果在topN中显示标准包的一些函数占用时间较多,怎么去优化我的程序呢.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#已经定位到了某个函数有问提-怎么确定是哪一行"><span class="nav-number">4.6.</span> <span class="nav-text">已经定位到了某个函数有问提,怎么确定是哪一行?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#平时写代码-需要注意哪些坑呢"><span class="nav-number">4.7.</span> <span class="nav-text">平时写代码,需要注意哪些坑呢</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后"><span class="nav-number">5.</span> <span class="nav-text">最后</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关链接"><span class="nav-number">6.</span> <span class="nav-text">相关链接</span></a></li></ol></div>
             
 
           </div>

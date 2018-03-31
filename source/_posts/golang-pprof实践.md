@@ -4,6 +4,7 @@ date: 2018-03-30 15:51:51
 tags:
 ---
 
+
 ## 准备工作
 
 在 golang官方博客的一篇[文章](https://blog.golang.org/profiling-go-programs)中看到了详细使用go tool pprof优化程序的过程.
@@ -31,6 +32,10 @@ tags:
     CGO_FFLAGS="-g -O2"
     CGO_LDFLAGS="-g -O2"
     PKG_CONFIG="pkg-config"
+
+## havlak背景
+
+项目havlak,在C++版本的运行时间是17.8s,花费了700M的内存, Go版本花费了25.20s,使用了1302M内存,接下来会使用go tool pprof工具,对Go程序进行优化
 
 ## 开始
 
