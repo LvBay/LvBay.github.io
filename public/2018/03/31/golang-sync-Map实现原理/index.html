@@ -79,16 +79,17 @@
 
 
 
-<meta name="description" content="See you again">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Z">
-<meta property="og:url" content="http://yoursite.com/archives/2018/index.html">
+<meta name="description" content="结构体sync.Map type Map struct {     // 常用的锁,在操作dirty时会用到     mu Mutex      // 实际值是readOnly结构体,可以看成是比dirty多了一个amended字段的结构,     // 注意这个并不是真正的只读     // 添加操作是通过直接将m字段指向整个dirty完成的     // 删除操作是通过修改entry为expu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="golang-sync.Map实现原理">
+<meta property="og:url" content="http://yoursite.com/2018/03/31/golang-sync-Map实现原理/index.html">
 <meta property="og:site_name" content="Z">
-<meta property="og:description" content="See you again">
+<meta property="og:description" content="结构体sync.Map type Map struct {     // 常用的锁,在操作dirty时会用到     mu Mutex      // 实际值是readOnly结构体,可以看成是比dirty多了一个amended字段的结构,     // 注意这个并不是真正的只读     // 添加操作是通过直接将m字段指向整个dirty完成的     // 删除操作是通过修改entry为expu">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-03-31T10:59:35.201Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Z">
-<meta name="twitter:description" content="See you again">
+<meta name="twitter:title" content="golang-sync.Map实现原理">
+<meta name="twitter:description" content="结构体sync.Map type Map struct {     // 常用的锁,在操作dirty时会用到     mu Mutex      // 实际值是readOnly结构体,可以看成是比dirty多了一个amended字段的结构,     // 注意这个并不是真正的只读     // 添加操作是通过直接将m字段指向整个dirty完成的     // 删除操作是通过修改entry为expu">
 
 
 
@@ -118,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/2018/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/03/31/golang-sync-Map实现原理/"/>
 
 
 
 
 
-  <title>归档 | Z</title>
+  <title>golang-sync.Map实现原理 | Z</title>
   
 
 
@@ -143,7 +144,7 @@
     
   
 
-  <div class="container sidebar-position-right page-archive">
+  <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -227,148 +228,196 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/31/golang-sync-Map实现原理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yh Zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/git.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Z">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">golang-sync.Map实现原理</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-31T17:41:59+08:00">
+                2018-03-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-        嗯..! 目前共计 3 篇日志。 继续努力。
-      </span>
 
-      
-
-        
-        
-        
-
-        
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
-          </div>
-        
-        
+            
+          
 
-        
+          
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/03/31/golang-sync-Map实现原理/" itemprop="url">
-              
-                <span itemprop="name">golang-sync.Map实现原理</span>
-              
-            </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-03-31T17:41:59+08:00"
-              content="2018-03-31" >
-          03-31
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+        </div>
+      </header>
+    
 
-
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/03/30/golang-pprof实践/" itemprop="url">
-              
-                <span itemprop="name">golang-pprof实践</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-03-30T15:51:51+08:00"
-              content="2018-03-30" >
-          03-30
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
+      
+        <h2 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h2><p>sync.Map</p>
+<pre><code>type Map struct {
+    // 常用的锁,在操作dirty时会用到
+    mu Mutex
 
-        
-        
+    // 实际值是readOnly结构体,可以看成是比dirty多了一个amended字段的结构,
+    // 注意这个并不是真正的只读
+    // 添加操作是通过直接将m字段指向整个dirty完成的
+    // 删除操作是通过修改entry为expunged完成的
+    read atomic.Value // readOnly
 
-        
+    // dirty值要么为空,要么为全部键值对
+    dirty map[interface{}]*entry
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/02/26/nsqd-mysql保存消息历史/" itemprop="url">
-              
-                <span itemprop="name">nsqd+mysql保存消息历史</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-02-26T15:33:48+08:00"
-              content="2018-02-26" >
-          02-26
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+    // 在查询read时,命中失败的次数,当misses大于dirty长度时,read.m 会直接指向dirty
+    misses int
+}
+</code></pre><p> Map.read的值</p>
+<p> 主要看下readOnly.amended的值变化情况</p>
+<ul>
+<li><p>在Store方法中,添加新的键值对时,如果<strong>amended==false</strong>,会遍历read值,将其中未被标记为删除的记录,复制到dirty中,然后read.amended会被修改为true</p>
+</li>
+<li><p>在Load方法中,如果miss次数大于diry长度时,会将read.m直接指向dirty,且read.amended被置为false</p>
+</li>
+<li><p>如果<strong>amended==true</strong>,说明当前map时间节点处于新添加键值对之后,复制dirty到read之前,此时dirty不为空,且dirty包括所有Map中未被删除的数据,read中的数据可能少于dirty</p>
+</li>
+<li><p>如果<strong>amended==false</strong>,说明说明dirty为空</p>
+<pre><code>type readOnly struct {
+    m       map[interface{}]*entry
+    amended bool 
+}
+</code></pre></li>
+</ul>
+<p>键值对中的value</p>
+<pre><code>type entry struct {
+    p unsafe.Pointer // *interface{}
+}
+</code></pre><h2 id="关键操作"><a href="#关键操作" class="headerlink" title="关键操作"></a>关键操作</h2><h3 id="寻值"><a href="#寻值" class="headerlink" title="寻值"></a>寻值</h3><pre><code>func (m *Map) Load(key interface{}) (value interface{}, ok bool) {
+    read, _ := m.read.Load().(readOnly)
+    e, ok := read.m[key]
+    if !ok &amp;&amp; read.amended {
+        m.mu.Lock()
+        read, _ = m.read.Load().(readOnly)
+        e, ok = read.m[key]
+        if !ok &amp;&amp; read.amended {
+            e, ok = m.dirty[key]
+            m.missLocked()
+        }
+        m.mu.Unlock()
+    }
+    if !ok {
+        return nil, false
+    }
+    return e.load()
+}
+</code></pre><p>中间用到了</p>
 
       
-
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/30/golang-pprof实践/" rel="next" title="golang-pprof实践">
+                <i class="fa fa-chevron-left"></i> golang-pprof实践
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -376,6 +425,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -396,8 +449,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -452,6 +514,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#结构体"><span class="nav-number">1.</span> <span class="nav-text">结构体</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关键操作"><span class="nav-number">2.</span> <span class="nav-text">关键操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#寻值"><span class="nav-number">2.1.</span> <span class="nav-text">寻值</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -592,6 +670,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
