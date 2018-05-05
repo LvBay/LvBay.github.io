@@ -45,7 +45,7 @@ A想与B进行加密通信，首先要生成一个密钥：
 
 可以证明，如果想通过公钥获取私钥，难度取决于大整数因数分解的效率。
 
-具体推导可以看后面的链接
+关于模反元素和相关推导，可以看[链接](http://www.ruanyifeng.com/blog/2013/06/rsa_algorithm_part_one.html)，比想象中简单
 
 ## 加密和解密
 
@@ -173,3 +173,7 @@ B想给A发送信息m
         // 解密
         return rsa.DecryptPKCS1v15(rand.Reader, priv, ciphertext)
     }
+
+## 相关链接
+[RSA算法原理-欧拉函数](http://www.ruanyifeng.com/blog/2013/06/rsa_algorithm_part_one.html)
+[RSA算法原理](http://www.ruanyifeng.com/blog/2013/07/rsa_algorithm_part_two.html)
