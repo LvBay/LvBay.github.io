@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="DES简介DES是一个分组加密算法，典型的DES以64位为分组对数据加密，加密和解密用的是同一个算法。它的密钥长度是56位（因为每个第8 位都用作奇偶校验），密钥可以是任意的56位的数，而且可以任意时候改变。其中有极少数被认为是易破解的弱密钥，但是很容易避开它们不用。所以保密性依赖于密钥。 概念隐喻 加密 - 做蛋糕 明文 - 原材料 IV初始向量 - 厨师. IV长度必须与block.Size保">
+<meta name="description" content="简介1976年之前，所有加密方式都是同一种模式：甲乙双方使用同一种加密算法和密钥，即对称加密。这种模式有一个弱点：甲方必须先把加密规则和密钥告诉乙方。这样导致保存和传递密钥，成为了一个头疼的问题。 1976年，两位美国计算机学家Whitfield Diffie 和 Martin Hellman，提出了一种崭新构思，可以在不直接传递密钥的情况下，完成解密。这被称为”Diffie-Hellman密钥交">
 <meta property="og:type" content="article">
-<meta property="og:title" content="golang实现DES加密">
-<meta property="og:url" content="http://yoursite.com/2018/04/27/golang实现DES加密/index.html">
+<meta property="og:title" content="golang实现RSA加密">
+<meta property="og:url" content="http://yoursite.com/2018/05/05/golang实现RSA加密/index.html">
 <meta property="og:site_name" content="Z">
-<meta property="og:description" content="DES简介DES是一个分组加密算法，典型的DES以64位为分组对数据加密，加密和解密用的是同一个算法。它的密钥长度是56位（因为每个第8 位都用作奇偶校验），密钥可以是任意的56位的数，而且可以任意时候改变。其中有极少数被认为是易破解的弱密钥，但是很容易避开它们不用。所以保密性依赖于密钥。 概念隐喻 加密 - 做蛋糕 明文 - 原材料 IV初始向量 - 厨师. IV长度必须与block.Size保">
+<meta property="og:description" content="简介1976年之前，所有加密方式都是同一种模式：甲乙双方使用同一种加密算法和密钥，即对称加密。这种模式有一个弱点：甲方必须先把加密规则和密钥告诉乙方。这样导致保存和传递密钥，成为了一个头疼的问题。 1976年，两位美国计算机学家Whitfield Diffie 和 Martin Hellman，提出了一种崭新构思，可以在不直接传递密钥的情况下，完成解密。这被称为”Diffie-Hellman密钥交">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-02T10:46:00.515Z">
+<meta property="og:updated_time" content="2018-05-05T12:37:05.717Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="golang实现DES加密">
-<meta name="twitter:description" content="DES简介DES是一个分组加密算法，典型的DES以64位为分组对数据加密，加密和解密用的是同一个算法。它的密钥长度是56位（因为每个第8 位都用作奇偶校验），密钥可以是任意的56位的数，而且可以任意时候改变。其中有极少数被认为是易破解的弱密钥，但是很容易避开它们不用。所以保密性依赖于密钥。 概念隐喻 加密 - 做蛋糕 明文 - 原材料 IV初始向量 - 厨师. IV长度必须与block.Size保">
+<meta name="twitter:title" content="golang实现RSA加密">
+<meta name="twitter:description" content="简介1976年之前，所有加密方式都是同一种模式：甲乙双方使用同一种加密算法和密钥，即对称加密。这种模式有一个弱点：甲方必须先把加密规则和密钥告诉乙方。这样导致保存和传递密钥，成为了一个头疼的问题。 1976年，两位美国计算机学家Whitfield Diffie 和 Martin Hellman，提出了一种崭新构思，可以在不直接传递密钥的情况下，完成解密。这被称为”Diffie-Hellman密钥交">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/04/27/golang实现DES加密/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/05/05/golang实现RSA加密/"/>
 
 
 
 
 
-  <title>golang实现DES加密 | Z</title>
+  <title>golang实现RSA加密 | Z</title>
   
 
 
@@ -242,7 +242,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/27/golang实现DES加密/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/05/golang实现RSA加密/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yh Zhang">
@@ -259,7 +259,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">golang实现DES加密</h1>
+          <h1 class="post-title" itemprop="name headline">golang实现RSA加密</h1>
         
 
         <div class="post-meta">
@@ -271,8 +271,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-27T11:35:28+08:00">
-                2018-04-27
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-05T09:38:14+08:00">
+                2018-05-05
               </time>
             
 
@@ -309,70 +309,152 @@
       
 
       
-        <h2 id="DES简介"><a href="#DES简介" class="headerlink" title="DES简介"></a>DES简介</h2><p>DES是一个分组加密算法，典型的DES以64位为分组对数据加密，加密和解密用的是同一个算法。它的密钥长度是56位（因为每个第8 位都用作奇偶校验），密钥可以是任意的56位的数，而且可以任意时候改变。其中有极少数被认为是易破解的弱密钥，但是很容易避开它们不用。所以保密性依赖于密钥。</p>
-<h3 id="概念隐喻"><a href="#概念隐喻" class="headerlink" title="概念隐喻"></a>概念隐喻</h3><ul>
-<li>加密 - 做蛋糕</li>
-<li>明文 - 原材料</li>
-<li>IV初始向量 - 厨师. IV长度必须与block.Size保持一致. 维基百科上说重复使用IV会导致安全隐患</li>
-<li>block - 一套工具</li>
-<li>工作模式 - 工具使用说明书,有EBC,CBC等</li>
-<li>Padding填充模式 - 检查原材料.块密码只能对确定长度的数据块进行处理，而消息的长度通常是可变的.因此部分模式（即ECB和CBC）需要最后一块在加密前进行填充</li>
-</ul>
-<h3 id="加密过程"><a href="#加密过程" class="headerlink" title="加密过程:"></a>加密过程:</h3><ul>
-<li>block = 密钥切割</li>
-<li>pdata = padding + data</li>
-<li>加密算法 = 工作模式+初始向量+block 代码:cipher.NewCBCEncrypter(block,iv)</li>
-<li>密文 = 加密算法 + pdata </li>
-</ul>
-<h3 id="解密过程-解密算法其实是对密文的加密"><a href="#解密过程-解密算法其实是对密文的加密" class="headerlink" title="解密过程(解密算法其实是对密文的加密)"></a>解密过程(解密算法其实是对密文的加密)</h3><ul>
-<li>block = 密钥切割</li>
-<li>解密算法 = 工作模式+初始向量+block 代码:cipher.NewCBCDecrypter(block,iv)</li>
-<li>明文padding = 解密算法 + 密文</li>
-<li>明文 = unpadding + 明文padding</li>
-</ul>
-<p>EBC(Electronic codebook)和CBC(Cipher-block Chain)的比较:</p>
-<ul>
-<li>EBC 同样的明文块会被加密成相同的密文块.</li>
-<li>CBC 每个明文块先与前一个密文块进行异或后，再进行加密.</li>
-<li>安全强度上CBC更强</li>
-<li>CBC无法并行加密</li>
-</ul>
-<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><pre><code>// DES加密
-func DesEncrypt(origData, key []byte) ([]byte, error) {
-    // 根据密钥生成block
-    block, err := des.NewCipher(key)
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>1976年之前，所有加密方式都是同一种模式：甲乙双方使用同一种加密算法和密钥，即对称加密。这种模式有一个弱点：甲方必须先把加密规则和密钥告诉乙方。这样导致保存和传递密钥，成为了一个头疼的问题。</p>
+<p>1976年，两位美国计算机学家Whitfield Diffie 和 Martin Hellman，提出了一种崭新构思，可以在不直接传递密钥的情况下，完成解密。这被称为”Diffie-Hellman密钥交换算法”。这个算法启发了其他科学家。人们认识到，<strong>加密和解密可以使用不同的密钥</strong>，只要这两种规则之间存在某种对应关系即可，这样就避免了直接传递密钥。</p>
+<p>这种新的加密模式被称为”非对称加密算法”。</p>
+<p>RSA是非对称加密中的一种。</p>
+<h2 id="数学原理"><a href="#数学原理" class="headerlink" title="数学原理"></a>数学原理</h2><p>大整数的因数分解，是一件非常困难的事情。例如你可以对3233进行因数分解（61×53），但对较大整数进行因数分解就比较困难了。</p>
+<p>这里提供一个golang实现的暴力因数分解，有兴趣可以跑一下试试：</p>
+<pre><code>// 因数分解
+// 因为大整数s可能会超过uint64的最大值，所以这里用字符串来作为输入参数
+func factorization(s string) (x, y *big.Int, err error) {
+    df := big.NewInt(1)
+    x = big.NewInt(2)
+    n, flag := big.NewInt(1).SetString(s, 0)
+    if !flag {
+        return nil, nil, errors.New(&quot;invalid string&quot;)
+    }
+    for ; x.Cmp(n) == -1; x.Add(x, big.NewInt(1)) {
+        fmt.Println(&quot;x:&quot;, x.String())
+        if df.Mod(n, x).String() == &quot;0&quot; {
+            return x, df.Div(n, x), nil
+        }
+    }
+    return nil, nil, errors.New(&quot;end faild&quot;)
+}
+</code></pre><h2 id="密钥生成"><a href="#密钥生成" class="headerlink" title="密钥生成"></a>密钥生成</h2><p>A想与B进行加密通信，首先要生成一个密钥：</p>
+<ol>
+<li><p>A选择两个大质数，得到乘积n，再随机选择一个整数e，计算e对于φ(n)的模反元素d。</p>
+</li>
+<li><p>将（n，e）作为公钥，（n，d）作为私钥</p>
+</li>
+</ol>
+<p>可以证明，如果想通过公钥获取私钥，难度取决于大整数因数分解的效率。</p>
+<p>具体推导可以看后面的链接</p>
+<h2 id="加密和解密"><a href="#加密和解密" class="headerlink" title="加密和解密"></a>加密和解密</h2><h3 id="公钥加密"><a href="#公钥加密" class="headerlink" title="公钥加密"></a>公钥加密</h3><p>B想给A发送信息m</p>
+<ol>
+<li><p>将m转化为整数（字符串可以取ascii值或unicode值），且m必须小于n。</p>
+</li>
+<li><p>根据公式<br> m^e ≡ c (mod n)<br>已知m（明文），e（公钥的一部分），n（公钥的一部分），可以得到密文c</p>
+</li>
+</ol>
+<h3 id="私钥解密"><a href="#私钥解密" class="headerlink" title="私钥解密"></a>私钥解密</h3><ol>
+<li><p>得到密文c</p>
+</li>
+<li><p>根据公式<br> c^d ≡ m (mod n)<br>已知 c（密文），d（私钥的一部分），n（私钥的一部分），可以得到明文m</p>
+</li>
+</ol>
+<p><a href="http://www.ruanyifeng.com/blog/2013/07/rsa_algorithm_part_two.html" target="_blank" rel="noopener">证明根据根据以上公式获取的明文和原始明文一致</a></p>
+<h2 id="golang代码实现RSA密钥生成"><a href="#golang代码实现RSA密钥生成" class="headerlink" title="golang代码实现RSA密钥生成"></a>golang代码实现RSA密钥生成</h2><pre><code>//生成公钥和私钥 pem文件
+
+package encryp
+
+import (
+    &quot;crypto/rand&quot;
+    &quot;crypto/rsa&quot;
+    &quot;crypto/x509&quot;
+    &quot;encoding/pem&quot;
+    &quot;os&quot;
+)
+
+//生成 私钥和公钥文件
+func GenRsaKey(bits int) error {
+    //生成私钥文件
+    privateKey, err := rsa.GenerateKey(rand.Reader, bits)
+    if err != nil {
+        return err
+    }
+    derStream := x509.MarshalPKCS1PrivateKey(privateKey)
+    block := &amp;pem.Block{
+        Type:  &quot;RSA PRIVATE KEY&quot;,
+        Bytes: derStream,
+    }
+    file, err := os.Create(&quot;private.pem&quot;)
+    if err != nil {
+        return err
+    }
+    err = pem.Encode(file, block)
+    if err != nil {
+        return err
+    }
+    //生成公钥文件
+    publicKey := &amp;privateKey.PublicKey
+    defPkix, err := x509.MarshalPKIXPublicKey(publicKey)
+    if err != nil {
+        return err
+    }
+    block = &amp;pem.Block{
+        Type:  &quot;RSA PUBLIC KEY&quot;,
+        Bytes: defPkix,
+    }
+    file, err = os.Create(&quot;public.pem&quot;)
+    if err != nil {
+        return err
+    }
+    err = pem.Encode(file, block)
+    if err != nil {
+        return err
+    }
+    return nil
+}
+</code></pre><h2 id="golang实现RSA加密和解密"><a href="#golang实现RSA加密和解密" class="headerlink" title="golang实现RSA加密和解密"></a>golang实现RSA加密和解密</h2><pre><code>// 读取公钥私钥
+var privateKey, publicKey []byte
+func init() {
+    var err error
+    publicKey, err = ioutil.ReadFile(&quot;public.pem&quot;)
+    if err != nil {
+        os.Exit(-1)
+    }
+    privateKey, err = ioutil.ReadFile(&quot;private.pem&quot;)
+    if err != nil {
+        os.Exit(-1)
+    }
+}
+
+// 公钥加密
+func RsaEncrypt(data []byte) ([]byte, error) {
+    //解密pem格式的公钥
+    block, _ := pem.Decode(publicKey)
+    if block == nil {
+        return nil, errors.New(&quot;public key error&quot;)
+    }
+    // 解析公钥
+    pubInterface, err := x509.ParsePKIXPublicKey(block.Bytes)
     if err != nil {
         return nil, err
     }
-    // 根据block和初始向量生成加密算法,IV长度与block.size需要保持一致
-    blockMode := cipher.NewCBCEncrypter(block, IV)
-    // 扩充 origData
-    origData = PKCS5Padding(origData, block.BlockSize())
-    crypted := make([]byte, len(origData))
-    // 对padded data加密
-    blockMode.CryptBlocks(crypted, origData)
-    return crypted, nil
+    // 类型断言
+    pub := pubInterface.(*rsa.PublicKey)
+    //加密
+    return rsa.EncryptPKCS1v15(rand.Reader, pub, data)
 }
 
-// DES解密
-func DesDecrypt(crypted, key []byte) ([]byte, error) {
-    // 根据密钥生成block
-    block, err := des.NewCipher(key)
+// 私钥解密
+func RsaDecrypt(ciphertext []byte) ([]byte, error) {
+    //获取私钥
+    block, _ := pem.Decode(privateKey)
+    if block == nil {
+        return nil, errors.New(&quot;private key error!&quot;)
+    }
+    //解析PKCS1格式的私钥
+    priv, err := x509.ParsePKCS1PrivateKey(block.Bytes)
     if err != nil {
         return nil, err
     }
-    // 根据block和初始向量生成解密算法,IV长度与block.size需要保持一致
-    blockMode := cipher.NewCBCDecrypter(block, IV)
-    // 对密文解密
-    origData := make([]byte, len(crypted))
-    blockMode.CryptBlocks(origData, crypted)
-    // 反扩充,获取原始明文
-    origData = PKCS5UnPadding(origData)
-    return origData, nil
+    // 解密
+    return rsa.DecryptPKCS1v15(rand.Reader, priv, ciphertext)
 }
-</code></pre><h3 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接:"></a>相关链接:</h3><p><a href="https://www.jianshu.com/p/c44a8a1b7c38" target="_blank" rel="noopener">DES加密算法原理</a></p>
-<p><a href="https://zh.wikipedia.org/wiki/%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F" target="_blank" rel="noopener">工作模式 ECB,CBC</a></p>
-
+</code></pre>
       
     </div>
     
@@ -396,8 +478,8 @@ func DesDecrypt(crypted, key []byte) ([]byte, error) {
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/26/关于加密算法的理解/" rel="next" title="关于加密算法的理解">
-                <i class="fa fa-chevron-left"></i> 关于加密算法的理解
+              <a href="/2018/05/02/golang实现AES加密/" rel="next" title="golang实现AES加密">
+                <i class="fa fa-chevron-left"></i> golang实现AES加密
               </a>
             
           </div>
@@ -405,10 +487,6 @@ func DesDecrypt(crypted, key []byte) ([]byte, error) {
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/05/02/golang实现AES加密/" rel="prev" title="golang实现AES加密">
-                golang实现AES加密 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -535,7 +613,7 @@ func DesDecrypt(crypted, key []byte) ([]byte, error) {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#DES简介"><span class="nav-number">1.</span> <span class="nav-text">DES简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概念隐喻"><span class="nav-number">1.1.</span> <span class="nav-text">概念隐喻</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#加密过程"><span class="nav-number">1.2.</span> <span class="nav-text">加密过程:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解密过程-解密算法其实是对密文的加密"><span class="nav-number">1.3.</span> <span class="nav-text">解密过程(解密算法其实是对密文的加密)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现"><span class="nav-number">1.4.</span> <span class="nav-text">代码实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相关链接"><span class="nav-number">1.5.</span> <span class="nav-text">相关链接:</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数学原理"><span class="nav-number">2.</span> <span class="nav-text">数学原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#密钥生成"><span class="nav-number">3.</span> <span class="nav-text">密钥生成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加密和解密"><span class="nav-number">4.</span> <span class="nav-text">加密和解密</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#公钥加密"><span class="nav-number">4.1.</span> <span class="nav-text">公钥加密</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#私钥解密"><span class="nav-number">4.2.</span> <span class="nav-text">私钥解密</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#golang代码实现RSA密钥生成"><span class="nav-number">5.</span> <span class="nav-text">golang代码实现RSA密钥生成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#golang实现RSA加密和解密"><span class="nav-number">6.</span> <span class="nav-text">golang实现RSA加密和解密</span></a></li></ol></div>
             
 
           </div>
