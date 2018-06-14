@@ -642,7 +642,16 @@ fmt.Println(startTime) // 2018-06-11 08:00:00 +0800 CST
 </code></pre><h2 id="后端存储的是datetime类型"><a href="#后端存储的是datetime类型" class="headerlink" title="后端存储的是datetime类型"></a>后端存储的是datetime类型</h2><pre><code>t,_ := time.Parse(&quot;2006-01-02 15:04:05&quot;,&quot;2018-06-11 06:00:00&quot;) // UTC时区
 db.Save(t)
 </code></pre><h2 id="docker容器时区"><a href="#docker容器时区" class="headerlink" title="docker容器时区"></a>docker容器时区</h2><p>docker容器修改</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
+<h2 id="time-UnixNano-大于int64的最大值"><a href="#time-UnixNano-大于int64的最大值" class="headerlink" title="time.UnixNano() 大于int64的最大值"></a>time.UnixNano() 大于int64的最大值</h2><p>这个问题，标准包中已经说明了</p>
+<pre><code>// UnixNano returns t as a Unix time, the number of nanoseconds elapsed
+// since January 1, 1970 UTC. The result is undefined if the Unix time
+// in nanoseconds cannot be represented by an int64 (a date before the year
+// 1678 or after 2262). Note that this means the result of calling UnixNano
+// on the zero Time is undefined.
+func (t Time) UnixNano() int64 {
+    return (t.unixSec())*1e9 + int64(t.nsec())
+}
+</code></pre><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
 <li>团队统一使用一个时区</li>
 <li>不用time.Parse()，使用time.ParseInLocation()</li>
 </ol>

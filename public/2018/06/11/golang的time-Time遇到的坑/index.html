@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="Z">
 <meta property="og:description" content="坑的起源使用不同的时区操作 后端存储的时间戳数字// 入库操作 now := time.Now().Unix() fmt.Println(now) // 2018-6-11 06:00:00 +0800 CST db.Save(now)  // 查询操作 // 前端从时间框控件筛选时间(2018-6-11)，然后传至后端 startTime = 1528675200000 fmt.Println(">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-12T07:49:33.762Z">
+<meta property="og:updated_time" content="2018-06-14T05:08:38.837Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="golang的time.Time遇到的坑">
 <meta name="twitter:description" content="坑的起源使用不同的时区操作 后端存储的时间戳数字// 入库操作 now := time.Now().Unix() fmt.Println(now) // 2018-6-11 06:00:00 +0800 CST db.Save(now)  // 查询操作 // 前端从时间框控件筛选时间(2018-6-11)，然后传至后端 startTime = 1528675200000 fmt.Println(">
@@ -323,7 +323,16 @@ fmt.Println(startTime) // 2018-06-11 08:00:00 +0800 CST
 </code></pre><h2 id="后端存储的是datetime类型"><a href="#后端存储的是datetime类型" class="headerlink" title="后端存储的是datetime类型"></a>后端存储的是datetime类型</h2><pre><code>t,_ := time.Parse(&quot;2006-01-02 15:04:05&quot;,&quot;2018-06-11 06:00:00&quot;) // UTC时区
 db.Save(t)
 </code></pre><h2 id="docker容器时区"><a href="#docker容器时区" class="headerlink" title="docker容器时区"></a>docker容器时区</h2><p>docker容器修改</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
+<h2 id="time-UnixNano-大于int64的最大值"><a href="#time-UnixNano-大于int64的最大值" class="headerlink" title="time.UnixNano() 大于int64的最大值"></a>time.UnixNano() 大于int64的最大值</h2><p>这个问题，标准包中已经说明了</p>
+<pre><code>// UnixNano returns t as a Unix time, the number of nanoseconds elapsed
+// since January 1, 1970 UTC. The result is undefined if the Unix time
+// in nanoseconds cannot be represented by an int64 (a date before the year
+// 1678 or after 2262). Note that this means the result of calling UnixNano
+// on the zero Time is undefined.
+func (t Time) UnixNano() int64 {
+    return (t.unixSec())*1e9 + int64(t.nsec())
+}
+</code></pre><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
 <li>团队统一使用一个时区</li>
 <li>不用time.Parse()，使用time.ParseInLocation()</li>
 </ol>
@@ -490,7 +499,7 @@ db.Save(t)
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#坑的起源"><span class="nav-number">1.</span> <span class="nav-text">坑的起源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后端存储的时间戳数字"><span class="nav-number">2.</span> <span class="nav-text">后端存储的时间戳数字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后端存储的是datetime类型"><span class="nav-number">3.</span> <span class="nav-text">后端存储的是datetime类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#docker容器时区"><span class="nav-number">4.</span> <span class="nav-text">docker容器时区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#坑的起源"><span class="nav-number">1.</span> <span class="nav-text">坑的起源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后端存储的时间戳数字"><span class="nav-number">2.</span> <span class="nav-text">后端存储的时间戳数字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后端存储的是datetime类型"><span class="nav-number">3.</span> <span class="nav-text">后端存储的是datetime类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#docker容器时区"><span class="nav-number">4.</span> <span class="nav-text">docker容器时区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#time-UnixNano-大于int64的最大值"><span class="nav-number">5.</span> <span class="nav-text">time.UnixNano() 大于int64的最大值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>

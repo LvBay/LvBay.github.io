@@ -29,6 +29,18 @@ tags:
 ## docker容器时区
 docker容器修改
 
+## time.UnixNano() 大于int64的最大值
+这个问题，标准包中已经说明了
+
+    // UnixNano returns t as a Unix time, the number of nanoseconds elapsed
+    // since January 1, 1970 UTC. The result is undefined if the Unix time
+    // in nanoseconds cannot be represented by an int64 (a date before the year
+    // 1678 or after 2262). Note that this means the result of calling UnixNano
+    // on the zero Time is undefined.
+    func (t Time) UnixNano() int64 {
+        return (t.unixSec())*1e9 + int64(t.nsec())
+    }
+
 ## 总结
 1. 团队统一使用一个时区
 2. 不用time.Parse()，使用time.ParseInLocation()
