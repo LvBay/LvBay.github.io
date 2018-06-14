@@ -87,7 +87,8 @@
 <meta property="og:description" content="OpenTracing是什么？当代分布式跟踪系统（例如，Zipkin, Dapper, HTrace, X-Trace等）旨在解决这些问题，但是他们使用不兼容的API来实现各自的应用需求。尽管这些分布式追踪系统有着相似的API语法，但各种语言的开发人员依然很难将他们各自的系统（使用不同的语言和技术）和特定的分布式追踪系统进行整合. OpenTracing通过提供平台无关、厂商无关的API，使得开发">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2018/06/12/golang的OpenTracing和jeager使用/jaeger1.png">
-<meta property="og:updated_time" content="2018-06-12T14:52:43.002Z">
+<meta property="og:image" content="http://yoursite.com/2018/06/12/golang的OpenTracing和jeager使用/jaeger-es.png">
+<meta property="og:updated_time" content="2018-06-14T16:07:57.405Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="golang的OpenTracing和jaeger使用">
 <meta name="twitter:description" content="OpenTracing是什么？当代分布式跟踪系统（例如，Zipkin, Dapper, HTrace, X-Trace等）旨在解决这些问题，但是他们使用不兼容的API来实现各自的应用需求。尽管这些分布式追踪系统有着相似的API语法，但各种语言的开发人员依然很难将他们各自的系统（使用不同的语言和技术）和特定的分布式追踪系统进行整合. OpenTracing通过提供平台无关、厂商无关的API，使得开发">
@@ -507,6 +508,40 @@ command:
 environment:
   - SPAN_STORAGE_TYPE=elasticsearch
 </code></pre><p>报错：<br>    {“level”:”fatal”,”ts”:1528814826.4817529,”caller”:”standalone/main.go:106”,”msg”:”Failed to init storage factory”,”error”:”health check timeout: no Elasticsearch node available”,”errorVerbose”:”no Elasticsearch node available…</p>
+<p>解决：</p>
+<h3 id="启动es的方式改为："><a href="#启动es的方式改为：" class="headerlink" title="启动es的方式改为："></a>启动es的方式改为：</h3><pre><code>docker run -it --rm -p 9200:9200 -p 9300:9300 -e &quot;discovery.type=single-node&quot; -e &quot;xpack.security.enabled=false&quot; docker.elastic.co/elasticsearch/elasticsearch:5.4.0
+</code></pre><h3 id="启动jaeger前将宿主主机ip写入到环境变量："><a href="#启动jaeger前将宿主主机ip写入到环境变量：" class="headerlink" title="启动jaeger前将宿主主机ip写入到环境变量："></a>启动jaeger前将宿主主机ip写入到环境变量：</h3><pre><code>export DOCKERHOST=$(ifconfig | grep -E &quot;([0-9]{1,3}\.){3}[0-9]{1,3}&quot; | grep -v 127.0.0.1 | awk &apos;{ print $2 }&apos; | cut -f2 -d: | head -n1)
+</code></pre><h3 id="修改docker-compose文件"><a href="#修改docker-compose文件" class="headerlink" title="修改docker-compose文件"></a>修改docker-compose文件</h3><pre><code>jaegertracing:
+image: jaegertracing/all-in-one:latest
+ports:
+    - &quot;5775:5775/udp&quot;
+    - &quot;6831:6831/udp&quot;
+    - &quot;6832:6832/udp&quot;
+    - &quot;5778:5778&quot;
+    - &quot;16686:16686&quot;
+    - &quot;14268:14268&quot;
+command:
+    - &quot;/go/bin/standalone-linux&quot;
+    - &quot;--span-storage.type=elasticsearch&quot;
+    - &quot;--query.static-files=/go/src/jaeger-ui-build/build/&quot;
+environment:
+    - SPAN_STORAGE_TYPE=elasticsearch
+    - ES_SERVER_URLS=http://$DOCKERHOST:9200
+</code></pre><h3 id="启动jaeger"><a href="#启动jaeger" class="headerlink" title="启动jaeger"></a>启动jaeger</h3><pre><code>docker-compose -f jaeger-start-docker.yaml up
+</code></pre><h3 id="大功告成"><a href="#大功告成" class="headerlink" title="大功告成"></a>大功告成</h3><img src="/2018/06/12/golang的OpenTracing和jeager使用/jaeger-es.png" title="启动成功">
+<h3 id="补充几个es的查询语句"><a href="#补充几个es的查询语句" class="headerlink" title="补充几个es的查询语句"></a>补充几个es的查询语句</h3><ul>
+<li><p>检查es状态<br>  curl <a href="http://127.0.0.1:9200" target="_blank" rel="noopener">http://127.0.0.1:9200</a></p>
+</li>
+<li><p>检查节点状态<br>  curl <a href="http://127.0.0.1:9200/_cat/health" target="_blank" rel="noopener">http://127.0.0.1:9200/_cat/health</a></p>
+</li>
+<li><p>查询某天的数据<br>  curl <a href="http://localhost:9200/jaeger-span-2018-06-14/_search" target="_blank" rel="noopener">http://localhost:9200/jaeger-span-2018-06-14/_search</a></p>
+</li>
+<li><p>查询数据数量<br>  curl <a href="http://localhost:9200/jaeger-span-\*/_count" target="_blank" rel="noopener">http://localhost:9200/jaeger-span-\*/_count</a></p>
+</li>
+</ul>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a href="https://github.com/jaegertracing/jaeger-performance/blob/master/standalone/README.md" target="_blank" rel="noopener">jaeger test文档</a></p>
+<p><a href="https://medium.com/opentracing/tracing-http-request-latency-in-go-with-opentracing-7cc1282a100a" target="_blank" rel="noopener">httptrace和opentracing</a></p>
+<p><a href="https://www.jaegertracing.io/docs/getting-started/" target="_blank" rel="noopener">jaeger官方文档</a></p>
 
       
     </div>
@@ -666,7 +701,7 @@ environment:
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#OpenTracing是什么？"><span class="nav-number">1.</span> <span class="nav-text">OpenTracing是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jaeger和OpenTracing"><span class="nav-number">2.</span> <span class="nav-text">jaeger和OpenTracing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jaeger使用"><span class="nav-number">3.</span> <span class="nav-text">jaeger使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#封装http请求"><span class="nav-number">4.</span> <span class="nav-text">封装http请求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#将数据存储在es中"><span class="nav-number">5.</span> <span class="nav-text">将数据存储在es中</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#OpenTracing是什么？"><span class="nav-number">1.</span> <span class="nav-text">OpenTracing是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jaeger和OpenTracing"><span class="nav-number">2.</span> <span class="nav-text">jaeger和OpenTracing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jaeger使用"><span class="nav-number">3.</span> <span class="nav-text">jaeger使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#封装http请求"><span class="nav-number">4.</span> <span class="nav-text">封装http请求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#将数据存储在es中"><span class="nav-number">5.</span> <span class="nav-text">将数据存储在es中</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#启动es的方式改为："><span class="nav-number">5.1.</span> <span class="nav-text">启动es的方式改为：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动jaeger前将宿主主机ip写入到环境变量："><span class="nav-number">5.2.</span> <span class="nav-text">启动jaeger前将宿主主机ip写入到环境变量：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改docker-compose文件"><span class="nav-number">5.3.</span> <span class="nav-text">修改docker-compose文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动jaeger"><span class="nav-number">5.4.</span> <span class="nav-text">启动jaeger</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#大功告成"><span class="nav-number">5.5.</span> <span class="nav-text">大功告成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#补充几个es的查询语句"><span class="nav-number">5.6.</span> <span class="nav-text">补充几个es的查询语句</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关链接"><span class="nav-number">6.</span> <span class="nav-text">相关链接</span></a></li></ol></div>
             
 
           </div>

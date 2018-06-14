@@ -238,4 +238,59 @@ doker-compose.yaml:
 
 报错：
     {"level":"fatal","ts":1528814826.4817529,"caller":"standalone/main.go:106","msg":"Failed to init storage factory","error":"health check timeout: no Elasticsearch node available","errorVerbose":"no Elasticsearch node available...
+
+解决：
+### 启动es的方式改为：
+
+    docker run -it --rm -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" -e "xpack.security.enabled=false" docker.elastic.co/elasticsearch/elasticsearch:5.4.0
+
+### 启动jaeger前将宿主主机ip写入到环境变量：
+
+    export DOCKERHOST=$(ifconfig | grep -E "([0-9]{1,3}\.){3}[0-9]{1,3}" | grep -v 127.0.0.1 | awk '{ print $2 }' | cut -f2 -d: | head -n1)
+
+### 修改docker-compose文件
+
+    jaegertracing:
+    image: jaegertracing/all-in-one:latest
+    ports:
+        - "5775:5775/udp"
+        - "6831:6831/udp"
+        - "6832:6832/udp"
+        - "5778:5778"
+        - "16686:16686"
+        - "14268:14268"
+    command:
+        - "/go/bin/standalone-linux"
+        - "--span-storage.type=elasticsearch"
+        - "--query.static-files=/go/src/jaeger-ui-build/build/"
+    environment:
+        - SPAN_STORAGE_TYPE=elasticsearch
+        - ES_SERVER_URLS=http://$DOCKERHOST:9200
+
+### 启动jaeger
+
+    docker-compose -f jaeger-start-docker.yaml up
     
+### 大功告成
+{% asset_img jaeger-es.png 启动成功%}
+
+### 补充几个es的查询语句
+
+- 检查es状态
+    curl http://127.0.0.1:9200
+
+- 检查节点状态
+    curl http://127.0.0.1:9200/_cat/health
+
+- 查询某天的数据
+    curl http://localhost:9200/jaeger-span-2018-06-14/_search
+
+- 查询数据数量
+    curl http://localhost:9200/jaeger-span-\*/_count
+
+## 相关链接
+[jaeger test文档](https://github.com/jaegertracing/jaeger-performance/blob/master/standalone/README.md)
+
+[httptrace和opentracing](https://medium.com/opentracing/tracing-http-request-latency-in-go-with-opentracing-7cc1282a100a)
+
+[jaeger官方文档](https://www.jaegertracing.io/docs/getting-started/)
