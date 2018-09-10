@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="AES算法AES加密算法（Advanced Encryption Standard）：是美国联邦政府采用的一种区块加密标准。这个标准用来替代原先的DES。 原理密钥扩展 根据初始密钥长度（16，24，32）进行扩展，执行AES-128, AES-192, AES-256算法  明文加密/解密主要包括四个子程序：  字节替代(SubBytes):矩阵中的各字节通过一个8位的S-box（Inverse">
+<meta name="description" content="HeadFirst设计模式花了一周时间把这本书读完了，感觉受益良多。其中有几个模式让我感觉相见恨晚，之前有几个项目场景如果能结合设计模式来实现，应该能节省很多维护的工作。还有其他几种设计模式，并没有感觉到它们的威力。另外，各个设计模式之间的差异也让我有点绕不出来，这个只能靠以后慢慢理清了。 模式是什么？书中提到: 模式是在某情景下，针对某问题的某种解决方案。  情景（情景） 问题（需求） 解决方案">
 <meta property="og:type" content="article">
-<meta property="og:title" content="golang实现AES加密">
-<meta property="og:url" content="http://yoursite.com/2018/05/02/golang实现AES加密/index.html">
+<meta property="og:title" content="设计模式">
+<meta property="og:url" content="http://yoursite.com/2018/09/10/设计模式/index.html">
 <meta property="og:site_name" content="Z">
-<meta property="og:description" content="AES算法AES加密算法（Advanced Encryption Standard）：是美国联邦政府采用的一种区块加密标准。这个标准用来替代原先的DES。 原理密钥扩展 根据初始密钥长度（16，24，32）进行扩展，执行AES-128, AES-192, AES-256算法  明文加密/解密主要包括四个子程序：  字节替代(SubBytes):矩阵中的各字节通过一个8位的S-box（Inverse">
+<meta property="og:description" content="HeadFirst设计模式花了一周时间把这本书读完了，感觉受益良多。其中有几个模式让我感觉相见恨晚，之前有几个项目场景如果能结合设计模式来实现，应该能节省很多维护的工作。还有其他几种设计模式，并没有感觉到它们的威力。另外，各个设计模式之间的差异也让我有点绕不出来，这个只能靠以后慢慢理清了。 模式是什么？书中提到: 模式是在某情景下，针对某问题的某种解决方案。  情景（情景） 问题（需求） 解决方案">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-02T11:34:24.936Z">
+<meta property="og:updated_time" content="2018-09-10T16:28:27.654Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="golang实现AES加密">
-<meta name="twitter:description" content="AES算法AES加密算法（Advanced Encryption Standard）：是美国联邦政府采用的一种区块加密标准。这个标准用来替代原先的DES。 原理密钥扩展 根据初始密钥长度（16，24，32）进行扩展，执行AES-128, AES-192, AES-256算法  明文加密/解密主要包括四个子程序：  字节替代(SubBytes):矩阵中的各字节通过一个8位的S-box（Inverse">
+<meta name="twitter:title" content="设计模式">
+<meta name="twitter:description" content="HeadFirst设计模式花了一周时间把这本书读完了，感觉受益良多。其中有几个模式让我感觉相见恨晚，之前有几个项目场景如果能结合设计模式来实现，应该能节省很多维护的工作。还有其他几种设计模式，并没有感觉到它们的威力。另外，各个设计模式之间的差异也让我有点绕不出来，这个只能靠以后慢慢理清了。 模式是什么？书中提到: 模式是在某情景下，针对某问题的某种解决方案。  情景（情景） 问题（需求） 解决方案">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/05/02/golang实现AES加密/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/09/10/设计模式/"/>
 
 
 
 
 
-  <title>golang实现AES加密 | Z</title>
+  <title>设计模式 | Z</title>
   
 
 
@@ -242,7 +242,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/02/golang实现AES加密/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/10/设计模式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yh Zhang">
@@ -259,7 +259,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">golang实现AES加密</h1>
+          <h1 class="post-title" itemprop="name headline">设计模式</h1>
         
 
         <div class="post-meta">
@@ -271,8 +271,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-02T18:48:36+08:00">
-                2018-05-02
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-10T22:54:42+08:00">
+                2018-09-10
               </time>
             
 
@@ -314,55 +314,32 @@
       
 
       
-        <h2 id="AES算法"><a href="#AES算法" class="headerlink" title="AES算法"></a>AES算法</h2><p>AES加密算法（Advanced Encryption Standard）：是美国联邦政府采用的一种区块加密标准。这个标准用来替代原先的DES。</p>
-<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><h3 id="密钥扩展"><a href="#密钥扩展" class="headerlink" title="密钥扩展"></a>密钥扩展</h3><ol>
-<li>根据初始密钥长度（16，24，32）进行扩展，执行AES-128, AES-192, AES-256算法</li>
-</ol>
-<h3 id="明文加密-解密"><a href="#明文加密-解密" class="headerlink" title="明文加密/解密"></a>明文加密/解密</h3><p>主要包括四个子程序：</p>
-<ol>
-<li><p>字节替代(SubBytes):<br>矩阵中的各字节通过一个8位的S-box（Inverse S-box）进行转换</p>
-</li>
-<li><p>行移位(ShiftRows)<br>第n行向左（右）移动n-1位，n从1开始</p>
-</li>
-<li><p>列混淆(MixColumns)<br>每一列都在modulox^4+1之下，和一个固定多项式c(x)作乘法。</p>
-</li>
-<li><p>轮密钥加(AddRoundKey)<br>将每个状态中的字节与<strong>该回合</strong>密钥做异或运算。</p>
-</li>
-</ol>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><pre><code>func AesEncrypt(origData, key []byte) ([]byte, error) {
-    block, err := aes.NewCipher(key)
-    if err != nil {
-        return nil, err
-    }
-    blockSize := block.BlockSize()
-    origData = PKCS5Padding(origData, blockSize)
-    blockMode := cipher.NewCBCEncrypter(block, key[:blockSize])
-    crypted := make([]byte, len(origData))
-    blockMode.CryptBlocks(crypted, origData)
-    return crypted, nil
-}
-
-func AesDecrypt(crypted, key []byte) ([]byte, error) {
-    block, err := aes.NewCipher(key)
-    if err != nil {
-        return nil, err
-    }
-    blockSize := block.BlockSize()
-    blockMode := cipher.NewCBCDecrypter(block, key[:blockSize])
-    origData := make([]byte, len(crypted))
-    blockMode.CryptBlocks(origData, crypted)
-    origData = PKCS5UnPadding(origData)
-    return origData, nil
-}
-</code></pre><h2 id="Q-amp-A"><a href="#Q-amp-A" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h2><ol>
-<li><p>字节替代中，Forward S-box，Inverse S-box 构造过程？是否与密钥或者明文相关？<br>S盒的构造方式如下：<br>（1） 按字节值得升序逐行初始化S盒。在行y列x的字节值是{yx}。<br>（2） 把S盒中的每个字节映射为它在有限域GF中的逆;{00}映射为它自身{00}。<br>（3） 把S盒中的每个字节的8个构成位记为(b7, b6, b5, b4, b3, b2, b1)。对S盒的每个字节的每个位做如下的变换：</p>
-</li>
-<li><p>列混淆中，加密与解密的多项式如何构造</p>
-</li>
-<li><p>轮密钥加，每个回合的密钥如何生成的</p>
-</li>
-</ol>
-<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a href="https://www.jianshu.com/p/436e82a3a91a" target="_blank" rel="noopener">AES加密算法和RSA加密算法</a><br><a href="https://zh.wikipedia.org/wiki/%E9%AB%98%E7%BA%A7%E5%8A%A0%E5%AF%86%E6%A0%87%E5%87%86" target="_blank" rel="noopener">wiki</a></p>
+        <h1 id="HeadFirst设计模式"><a href="#HeadFirst设计模式" class="headerlink" title="HeadFirst设计模式"></a>HeadFirst设计模式</h1><p>花了一周时间把这本书读完了，感觉受益良多。其中有几个模式让我感觉相见恨晚，之前有几个项目场景如果能结合设计模式来实现，应该能节省很多维护的工作。还有其他几种设计模式，并没有感觉到它们的威力。另外，各个设计模式之间的差异也让我有点绕不出来，这个只能靠以后慢慢理清了。</p>
+<h1 id="模式是什么？"><a href="#模式是什么？" class="headerlink" title="模式是什么？"></a>模式是什么？</h1><p>书中提到: 模式是在某情景下，针对某问题的某种解决方案。</p>
+<ul>
+<li>情景（情景）</li>
+<li>问题（需求）</li>
+<li>解决方案（模式）</li>
+</ul>
+<p>举个例子：</p>
+<p>情景-我要准时上班<br>问题-我将钥匙锁在车里了<br>解决方案1-打破窗户，进入车内，启动引擎，然后开车上班</p>
+<h1 id="设计模式是什么？"><a href="#设计模式是什么？" class="headerlink" title="设计模式是什么？"></a>设计模式是什么？</h1><p>设计模式在模式的基础上，还包括了适用性，即最佳实践。</p>
+<p>上述的例子，打破窗户虽然是一种解决方案，但是没有解决成本约束，可能不是一个很好的解决方案。</p>
+<h1 id="为什么要学习设计模式？"><a href="#为什么要学习设计模式？" class="headerlink" title="为什么要学习设计模式？"></a>为什么要学习设计模式？</h1><p>设计模式虽然不是原则，更不是法律，但是它提供了一种指导方针。</p>
+<p>我最近几个月一直在纠结一个问题，如何才能写出优秀甚至完美的代码？之前的很多项目代码，我觉得用另外一种结构也可以实现，但是我不知道哪种选择才是最正确的，甚至我一度认为之前的代码都是垃圾代码。</p>
+<p>了解了设计模式之后，我找到了一些答案。目前我现在认为在当前情境下，满足以下三个条件，就是优秀的代码</p>
+<ul>
+<li>条理清晰</li>
+<li>易于维护</li>
+<li>方便扩展</li>
+</ul>
+<p>至于完美的代码，当然存在，但是只有极少情况下才会出现：需求不会再更改了。</p>
+<p>从这个角度上来说，<code>fmt.Pritln(&quot;Hello World&quot;)&quot;</code>也算是一句”完美”代码了 -_-</p>
+<h1 id="如何学习设计模式？"><a href="#如何学习设计模式？" class="headerlink" title="如何学习设计模式？"></a>如何学习设计模式？</h1><h2 id="“反设计模式”-vs-设计模式"><a href="#“反设计模式”-vs-设计模式" class="headerlink" title="“反设计模式” vs 设计模式"></a>“反设计模式” vs 设计模式</h2><p>没有对比就没有伤害，针对遇到的问题，思考一些”反设计模式”,然后与设计模式做对比</p>
+<h2 id="设计模式-vs-设计模式"><a href="#设计模式-vs-设计模式" class="headerlink" title="设计模式 vs 设计模式"></a>设计模式 vs 设计模式</h2><p>同一个问题，既能抽象工厂模式能解决，也能使用模版方法解决。横向对比设计模式之间的差异</p>
+<h2 id="发掘开源项目中的设计模式"><a href="#发掘开源项目中的设计模式" class="headerlink" title="发掘开源项目中的设计模式"></a>发掘开源项目中的设计模式</h2><p>我在读这本书的时候，读到观察者模式会想到nsq，读到模版方法会想到beego controller的设计，读到工厂方法会想到jaeger中初始化存储组件的代码，读到go-redis客户端代码会想到命令模式。</p>
+<p>优秀的开源项目肯定包含了大量的设计模式，以后阅读的时候可以好好品味。</p>
+<h1 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h1><p>毕业两年半，来到新公司已经半年了，博客也停更半年了。接下来的2018希望能更认真的对待博客～</p>
 
       
     </div>
@@ -387,8 +364,8 @@ func AesDecrypt(crypted, key []byte) ([]byte, error) {
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/27/golang实现DES加密/" rel="next" title="golang实现DES加密">
-                <i class="fa fa-chevron-left"></i> golang实现DES加密
+              <a href="/2018/06/12/golang的OpenTracing和jeager使用/" rel="next" title="golang的OpenTracing和jaeger使用">
+                <i class="fa fa-chevron-left"></i> golang的OpenTracing和jaeger使用
               </a>
             
           </div>
@@ -396,10 +373,6 @@ func AesDecrypt(crypted, key []byte) ([]byte, error) {
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/05/05/golang实现RSA加密/" rel="prev" title="golang实现RSA加密">
-                golang实现RSA加密 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -526,7 +499,7 @@ func AesDecrypt(crypted, key []byte) ([]byte, error) {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#AES算法"><span class="nav-number">1.</span> <span class="nav-text">AES算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原理"><span class="nav-number">2.</span> <span class="nav-text">原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#密钥扩展"><span class="nav-number">2.1.</span> <span class="nav-text">密钥扩展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#明文加密-解密"><span class="nav-number">2.2.</span> <span class="nav-text">明文加密/解密</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码实现"><span class="nav-number">3.</span> <span class="nav-text">代码实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Q-amp-A"><span class="nav-number">4.</span> <span class="nav-text">Q&amp;A</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关链接"><span class="nav-number">5.</span> <span class="nav-text">相关链接</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#HeadFirst设计模式"><span class="nav-number">1.</span> <span class="nav-text">HeadFirst设计模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#模式是什么？"><span class="nav-number">2.</span> <span class="nav-text">模式是什么？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#设计模式是什么？"><span class="nav-number">3.</span> <span class="nav-text">设计模式是什么？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么要学习设计模式？"><span class="nav-number">4.</span> <span class="nav-text">为什么要学习设计模式？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何学习设计模式？"><span class="nav-number">5.</span> <span class="nav-text">如何学习设计模式？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#“反设计模式”-vs-设计模式"><span class="nav-number">5.1.</span> <span class="nav-text">“反设计模式” vs 设计模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设计模式-vs-设计模式"><span class="nav-number">5.2.</span> <span class="nav-text">设计模式 vs 设计模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发掘开源项目中的设计模式"><span class="nav-number">5.3.</span> <span class="nav-text">发掘开源项目中的设计模式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#写在最后"><span class="nav-number">6.</span> <span class="nav-text">写在最后</span></a></li></ol></div>
             
 
           </div>
