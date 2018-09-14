@@ -6,13 +6,13 @@ tags:
 
 # 为什么要了解snowflake
 
-## snowflake VS 数据库自增id
+1. 数据库分表以后，数据库自增id无法满足全局唯一的性质
 
-- 数据库分表以后，数据库自增id无法满足全局唯一的性质
+2. uuid作为主键无法保证id递增
 
 # snowflake算法原理
 
-{% asset_img snowflake.jpg 右键新标签页打开,可看大图 %}
+{% asset_img snowflake.jpg snowflake %}
 
 首先我们需要的是一个int64的id，可以通过对这64位bit划分命名空间，分别用来表示 时间戳，机器等来实现id唯一性。
 
@@ -139,3 +139,8 @@ tags:
 首先判断node.time是否大于当前服务器时间，如果大于说明发生了时间回流，返回错误并报警
 
 每隔一段时间(3s)上报自身系统时间写入
+
+# 参考资料
+
+[Leaf——美团点评分布式ID生成系统](https://tech.meituan.com/MT_Leaf.html)
+[分布式唯一id：snowflake算法思考](https://juejin.im/post/5a7f9176f265da4e721c73a8)

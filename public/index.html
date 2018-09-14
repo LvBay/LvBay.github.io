@@ -313,8 +313,13 @@
       
         
           
-            <h1 id="为什么要了解snowflake"><a href="#为什么要了解snowflake" class="headerlink" title="为什么要了解snowflake"></a>为什么要了解snowflake</h1><h2 id="snowflake-VS-数据库自增id"><a href="#snowflake-VS-数据库自增id" class="headerlink" title="snowflake VS 数据库自增id"></a>snowflake VS 数据库自增id</h2><p>- 数据库分表以后，数据库自增id无法满足全局唯一的性质</p>
-<h1 id="snowflake算法原理"><a href="#snowflake算法原理" class="headerlink" title="snowflake算法原理"></a>snowflake算法原理</h1><img src="/2018/09/13/snowflake-分布式唯一ID生成器/snowflake.jpg" title="右键新标签页打开,可看大图">
+            <h1 id="为什么要了解snowflake"><a href="#为什么要了解snowflake" class="headerlink" title="为什么要了解snowflake"></a>为什么要了解snowflake</h1><ol>
+<li><p>数据库分表以后，数据库自增id无法满足全局唯一的性质</p>
+</li>
+<li><p>uuid作为主键无法保证id递增</p>
+</li>
+</ol>
+<h1 id="snowflake算法原理"><a href="#snowflake算法原理" class="headerlink" title="snowflake算法原理"></a>snowflake算法原理</h1><img src="/2018/09/13/snowflake-分布式唯一ID生成器/snowflake.jpg" title="snowflake">
 <p>首先我们需要的是一个int64的id，可以通过对这64位bit划分命名空间，分别用来表示 时间戳，机器等来实现id唯一性。</p>
 <p>41-bit的时间可以表示（1L&lt;&lt;41）/(1000L<em>3600</em>24*365)=69年的时间</p>
 <p>10-bit机器可以分别表示1024台机器（5个bit是数据中心，5个bit的机器ID），这种5-5的划分实际上是可以自定义的。</p>
@@ -414,6 +419,7 @@ func (n *Node) Generate() ID {
 <h2 id="解决时钟回退问题"><a href="#解决时钟回退问题" class="headerlink" title="解决时钟回退问题"></a>解决时钟回退问题</h2><p>时间回流的原因一般是因为服务器做时间同步，此时可能出现生成重复id的情况。</p>
 <p>首先判断node.time是否大于当前服务器时间，如果大于说明发生了时间回流，返回错误并报警</p>
 <p>每隔一段时间(3s)上报自身系统时间写入</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://tech.meituan.com/MT_Leaf.html" target="_blank" rel="noopener">Leaf——美团点评分布式ID生成系统</a><br><a href="https://juejin.im/post/5a7f9176f265da4e721c73a8" target="_blank" rel="noopener">分布式唯一id：snowflake算法思考</a></p>
 
           
         
