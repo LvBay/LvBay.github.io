@@ -79,17 +79,19 @@
 
 
 
-<meta name="description" content="HeadFirst设计模式花了一周时间把这本书读完了，感觉受益良多。其中有几个模式让我感觉相见恨晚，之前有几个项目场景如果能结合设计模式来实现，应该能节省很多维护的工作。还有其他几种设计模式，并没有感觉到它们的威力。另外，各个设计模式之间的差异也让我有点绕不出来，这个只能靠以后慢慢理清了。 模式是什么？书中提到: 模式是在某情景下，针对某问题的某种解决方案。  情景（情景） 问题（需求） 解决方案">
+<meta name="description" content="为什么要了解snowflakesnowflake VS 数据库自增id- 数据库分表以后，数据库自增id无法满足全局唯一的性质 snowflake算法原理 首先我们需要的是一个int64的id，可以通过对这64位bit划分命名空间，分别用来表示 时间戳，机器等来实现id唯一性。 41-bit的时间可以表示（1L&amp;lt;&amp;lt;41）/(1000L360024*365)=69年的时间 10-bit">
 <meta property="og:type" content="article">
-<meta property="og:title" content="设计模式">
-<meta property="og:url" content="http://yoursite.com/2018/09/10/设计模式/index.html">
+<meta property="og:title" content="snowflake-分布式唯一ID生成器">
+<meta property="og:url" content="http://yoursite.com/2018/09/13/snowflake-分布式唯一ID生成器/index.html">
 <meta property="og:site_name" content="Z">
-<meta property="og:description" content="HeadFirst设计模式花了一周时间把这本书读完了，感觉受益良多。其中有几个模式让我感觉相见恨晚，之前有几个项目场景如果能结合设计模式来实现，应该能节省很多维护的工作。还有其他几种设计模式，并没有感觉到它们的威力。另外，各个设计模式之间的差异也让我有点绕不出来，这个只能靠以后慢慢理清了。 模式是什么？书中提到: 模式是在某情景下，针对某问题的某种解决方案。  情景（情景） 问题（需求） 解决方案">
+<meta property="og:description" content="为什么要了解snowflakesnowflake VS 数据库自增id- 数据库分表以后，数据库自增id无法满足全局唯一的性质 snowflake算法原理 首先我们需要的是一个int64的id，可以通过对这64位bit划分命名空间，分别用来表示 时间戳，机器等来实现id唯一性。 41-bit的时间可以表示（1L&amp;lt;&amp;lt;41）/(1000L360024*365)=69年的时间 10-bit">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-10T16:28:27.654Z">
+<meta property="og:image" content="http://yoursite.com/2018/09/13/snowflake-分布式唯一ID生成器/snowflake.jpg">
+<meta property="og:updated_time" content="2018-09-14T09:17:29.023Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="设计模式">
-<meta name="twitter:description" content="HeadFirst设计模式花了一周时间把这本书读完了，感觉受益良多。其中有几个模式让我感觉相见恨晚，之前有几个项目场景如果能结合设计模式来实现，应该能节省很多维护的工作。还有其他几种设计模式，并没有感觉到它们的威力。另外，各个设计模式之间的差异也让我有点绕不出来，这个只能靠以后慢慢理清了。 模式是什么？书中提到: 模式是在某情景下，针对某问题的某种解决方案。  情景（情景） 问题（需求） 解决方案">
+<meta name="twitter:title" content="snowflake-分布式唯一ID生成器">
+<meta name="twitter:description" content="为什么要了解snowflakesnowflake VS 数据库自增id- 数据库分表以后，数据库自增id无法满足全局唯一的性质 snowflake算法原理 首先我们需要的是一个int64的id，可以通过对这64位bit划分命名空间，分别用来表示 时间戳，机器等来实现id唯一性。 41-bit的时间可以表示（1L&amp;lt;&amp;lt;41）/(1000L360024*365)=69年的时间 10-bit">
+<meta name="twitter:image" content="http://yoursite.com/2018/09/13/snowflake-分布式唯一ID生成器/snowflake.jpg">
 
 
 
@@ -119,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/09/10/设计模式/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/09/13/snowflake-分布式唯一ID生成器/"/>
 
 
 
 
 
-  <title>设计模式 | Z</title>
+  <title>snowflake-分布式唯一ID生成器 | Z</title>
   
 
 
@@ -242,7 +244,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/10/设计模式/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/13/snowflake-分布式唯一ID生成器/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yh Zhang">
@@ -259,7 +261,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">设计模式</h1>
+          <h1 class="post-title" itemprop="name headline">snowflake-分布式唯一ID生成器</h1>
         
 
         <div class="post-meta">
@@ -271,8 +273,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-10T22:54:42+08:00">
-                2018-09-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-13T14:10:04+08:00">
+                2018-09-13
               </time>
             
 
@@ -314,32 +316,107 @@
       
 
       
-        <h1 id="HeadFirst设计模式"><a href="#HeadFirst设计模式" class="headerlink" title="HeadFirst设计模式"></a>HeadFirst设计模式</h1><p>花了一周时间把这本书读完了，感觉受益良多。其中有几个模式让我感觉相见恨晚，之前有几个项目场景如果能结合设计模式来实现，应该能节省很多维护的工作。还有其他几种设计模式，并没有感觉到它们的威力。另外，各个设计模式之间的差异也让我有点绕不出来，这个只能靠以后慢慢理清了。</p>
-<h1 id="模式是什么？"><a href="#模式是什么？" class="headerlink" title="模式是什么？"></a>模式是什么？</h1><p>书中提到: 模式是在某情景下，针对某问题的某种解决方案。</p>
+        <h1 id="为什么要了解snowflake"><a href="#为什么要了解snowflake" class="headerlink" title="为什么要了解snowflake"></a>为什么要了解snowflake</h1><h2 id="snowflake-VS-数据库自增id"><a href="#snowflake-VS-数据库自增id" class="headerlink" title="snowflake VS 数据库自增id"></a>snowflake VS 数据库自增id</h2><p>- 数据库分表以后，数据库自增id无法满足全局唯一的性质</p>
+<h1 id="snowflake算法原理"><a href="#snowflake算法原理" class="headerlink" title="snowflake算法原理"></a>snowflake算法原理</h1><img src="/2018/09/13/snowflake-分布式唯一ID生成器/snowflake.jpg" title="右键新标签页打开,可看大图">
+<p>首先我们需要的是一个int64的id，可以通过对这64位bit划分命名空间，分别用来表示 时间戳，机器等来实现id唯一性。</p>
+<p>41-bit的时间可以表示（1L&lt;&lt;41）/(1000L<em>3600</em>24*365)=69年的时间</p>
+<p>10-bit机器可以分别表示1024台机器（5个bit是数据中心，5个bit的机器ID），这种5-5的划分实际上是可以自定义的。</p>
+<p>12个自增序列号表示同一时间戳，同一机器下的自增流水号.</p>
+<p>上面的设计保证了理论上snowflake方案的QPS约为409.6w/s（2^12*1000）。</p>
+<h1 id="snowflake实现"><a href="#snowflake实现" class="headerlink" title="snowflake实现"></a>snowflake实现</h1><p>直接参考github上的一个snowflake实现，代码略有删减</p>
+<pre><code>var (
+    // 起始时间戳 这个可以根据实际情况定义，如果项目是从2018-01-01运行，就可以设置为2018-01-01的时间戳，可以使用到2087年
+    Epoch int64 = 1288834974657
+
+    // 机器标识位
+    NodeBits uint8 = 10
+
+    // 自增序列号
+    StepBits uint8 = 12
+
+    // 机器标识最大值，实例化node时不能大于nodeMax
+    nodeMax   int64 = -1 ^ (-1 &lt;&lt; NodeBits)
+
+    // 用于step循环的一个标识
+    stepMask  int64 = -1 ^ (-1 &lt;&lt; StepBits)
+
+    // snowflake需要的一个参数
+    timeShift uint8 = NodeBits + StepBits
+
+    // 相当于自增序列号
+    nodeShift uint8 = StepBits
+)
+
+// 生成id的节点服务
+type Node struct {
+    mu   sync.Mutex
+    time int64 // 最近使用的时间戳
+    node int64 // 机器标识
+    step int64 // 自增序列
+}
+
+// 实例化一个节点服务
+func NewNode(node int64) (*Node, error) {
+    if node &lt; 0 || node &gt; nodeMax {
+        return nil, errors.New(&quot;Node number must be between 0 and &quot; + strconv.FormatInt(nodeMax, 10))
+    }
+
+    return &amp;Node{
+        time: 0,
+        node: node,
+        step: 0,
+    }, nil
+}
+
+// 生成id
+func (n *Node) Generate() ID {
+
+    n.mu.Lock()
+
+    now := time.Now().UnixNano() / 1000000
+
+    if n.time == now {
+        n.step = (n.step + 1) &amp; stepMask
+
+        // 如果某一时间戳下的自增序列用完了，则切换时间戳
+        if n.step == 0 {
+            for now &lt;= n.time {
+                now = time.Now().UnixNano() / 1000000
+            }
+        }
+    } else {
+        n.step = 0
+    }
+
+    n.time = now
+
+    // snowflake算法
+    r := ID((now-Epoch)&lt;&lt;timeShift |
+        (n.node &lt;&lt; nodeShift) |
+        (n.step),
+    )
+
+    n.mu.Unlock()
+    return r
+}
+</code></pre><h1 id="如何保证多个snowflake节点生成的id不重复"><a href="#如何保证多个snowflake节点生成的id不重复" class="headerlink" title="如何保证多个snowflake节点生成的id不重复"></a>如何保证多个snowflake节点生成的id不重复</h1><p>试想一下，如果部署两个snowflake节点，初始化的时候node值都为1，那么在同一毫秒内两个请求分别打在了两个节点上，那么有可能将会获取两个同样的id（time,node,step全部相同）。所以问题的关键是保证部署的时候，初始化workId(node)值不能重复。</p>
+<p>其中一种解决方案是，通过etcd存储node列表</p>
 <ul>
-<li>情景（情景）</li>
-<li>问题（需求）</li>
-<li>解决方案（模式）</li>
+<li>服务初始化时，连接etcd服务，获取指定key下的node列表 list</li>
+<li>遍历list，取出一个最小的已过期的key值作为workId返回</li>
+<li>定时刷新该key值的过期时间，如果服务挂掉，超过过期时间后该key值可能会被其他服务占用</li>
 </ul>
-<p>举个例子：</p>
-<p>情景-我要准时上班<br>问题-我将钥匙锁在车里了<br>解决方案1-打破窗户，进入车内，启动引擎，然后开车上班</p>
-<h1 id="设计模式是什么？"><a href="#设计模式是什么？" class="headerlink" title="设计模式是什么？"></a>设计模式是什么？</h1><p>设计模式在模式的基础上，还包括了适用性，即最佳实践。</p>
-<p>上述的例子，打破窗户虽然是一种解决方案，但是没有解决成本约束，可能不是一个很好的解决方案。</p>
-<h1 id="为什么要学习设计模式？"><a href="#为什么要学习设计模式？" class="headerlink" title="为什么要学习设计模式？"></a>为什么要学习设计模式？</h1><p>设计模式虽然不是原则，更不是法律，但是它提供了一种指导方针。</p>
-<p>我最近几个月一直在纠结一个问题，如何才能写出优秀甚至完美的代码？之前的很多项目代码，我觉得用另外一种结构也可以实现，但是我不知道哪种选择才是最正确的，甚至我一度认为之前的代码都是垃圾代码。</p>
-<p>了解了设计模式之后，我找到了一些答案。目前我现在认为在当前情境下，满足以下三个条件，就是优秀的代码</p>
-<ul>
-<li>条理清晰</li>
-<li>易于维护</li>
-<li>方便扩展</li>
+<h1 id="唯一ID的其他解决方案"><a href="#唯一ID的其他解决方案" class="headerlink" title="唯一ID的其他解决方案"></a>唯一ID的其他解决方案</h1><ul>
+<li>UUID</li>
+<li>数据库自增长序列或字段</li>
+<li>步长+数据库自增序列</li>
 </ul>
-<p>至于完美的代码，当然存在，但是只有极少情况下才会出现：需求不会再更改了。</p>
-<p>从这个角度上来说，<code>fmt.Pritln(&quot;Hello World&quot;)&quot;</code>也算是一句”完美”代码了 -_-</p>
-<h1 id="如何学习设计模式？"><a href="#如何学习设计模式？" class="headerlink" title="如何学习设计模式？"></a>如何学习设计模式？</h1><h2 id="“反设计模式”-vs-设计模式"><a href="#“反设计模式”-vs-设计模式" class="headerlink" title="“反设计模式” vs 设计模式"></a>“反设计模式” vs 设计模式</h2><p>没有对比就没有伤害，针对遇到的问题，思考一些”反设计模式”,然后与设计模式做对比</p>
-<h2 id="设计模式-vs-设计模式"><a href="#设计模式-vs-设计模式" class="headerlink" title="设计模式 vs 设计模式"></a>设计模式 vs 设计模式</h2><p>同一个问题，既能抽象工厂模式能解决，也能使用模版方法解决。横向对比设计模式之间的差异</p>
-<h2 id="发掘开源项目中的设计模式"><a href="#发掘开源项目中的设计模式" class="headerlink" title="发掘开源项目中的设计模式"></a>发掘开源项目中的设计模式</h2><p>我在读这本书的时候，读到观察者模式会想到nsq，读到模版方法会想到beego controller的设计，读到工厂方法会想到jaeger中初始化存储组件的代码，读到go-redis客户端代码会想到命令模式。</p>
-<p>优秀的开源项目肯定包含了大量的设计模式，以后阅读的时候可以好好品味。</p>
-<h1 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h1><p>毕业两年半，来到新公司已经半年了，博客也停更半年了。接下来的2018希望能更认真的对待博客～</p>
+<h1 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h1><h2 id="什么是趋势递增"><a href="#什么是趋势递增" class="headerlink" title="什么是趋势递增"></a>什么是趋势递增</h2><p>趋势递增指的是同一节点下产生的id是递增的。</p>
+<p>在多个snowflake节点的情况下，因为节点的workId不同，同一时间下获取的id有可能是多个节点产生的，此时就无法保证全局递增</p>
+<h2 id="如果etcd挂了怎么办？"><a href="#如果etcd挂了怎么办？" class="headerlink" title="如果etcd挂了怎么办？"></a>如果etcd挂了怎么办？</h2><p>可以在每次获取workId后，将workId存到本地。</p>
+<h2 id="解决时钟回退问题"><a href="#解决时钟回退问题" class="headerlink" title="解决时钟回退问题"></a>解决时钟回退问题</h2><p>时间回流的原因一般是因为服务器做时间同步，此时可能出现生成重复id的情况。</p>
+<p>首先判断node.time是否大于当前服务器时间，如果大于说明发生了时间回流，返回错误并报警</p>
+<p>每隔一段时间(3s)上报自身系统时间写入</p>
 
       
     </div>
@@ -364,8 +441,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/06/12/golang的OpenTracing和jeager使用/" rel="next" title="golang的OpenTracing和jaeger使用">
-                <i class="fa fa-chevron-left"></i> golang的OpenTracing和jaeger使用
+              <a href="/2018/09/10/设计模式/" rel="next" title="设计模式">
+                <i class="fa fa-chevron-left"></i> 设计模式
               </a>
             
           </div>
@@ -373,10 +450,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/09/13/snowflake-分布式唯一ID生成器/" rel="prev" title="snowflake-分布式唯一ID生成器">
-                snowflake-分布式唯一ID生成器 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -503,7 +576,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#HeadFirst设计模式"><span class="nav-number">1.</span> <span class="nav-text">HeadFirst设计模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#模式是什么？"><span class="nav-number">2.</span> <span class="nav-text">模式是什么？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#设计模式是什么？"><span class="nav-number">3.</span> <span class="nav-text">设计模式是什么？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么要学习设计模式？"><span class="nav-number">4.</span> <span class="nav-text">为什么要学习设计模式？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何学习设计模式？"><span class="nav-number">5.</span> <span class="nav-text">如何学习设计模式？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#“反设计模式”-vs-设计模式"><span class="nav-number">5.1.</span> <span class="nav-text">“反设计模式” vs 设计模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设计模式-vs-设计模式"><span class="nav-number">5.2.</span> <span class="nav-text">设计模式 vs 设计模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发掘开源项目中的设计模式"><span class="nav-number">5.3.</span> <span class="nav-text">发掘开源项目中的设计模式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#写在最后"><span class="nav-number">6.</span> <span class="nav-text">写在最后</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么要了解snowflake"><span class="nav-number">1.</span> <span class="nav-text">为什么要了解snowflake</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#snowflake-VS-数据库自增id"><span class="nav-number">1.1.</span> <span class="nav-text">snowflake VS 数据库自增id</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#snowflake算法原理"><span class="nav-number">2.</span> <span class="nav-text">snowflake算法原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#snowflake实现"><span class="nav-number">3.</span> <span class="nav-text">snowflake实现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何保证多个snowflake节点生成的id不重复"><span class="nav-number">4.</span> <span class="nav-text">如何保证多个snowflake节点生成的id不重复</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#唯一ID的其他解决方案"><span class="nav-number">5.</span> <span class="nav-text">唯一ID的其他解决方案</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#FAQ"><span class="nav-number">6.</span> <span class="nav-text">FAQ</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是趋势递增"><span class="nav-number">6.1.</span> <span class="nav-text">什么是趋势递增</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如果etcd挂了怎么办？"><span class="nav-number">6.2.</span> <span class="nav-text">如果etcd挂了怎么办？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决时钟回退问题"><span class="nav-number">6.3.</span> <span class="nav-text">解决时钟回退问题</span></a></li></ol></li></ol></div>
             
 
           </div>
