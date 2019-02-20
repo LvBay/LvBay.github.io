@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="DES简介DES是一个分组加密算法，典型的DES以64位为分组对数据加密，加密和解密用的是同一个算法。它的密钥长度是56位（因为每个第8 位都用作奇偶校验），密钥可以是任意的56位的数，而且可以任意时候改变。其中有极少数被认为是易破解的弱密钥，但是很容易避开它们不用。所以保密性依赖于密钥。 概念隐喻 加密 - 做蛋糕 明文 - 原材料 IV初始向量 - 厨师. IV长度必须与block.Size保">
+<meta name="description" content="pg_stat_activity pg_stat_activity.state 状态解析  update语句导致idle in transaction  query 字段为COMMIT  query 字段为BEGIN READ WRITE  query 为 SELECT 某些较长的sql展示为这个  client_addr 有些为192.168  realtime left join base">
 <meta property="og:type" content="article">
-<meta property="og:title" content="golang实现DES加密">
-<meta property="og:url" content="http://yoursite.com/2018/04/27/golang实现DES加密/index.html">
+<meta property="og:title" content="postgresql性能优化笔记">
+<meta property="og:url" content="http://yoursite.com/2018/09/28/postgresql性能优化笔记/index.html">
 <meta property="og:site_name" content="Z">
-<meta property="og:description" content="DES简介DES是一个分组加密算法，典型的DES以64位为分组对数据加密，加密和解密用的是同一个算法。它的密钥长度是56位（因为每个第8 位都用作奇偶校验），密钥可以是任意的56位的数，而且可以任意时候改变。其中有极少数被认为是易破解的弱密钥，但是很容易避开它们不用。所以保密性依赖于密钥。 概念隐喻 加密 - 做蛋糕 明文 - 原材料 IV初始向量 - 厨师. IV长度必须与block.Size保">
+<meta property="og:description" content="pg_stat_activity pg_stat_activity.state 状态解析  update语句导致idle in transaction  query 字段为COMMIT  query 字段为BEGIN READ WRITE  query 为 SELECT 某些较长的sql展示为这个  client_addr 有些为192.168  realtime left join base">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-02T10:46:00.515Z">
+<meta property="og:updated_time" content="2018-12-27T01:43:02.047Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="golang实现DES加密">
-<meta name="twitter:description" content="DES简介DES是一个分组加密算法，典型的DES以64位为分组对数据加密，加密和解密用的是同一个算法。它的密钥长度是56位（因为每个第8 位都用作奇偶校验），密钥可以是任意的56位的数，而且可以任意时候改变。其中有极少数被认为是易破解的弱密钥，但是很容易避开它们不用。所以保密性依赖于密钥。 概念隐喻 加密 - 做蛋糕 明文 - 原材料 IV初始向量 - 厨师. IV长度必须与block.Size保">
+<meta name="twitter:title" content="postgresql性能优化笔记">
+<meta name="twitter:description" content="pg_stat_activity pg_stat_activity.state 状态解析  update语句导致idle in transaction  query 字段为COMMIT  query 字段为BEGIN READ WRITE  query 为 SELECT 某些较长的sql展示为这个  client_addr 有些为192.168  realtime left join base">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/04/27/golang实现DES加密/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/09/28/postgresql性能优化笔记/"/>
 
 
 
 
 
-  <title>golang实现DES加密 | Z</title>
+  <title>postgresql性能优化笔记 | Z</title>
   
 
 
@@ -242,7 +242,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/27/golang实现DES加密/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/28/postgresql性能优化笔记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yh Zhang">
@@ -259,7 +259,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">golang实现DES加密</h1>
+          <h1 class="post-title" itemprop="name headline">postgresql性能优化笔记</h1>
         
 
         <div class="post-meta">
@@ -271,8 +271,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-27T11:35:28+08:00">
-                2018-04-27
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-28T20:03:36+08:00">
+                2018-09-28
               </time>
             
 
@@ -314,70 +314,81 @@
       
 
       
-        <h2 id="DES简介"><a href="#DES简介" class="headerlink" title="DES简介"></a>DES简介</h2><p>DES是一个分组加密算法，典型的DES以64位为分组对数据加密，加密和解密用的是同一个算法。它的密钥长度是56位（因为每个第8 位都用作奇偶校验），密钥可以是任意的56位的数，而且可以任意时候改变。其中有极少数被认为是易破解的弱密钥，但是很容易避开它们不用。所以保密性依赖于密钥。</p>
-<h3 id="概念隐喻"><a href="#概念隐喻" class="headerlink" title="概念隐喻"></a>概念隐喻</h3><ul>
-<li>加密 - 做蛋糕</li>
-<li>明文 - 原材料</li>
-<li>IV初始向量 - 厨师. IV长度必须与block.Size保持一致. 维基百科上说重复使用IV会导致安全隐患</li>
-<li>block - 一套工具</li>
-<li>工作模式 - 工具使用说明书,有EBC,CBC等</li>
-<li>Padding填充模式 - 检查原材料.块密码只能对确定长度的数据块进行处理，而消息的长度通常是可变的.因此部分模式（即ECB和CBC）需要最后一块在加密前进行填充</li>
-</ul>
-<h3 id="加密过程"><a href="#加密过程" class="headerlink" title="加密过程:"></a>加密过程:</h3><ul>
-<li>block = 密钥切割</li>
-<li>pdata = padding + data</li>
-<li>加密算法 = 工作模式+初始向量+block 代码:cipher.NewCBCEncrypter(block,iv)</li>
-<li>密文 = 加密算法 + pdata </li>
-</ul>
-<h3 id="解密过程-解密算法其实是对密文的加密"><a href="#解密过程-解密算法其实是对密文的加密" class="headerlink" title="解密过程(解密算法其实是对密文的加密)"></a>解密过程(解密算法其实是对密文的加密)</h3><ul>
-<li>block = 密钥切割</li>
-<li>解密算法 = 工作模式+初始向量+block 代码:cipher.NewCBCDecrypter(block,iv)</li>
-<li>明文padding = 解密算法 + 密文</li>
-<li>明文 = unpadding + 明文padding</li>
-</ul>
-<p>EBC(Electronic codebook)和CBC(Cipher-block Chain)的比较:</p>
-<ul>
-<li>EBC 同样的明文块会被加密成相同的密文块.</li>
-<li>CBC 每个明文块先与前一个密文块进行异或后，再进行加密.</li>
-<li>安全强度上CBC更强</li>
-<li>CBC无法并行加密</li>
-</ul>
-<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><pre><code>// DES加密
-func DesEncrypt(origData, key []byte) ([]byte, error) {
-    // 根据密钥生成block
-    block, err := des.NewCipher(key)
-    if err != nil {
-        return nil, err
-    }
-    // 根据block和初始向量生成加密算法,IV长度与block.size需要保持一致
-    blockMode := cipher.NewCBCEncrypter(block, IV)
-    // 扩充 origData
-    origData = PKCS5Padding(origData, block.BlockSize())
-    crypted := make([]byte, len(origData))
-    // 对padded data加密
-    blockMode.CryptBlocks(crypted, origData)
-    return crypted, nil
-}
+        <h1 id="pg-stat-activity"><a href="#pg-stat-activity" class="headerlink" title="pg_stat_activity"></a>pg_stat_activity</h1><ol>
+<li><p>pg_stat_activity.state 状态解析</p>
+</li>
+<li><p>update语句导致idle in transaction</p>
+</li>
+<li><p>query 字段为COMMIT</p>
+</li>
+<li><p>query 字段为BEGIN READ WRITE</p>
+</li>
+<li><p>query 为 SELECT 某些较长的sql展示为这个</p>
+</li>
+<li><p>client_addr 有些为192.168</p>
+</li>
+<li><p>realtime left join base VS base left join realtime</p>
+</li>
+</ol>
+<h1 id="explain"><a href="#explain" class="headerlink" title="explain"></a>explain</h1><ol>
+<li>start_up_cost all_cost</li>
+</ol>
+<h1 id="json字段优化"><a href="#json字段优化" class="headerlink" title="json字段优化"></a>json字段优化</h1><ol>
+<li>使用json_extract_path_text(effects,’Consumption’))，使用的时候比较麻烦</li>
+<li><p>修改为jsonb，使用gin索引<br> create index idx_resource_20180926_consum on resource_20180926 USING gin (effects);</p>
+</li>
+<li><p>直接使用json字段索引<br> CREATE INDEX ON resource_20180926((effects-&gt;&gt;’Consumption’));</p>
+</li>
+</ol>
+<h1 id="left-join"><a href="#left-join" class="headerlink" title="left join"></a>left join</h1><ol>
+<li><p>如何让left join走索引</p>
+<p>  SELECT A</p>
+<pre><code>.user_id
+</code></pre><p> FROM</p>
+<pre><code>base.unit
+A LEFT JOIN base.resource b ON A.user_id = b.user_id 
+AND A.auth_id = b.auth_id 
+AND A.campaign_id = b.campaign_id 
+AND A.unit_id = b.unit_id
+LEFT JOIN base.target C ON A.user_id = C.user_id 
+AND A.auth_id = C.auth_id 
+AND A.campaign_id = C.campaign_id 
+AND A.unit_id = C.unit_id
+LEFT JOIN base.creative d ON A.user_id = d.user_id 
+AND A.auth_id = d.auth_id 
+AND A.campaign_id = d.campaign_id 
+AND A.unit_id = d.unit_id 
+</code></pre><p> WHERE</p>
+<pre><code>( A.deleted_at IS NULL AND b.deleted_at IS NULL AND C.deleted_at IS NULL AND d.deleted_at IS NULL ) 
 
-// DES解密
-func DesDecrypt(crypted, key []byte) ([]byte, error) {
-    // 根据密钥生成block
-    block, err := des.NewCipher(key)
-    if err != nil {
-        return nil, err
-    }
-    // 根据block和初始向量生成解密算法,IV长度与block.size需要保持一致
-    blockMode := cipher.NewCBCDecrypter(block, IV)
-    // 对密文解密
-    origData := make([]byte, len(crypted))
-    blockMode.CryptBlocks(origData, crypted)
-    // 反扩充,获取原始明文
-    origData = PKCS5UnPadding(origData)
-    return origData, nil
-}
-</code></pre><h3 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接:"></a>相关链接:</h3><p><a href="https://www.jianshu.com/p/c44a8a1b7c38" target="_blank" rel="noopener">DES加密算法原理</a></p>
-<p><a href="https://zh.wikipedia.org/wiki/%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F" target="_blank" rel="noopener">工作模式 ECB,CBC</a></p>
-
+AND (
+    A.platform = 2
+AND A.user_id = &apos;998825031364526080&apos; 
+AND A.auth_id = &apos;1044508644000931840&apos;)
+</code></pre></li>
+</ol>
+<p>上面sql的golang代码</p>
+<pre><code>units := []base.Unit{}
+err := resource.DB.
+    Select(&quot;a.user_id, a.auth_id, a.campaign_id, a.unit_id, b.meta_resource_id, a.unit_name, a.config_status, a.passive_status, a.work_time, a.start_time, a.end_time&quot;).
+    Table(&quot;base.unit a&quot;).
+    Joins(&quot;left join base.resource b on a.user_id = b.user_id and a.auth_id = b.auth_id and a.campaign_id = b.campaign_id and a.unit_id = b.unit_id&quot;).
+    Joins(&quot;left join base.target c on a.user_id = c.user_id and a.auth_id = c.auth_id and a.campaign_id = c.campaign_id and a.unit_id = c.unit_id&quot;).
+    Joins(&quot;left join base.creative d on a.user_id = d.user_id and a.auth_id = d.auth_id and a.campaign_id = d.campaign_id and a.unit_id = d.unit_id&quot;).
+    Where(&quot;a.deleted_at is null and b.deleted_at is null and c.deleted_at is null and d.deleted_at is null&quot;).
+    Where(&quot;a.platform = ? and a.user_id = ? and a.auth_id = ?&quot;, 2, &quot;998825031364526080&quot;, &quot;1044508644000931840&quot;).
+    Limit(1).
+    Scan(&amp;units).Error
+fmt.Println(&quot;err:&quot;, err)
+</code></pre><h1 id="cpu利用率飙高"><a href="#cpu利用率飙高" class="headerlink" title="cpu利用率飙高"></a>cpu利用率飙高</h1><p>消息堆积</p>
+<h1 id="联合索引"><a href="#联合索引" class="headerlink" title="联合索引"></a>联合索引</h1><h2 id="只有带user-id才能走索引"><a href="#只有带user-id才能走索引" class="headerlink" title="只有带user_id才能走索引"></a>只有带user_id才能走索引</h2><pre><code>EXPLAIN ANALYSE SELECT * FROM &quot;base&quot;.&quot;resource&quot; WHERE &quot;base&quot;.&quot;resource&quot;.&quot;deleted_at&quot; IS NULL AND (( auth_id = &apos;1044508644000931840&apos; ) 
+AND ( resource_id = &apos;sc_213523592969230286&apos; ) 
+AND ( user_id = &apos;998825031364526080&apos; ) 
+);
+</code></pre><h2 id="索引不仅仅需要命中"><a href="#索引不仅仅需要命中" class="headerlink" title="索引不仅仅需要命中"></a>索引不仅仅需要命中</h2><p>explain ANALYSE SELECT * FROM “base”.”resource” WHERE “base”.”resource”.”deleted_at” IS NULL AND ((user_id = ‘1046367009123614720’) AND (auth_id = ‘1046367009182326784’) AND (resource_id = ‘sc_-1866255835007264483’) AND (platform = ‘2’)<br>and campaign_id = ‘112455583’ and unit_id = ‘128115026’ )</p>
+<p>VS</p>
+<p>explain ANALYSE SELECT * FROM “base”.”resource” WHERE “base”.”resource”.”deleted_at” IS NULL AND ((user_id = ‘1046367009123614720’) AND (auth_id = ‘1046367009182326784’) AND (resource_id = ‘sc_-1866255835007264483’) AND (platform = ‘2’)<br>)</p>
+<h1 id="写在join中还是where中？"><a href="#写在join中还是where中？" class="headerlink" title="写在join中还是where中？"></a>写在join中还是where中？</h1><h1 id="gin索引对json字段性能提升"><a href="#gin索引对json字段性能提升" class="headerlink" title="gin索引对json字段性能提升"></a>gin索引对json字段性能提升</h1>
       
     </div>
     
@@ -401,8 +412,8 @@ func DesDecrypt(crypted, key []byte) ([]byte, error) {
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/26/关于加密算法的理解/" rel="next" title="关于加密算法的理解">
-                <i class="fa fa-chevron-left"></i> 关于加密算法的理解
+              <a href="/2018/09/13/snowflake-分布式唯一ID生成器/" rel="next" title="snowflake-分布式唯一ID生成器">
+                <i class="fa fa-chevron-left"></i> snowflake-分布式唯一ID生成器
               </a>
             
           </div>
@@ -411,8 +422,8 @@ func DesDecrypt(crypted, key []byte) ([]byte, error) {
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/05/02/golang实现AES加密/" rel="prev" title="golang实现AES加密">
-                golang实现AES加密 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/02/13/docker-compose部署wordpress/" rel="prev" title="docker-compose部署wordpress">
+                docker-compose部署wordpress <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -540,7 +551,7 @@ func DesDecrypt(crypted, key []byte) ([]byte, error) {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#DES简介"><span class="nav-number">1.</span> <span class="nav-text">DES简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概念隐喻"><span class="nav-number">1.1.</span> <span class="nav-text">概念隐喻</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#加密过程"><span class="nav-number">1.2.</span> <span class="nav-text">加密过程:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解密过程-解密算法其实是对密文的加密"><span class="nav-number">1.3.</span> <span class="nav-text">解密过程(解密算法其实是对密文的加密)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现"><span class="nav-number">1.4.</span> <span class="nav-text">代码实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相关链接"><span class="nav-number">1.5.</span> <span class="nav-text">相关链接:</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#pg-stat-activity"><span class="nav-number">1.</span> <span class="nav-text">pg_stat_activity</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#explain"><span class="nav-number">2.</span> <span class="nav-text">explain</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#json字段优化"><span class="nav-number">3.</span> <span class="nav-text">json字段优化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#left-join"><span class="nav-number">4.</span> <span class="nav-text">left join</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cpu利用率飙高"><span class="nav-number">5.</span> <span class="nav-text">cpu利用率飙高</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#联合索引"><span class="nav-number">6.</span> <span class="nav-text">联合索引</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#只有带user-id才能走索引"><span class="nav-number">6.1.</span> <span class="nav-text">只有带user_id才能走索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#索引不仅仅需要命中"><span class="nav-number">6.2.</span> <span class="nav-text">索引不仅仅需要命中</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#写在join中还是where中？"><span class="nav-number">7.</span> <span class="nav-text">写在join中还是where中？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#gin索引对json字段性能提升"><span class="nav-number">8.</span> <span class="nav-text">gin索引对json字段性能提升</span></a></li></ol></div>
             
 
           </div>
