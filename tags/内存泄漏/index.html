@@ -79,17 +79,16 @@
 
 
 
-<meta name="description" content="坑的起源使用不同的时区操作 后端存储的时间戳数字// 入库操作 now := time.Now().Unix() fmt.Println(now) // 2018-6-11 06:00:00 +0800 CST db.Save(now)  // 查询操作 // 前端从时间框控件筛选时间(2018-6-11)，然后传至后端 startTime = 1528675200000 fmt.Println(">
-<meta property="og:type" content="article">
-<meta property="og:title" content="golang的time.Time遇到的坑">
-<meta property="og:url" content="http://yoursite.com/2018/06/11/golang的time-Time遇到的坑/index.html">
+<meta name="description" content="See you again">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Z">
+<meta property="og:url" content="http://yoursite.com/tags/内存泄漏/index.html">
 <meta property="og:site_name" content="Z">
-<meta property="og:description" content="坑的起源使用不同的时区操作 后端存储的时间戳数字// 入库操作 now := time.Now().Unix() fmt.Println(now) // 2018-6-11 06:00:00 +0800 CST db.Save(now)  // 查询操作 // 前端从时间框控件筛选时间(2018-6-11)，然后传至后端 startTime = 1528675200000 fmt.Println(">
+<meta property="og:description" content="See you again">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-30T03:12:27.210Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="golang的time.Time遇到的坑">
-<meta name="twitter:description" content="坑的起源使用不同的时区操作 后端存储的时间戳数字// 入库操作 now := time.Now().Unix() fmt.Println(now) // 2018-6-11 06:00:00 +0800 CST db.Save(now)  // 查询操作 // 前端从时间框控件筛选时间(2018-6-11)，然后传至后端 startTime = 1528675200000 fmt.Println(">
+<meta name="twitter:title" content="Z">
+<meta name="twitter:description" content="See you again">
 
 
 
@@ -119,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/06/11/golang的time-Time遇到的坑/"/>
+  <link rel="canonical" href="http://yoursite.com/tags/内存泄漏/"/>
 
 
 
 
 
-  <title>golang的time.Time遇到的坑 | Z</title>
+  <title>标签: 内存泄漏 | Z</title>
   
 
 
@@ -144,7 +143,7 @@
     
   
 
-  <div class="container sidebar-position-right page-post-detail">
+  <div class="container sidebar-position-right ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -228,176 +227,54 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
+  
+  
+  
+  <div class="post-block tag">
 
-  
+    <div id="posts" class="posts-collapse">
+      <div class="collection-title">
+        <h1>内存泄漏<small>标签</small>
+        </h1>
+      </div>
 
-  
-  
-  
+      
+        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/golang的time-Time遇到的坑/">
+    <header class="post-header">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Yh Zhang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/git.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Z">
-    </span>
-
-    
-      <header class="post-header">
-
+      <h2 class="post-title">
         
-        
-          <h1 class="post-title" itemprop="name headline">golang的time.Time遇到的坑</h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
+            <a class="post-title-link" href="/2020/01/20/golang内存泄漏排查/" itemprop="url">
               
-                <span class="post-meta-item-text">发表于</span>
+                <span itemprop="name">golang内存泄漏排查</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-11T23:20:53+08:00">
-                2018-06-11
-              </time>
-            
+            </a>
+        
+      </h2>
 
-            
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2020-01-20T17:51:17+08:00"
+              content="2020-01-20" >
+          01-20
+        </time>
+      </div>
 
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-            <span class="post-meta-divider">|</span>
-            <span class="page-pv">本文总阅读量
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
-            </span>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <h2 id="坑的起源"><a href="#坑的起源" class="headerlink" title="坑的起源"></a>坑的起源</h2><p>使用不同的时区操作</p>
-<h2 id="后端存储的时间戳数字"><a href="#后端存储的时间戳数字" class="headerlink" title="后端存储的时间戳数字"></a>后端存储的时间戳数字</h2><pre><code>// 入库操作
-now := time.Now().Unix()
-fmt.Println(now) // 2018-6-11 06:00:00 +0800 CST
-db.Save(now)
-
-// 查询操作
-// 前端从时间框控件筛选时间(2018-6-11)，然后传至后端
-startTime = 1528675200000
-fmt.Println(startTime) // 2018-06-11 08:00:00 +0800 CST
-// 错误出现 上面入库的数据因为是在6点(CST时区)入库，所以查询不到
-</code></pre><h2 id="后端存储的是datetime类型"><a href="#后端存储的是datetime类型" class="headerlink" title="后端存储的是datetime类型"></a>后端存储的是datetime类型</h2><pre><code>t,_ := time.Parse(&quot;2006-01-02 15:04:05&quot;,&quot;2018-06-11 06:00:00&quot;) // UTC时区
-db.Save(t)
-</code></pre><h2 id="docker容器时区"><a href="#docker容器时区" class="headerlink" title="docker容器时区"></a>docker容器时区</h2><p>docker容器修改</p>
-<h2 id="time-UnixNano-大于int64的最大值"><a href="#time-UnixNano-大于int64的最大值" class="headerlink" title="time.UnixNano() 大于int64的最大值"></a>time.UnixNano() 大于int64的最大值</h2><p>这个问题，标准包中已经说明了</p>
-<pre><code>// UnixNano returns t as a Unix time, the number of nanoseconds elapsed
-// since January 1, 1970 UTC. The result is undefined if the Unix time
-// in nanoseconds cannot be represented by an int64 (a date before the year
-// 1678 or after 2262). Note that this means the result of calling UnixNano
-// on the zero Time is undefined.
-func (t Time) UnixNano() int64 {
-    return (t.unixSec())*1e9 + int64(t.nsec())
-}
-</code></pre><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
-<li>团队统一使用一个时区</li>
-<li>不用time.Parse()，使用time.ParseInLocation()</li>
-</ol>
-
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2018/06/06/优雅关闭的几种实现/" rel="next" title="优雅关闭的几种实现">
-                <i class="fa fa-chevron-left"></i> 优雅关闭的几种实现
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/06/12/golang的OpenTracing和jeager使用/" rel="prev" title="golang的OpenTracing和jaeger使用">
-                golang的OpenTracing和jaeger使用 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
+    </header>
   </article>
 
 
-
-    <div class="post-spread">
       
     </div>
+
   </div>
+  
+  
+  
+
+  
 
 
           </div>
@@ -405,10 +282,6 @@ func (t Time) UnixNano() int64 {
 
 
           
-
-  
-
-
 
         </div>
         
@@ -429,17 +302,8 @@ func (t Time) UnixNano() int64 {
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -494,22 +358,6 @@ func (t Time) UnixNano() int64 {
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#坑的起源"><span class="nav-number">1.</span> <span class="nav-text">坑的起源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后端存储的时间戳数字"><span class="nav-number">2.</span> <span class="nav-text">后端存储的时间戳数字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后端存储的是datetime类型"><span class="nav-number">3.</span> <span class="nav-text">后端存储的是datetime类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#docker容器时区"><span class="nav-number">4.</span> <span class="nav-text">docker容器时区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#time-UnixNano-大于int64的最大值"><span class="nav-number">5.</span> <span class="nav-text">time.UnixNano() 大于int64的最大值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -670,10 +518,6 @@ func (t Time) UnixNano() int64 {
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
 
   
 
