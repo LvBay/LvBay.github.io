@@ -242,6 +242,144 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/21/2019年度总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yh Zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/git.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Z">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/01/21/2019年度总结/" itemprop="url">2019年度总结</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-21T15:48:30+08:00">
+                2020-01-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="2019"><a href="#2019" class="headerlink" title="2019"></a>2019</h1><p>弹指一挥间，2019已经过去了。</p>
+<p>外面关于流感的消息越传越严重，而我选择在工位上安静的写年度总结～</p>
+<p>有人说如何评估自己在过去一年有多少成长？如果你觉得一年前的自己是个zz，那么说明你这一年进步了很多。我当然觉得一年前<br>的自己不是zz，但差不多算是半个zz。</p>
+<p>技术上，今年在消息中间件上做了较多研究。Kafka，NSQ，Pulsar还有我们公司自研的LeviMQ我都做了比较深入的学习。</p>
+<h1 id="技术能力"><a href="#技术能力" class="headerlink" title="技术能力"></a>技术能力</h1><h2 id="Kafka"><a href="#Kafka" class="headerlink" title="Kafka"></a>Kafka</h2><p>学习Kafka主要是通过 &lt;深入理解Kafka:核心设计与实践原理&gt; 这本书。让我觉得印象比较深的有几点：</p>
+<ol>
+<li>Kafka读写高性能的实现原理</li>
+<li>分区的设计，这一点和许多分布式系统都有类似的思想</li>
+<li>副本同步的实现</li>
+</ol>
+<p>同时Kafka也存在一些很严重的问题，比如消费者加入/离开集群时会出现一段时间消息无法消费的情况。这也是公司内部<br>某些场景使用NSQ的主要原因</p>
+<h2 id="NSQ"><a href="#NSQ" class="headerlink" title="NSQ"></a>NSQ</h2><p>是我前几年就接触过原始的开源版本，以前对它的认知就停留在：使用<strong>golang</strong>编写，<strong>高性能</strong>，但是对于消息顺序性，高可用<br>方面没有深入研究。有赞对这个开源版本做了较大的改造，借鉴了相当多的kafka设计理念。我们公司主要是在有赞改造的版本基础上，<br>又加了一些定制化功能。12月份的时候在公司内部，做了一个关于<strong>nsq-rebalance</strong>的分享，算是通读了nsq的核心逻辑，<br>学到不少。</p>
+<h2 id="Pulsar"><a href="#Pulsar" class="headerlink" title="Pulsar"></a>Pulsar</h2><p>今年入职的第一个项目就是和Pulsar有关，当时因为官方的pulsar-clieng-go是使用cgo运行，所以就找了一个<br>非官方的pulsar-clieng-go使用。前几个月基本都在踩这个client的坑，遇到了以前项目中没遇到的情况。<br>比如oom，proto编码协议，内存泄漏等各种各样的问题。9月份的时候应Pulsar社区邀请，去上海做了一次关于<br>Pulsar实践的分享，现在想来当时还是挺紧张的～</p>
+<h2 id="K8s"><a href="#K8s" class="headerlink" title="K8s"></a>K8s</h2><p>年底的两个月基本都在忙K8s相关的工作，算是在K8s这方面做到真正的入门级别了</p>
+<h1 id="生活"><a href="#生活" class="headerlink" title="生活"></a>生活</h1><p>今年和湾湾订婚啦！很庆幸能在六年前就遇到她，真希望能一直和她走下去。</p>
+<p>半年前她选择离职，从事自由职业。说实话我当时犹豫了半天，我担心她会不会一个人在家太闷了，担心她<br>会不会只是一时冲动，担心她以后的发展…最终我还是选择充分支持她。年轻的时候不去尝试，难道要等老了再后悔叹息吗？<br>当然从现在来看，她这个选择对我最大的影响就是：我每天都能吃到她做的饭菜，导致我越来越月半！</p>
+<p>对了，还有我和我的乒乓球。以前和小洋哥打球总是输给他，但是某天我突然功力大涨，甚至出现了2-10逆转翻盘的情况。<br>后面和他交手也是至少55开的胜率，真是神奇。明年乒乓球积分赛走起？</p>
+<p>2019有很多收获，当然也有遗憾。</p>
+<p>年初的时候报了一个吉他班，也参加了公司的乐队，只可惜后面荒废了。<br>家里人有些健康问题，让我只能觉得无能为力。<br>我自己的身体抵抗力好像也变差很多，年中有一次感冒咳嗽持续了2个月。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/20/golang内存泄漏排查/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2360,271 +2498,6 @@ func LoadECDSA(file string) (*ecdsa.PrivateKey, error) {
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/05/golang实现RSA加密/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Yh Zhang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/git.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Z">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/05/golang实现RSA加密/" itemprop="url">golang实现RSA加密</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-05T09:38:14+08:00">
-                2018-05-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>1976年之前，所有加密方式都是同一种模式：甲乙双方使用同一种加密算法和密钥，即对称加密。这种模式有一个弱点：甲方必须先把加密规则和密钥告诉乙方。这样导致保存和传递密钥，成为了一个头疼的问题。</p>
-<p>1976年，两位美国计算机学家Whitfield Diffie 和 Martin Hellman，提出了一种崭新构思，可以在不直接传递密钥的情况下，完成解密。这被称为”Diffie-Hellman密钥交换算法”。这个算法启发了其他科学家。人们认识到，<strong>加密和解密可以使用不同的密钥</strong>，只要这两种规则之间存在某种对应关系即可，这样就避免了直接传递密钥。</p>
-<p>这种新的加密模式被称为”非对称加密算法”。</p>
-<p>RSA是非对称加密中的一种。</p>
-<h2 id="数学原理"><a href="#数学原理" class="headerlink" title="数学原理"></a>数学原理</h2><p>大整数的因数分解，是一件非常困难的事情。例如你可以对3233进行因数分解（61×53），但对较大整数进行因数分解就比较困难了。</p>
-<p>这里提供一个golang实现的暴力因数分解，有兴趣可以跑一下试试：</p>
-<pre><code>// 因数分解
-// 因为大整数s可能会超过uint64的最大值，所以这里用字符串来作为输入参数
-func factorization(s string) (x, y *big.Int, err error) {
-    df := big.NewInt(1)
-    x = big.NewInt(2)
-    n, flag := big.NewInt(1).SetString(s, 0)
-    if !flag {
-        return nil, nil, errors.New(&quot;invalid string&quot;)
-    }
-    for ; x.Cmp(n) == -1; x.Add(x, big.NewInt(1)) {
-        fmt.Println(&quot;x:&quot;, x.String())
-        if df.Mod(n, x).String() == &quot;0&quot; {
-            return x, df.Div(n, x), nil
-        }
-    }
-    return nil, nil, errors.New(&quot;end faild&quot;)
-}
-</code></pre><h2 id="密钥生成"><a href="#密钥生成" class="headerlink" title="密钥生成"></a>密钥生成</h2><p>A想与B进行加密通信，首先要生成一个密钥：</p>
-<ol>
-<li><p>A选择两个大质数，得到乘积n，再随机选择一个整数e，计算e对于φ(n)的模反元素d。</p>
-</li>
-<li><p>将（n，e）作为公钥，（n，d）作为私钥</p>
-</li>
-</ol>
-<p>可以证明，如果想通过公钥获取私钥，难度取决于大整数因数分解的效率。</p>
-<p>关于模反元素和相关推导，可以看<a href="http://www.ruanyifeng.com/blog/2013/06/rsa_algorithm_part_one.html" target="_blank" rel="noopener">链接</a>，比想象中简单</p>
-<h2 id="加密和解密"><a href="#加密和解密" class="headerlink" title="加密和解密"></a>加密和解密</h2><h3 id="公钥加密"><a href="#公钥加密" class="headerlink" title="公钥加密"></a>公钥加密</h3><p>B想给A发送信息m</p>
-<ol>
-<li><p>将m转化为整数（字符串可以取ascii值或unicode值），且m必须小于n。</p>
-</li>
-<li><p>根据公式<br> m^e ≡ c (mod n)<br>已知m（明文），e（公钥的一部分），n（公钥的一部分），可以得到密文c</p>
-</li>
-</ol>
-<h3 id="私钥解密"><a href="#私钥解密" class="headerlink" title="私钥解密"></a>私钥解密</h3><ol>
-<li><p>得到密文c</p>
-</li>
-<li><p>根据公式<br> c^d ≡ m (mod n)<br>已知 c（密文），d（私钥的一部分），n（私钥的一部分），可以得到明文m</p>
-</li>
-</ol>
-<p><a href="http://www.ruanyifeng.com/blog/2013/07/rsa_algorithm_part_two.html" target="_blank" rel="noopener">证明根据根据以上公式获取的明文和原始明文一致</a></p>
-<h2 id="golang代码实现RSA密钥生成"><a href="#golang代码实现RSA密钥生成" class="headerlink" title="golang代码实现RSA密钥生成"></a>golang代码实现RSA密钥生成</h2><pre><code>//生成公钥和私钥 pem文件
-
-package encryp
-
-import (
-    &quot;crypto/rand&quot;
-    &quot;crypto/rsa&quot;
-    &quot;crypto/x509&quot;
-    &quot;encoding/pem&quot;
-    &quot;os&quot;
-)
-
-//生成 私钥和公钥文件
-func GenRsaKey(bits int) error {
-    //生成私钥文件
-    privateKey, err := rsa.GenerateKey(rand.Reader, bits)
-    if err != nil {
-        return err
-    }
-    derStream := x509.MarshalPKCS1PrivateKey(privateKey)
-    block := &amp;pem.Block{
-        Type:  &quot;RSA PRIVATE KEY&quot;,
-        Bytes: derStream,
-    }
-    file, err := os.Create(&quot;private.pem&quot;)
-    if err != nil {
-        return err
-    }
-    err = pem.Encode(file, block)
-    if err != nil {
-        return err
-    }
-    //生成公钥文件
-    publicKey := &amp;privateKey.PublicKey
-    defPkix, err := x509.MarshalPKIXPublicKey(publicKey)
-    if err != nil {
-        return err
-    }
-    block = &amp;pem.Block{
-        Type:  &quot;RSA PUBLIC KEY&quot;,
-        Bytes: defPkix,
-    }
-    file, err = os.Create(&quot;public.pem&quot;)
-    if err != nil {
-        return err
-    }
-    err = pem.Encode(file, block)
-    if err != nil {
-        return err
-    }
-    return nil
-}
-</code></pre><h2 id="golang实现RSA加密和解密"><a href="#golang实现RSA加密和解密" class="headerlink" title="golang实现RSA加密和解密"></a>golang实现RSA加密和解密</h2><pre><code>// 读取公钥私钥
-var privateKey, publicKey []byte
-func init() {
-    var err error
-    publicKey, err = ioutil.ReadFile(&quot;public.pem&quot;)
-    if err != nil {
-        os.Exit(-1)
-    }
-    privateKey, err = ioutil.ReadFile(&quot;private.pem&quot;)
-    if err != nil {
-        os.Exit(-1)
-    }
-}
-
-// 公钥加密
-func RsaEncrypt(data []byte) ([]byte, error) {
-    //解密pem格式的公钥
-    block, _ := pem.Decode(publicKey)
-    if block == nil {
-        return nil, errors.New(&quot;public key error&quot;)
-    }
-    // 解析公钥
-    pubInterface, err := x509.ParsePKIXPublicKey(block.Bytes)
-    if err != nil {
-        return nil, err
-    }
-    // 类型断言
-    pub := pubInterface.(*rsa.PublicKey)
-    //加密
-    return rsa.EncryptPKCS1v15(rand.Reader, pub, data)
-}
-
-// 私钥解密
-func RsaDecrypt(ciphertext []byte) ([]byte, error) {
-    //获取私钥
-    block, _ := pem.Decode(privateKey)
-    if block == nil {
-        return nil, errors.New(&quot;private key error!&quot;)
-    }
-    //解析PKCS1格式的私钥
-    priv, err := x509.ParsePKCS1PrivateKey(block.Bytes)
-    if err != nil {
-        return nil, err
-    }
-    // 解密
-    return rsa.DecryptPKCS1v15(rand.Reader, priv, ciphertext)
-}
-</code></pre><h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a href="http://www.ruanyifeng.com/blog/2013/06/rsa_algorithm_part_one.html" target="_blank" rel="noopener">RSA算法原理-欧拉函数</a><br><a href="http://www.ruanyifeng.com/blog/2013/07/rsa_algorithm_part_two.html" target="_blank" rel="noopener">RSA算法原理</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2679,7 +2552,7 @@ func RsaDecrypt(ciphertext []byte) ([]byte, error) {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2692,7 +2565,7 @@ func RsaDecrypt(ciphertext []byte) ([]byte, error) {
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
