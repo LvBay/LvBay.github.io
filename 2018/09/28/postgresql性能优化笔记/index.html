@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="pg_stat_activity pg_stat_activity.state 状态解析  update语句导致idle in transaction  query 字段为COMMIT  query 字段为BEGIN READ WRITE  query 为 SELECT 某些较长的sql展示为这个  client_addr 有些为192.168  realtime left join base">
+<meta property="og:type" content="article">
+<meta property="og:title" content="postgresql性能优化笔记">
+<meta property="og:url" content="http://yoursite.com/2018/09/28/postgresql性能优化笔记/index.html">
+<meta property="og:site_name" content="Z">
+<meta property="og:description" content="pg_stat_activity pg_stat_activity.state 状态解析  update语句导致idle in transaction  query 字段为COMMIT  query 字段为BEGIN READ WRITE  query 为 SELECT 某些较长的sql展示为这个  client_addr 有些为192.168  realtime left join base">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-12-27T01:43:02.047Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="postgresql性能优化笔记">
+<meta name="twitter:description" content="pg_stat_activity pg_stat_activity.state 状态解析  update语句导致idle in transaction  query 字段为COMMIT  query 字段为BEGIN READ WRITE  query 为 SELECT 某些较长的sql展示为这个  client_addr 有些为192.168  realtime left join base">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/09/28/postgresql性能优化笔记/"/>
+
+
+
+
+
+  <title>postgresql性能优化笔记 | Z</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Z</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/28/postgresql性能优化笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yh Zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/git.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Z">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">postgresql性能优化笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-28T20:03:36+08:00">
+                2018-09-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="pg-stat-activity"><a href="#pg-stat-activity" class="headerlink" title="pg_stat_activity"></a>pg_stat_activity</h1><ol>
+<li><p>pg_stat_activity.state 状态解析</p>
+</li>
+<li><p>update语句导致idle in transaction</p>
+</li>
+<li><p>query 字段为COMMIT</p>
+</li>
+<li><p>query 字段为BEGIN READ WRITE</p>
+</li>
+<li><p>query 为 SELECT 某些较长的sql展示为这个</p>
+</li>
+<li><p>client_addr 有些为192.168</p>
+</li>
+<li><p>realtime left join base VS base left join realtime</p>
+</li>
+</ol>
+<h1 id="explain"><a href="#explain" class="headerlink" title="explain"></a>explain</h1><ol>
+<li>start_up_cost all_cost</li>
+</ol>
+<h1 id="json字段优化"><a href="#json字段优化" class="headerlink" title="json字段优化"></a>json字段优化</h1><ol>
+<li>使用json_extract_path_text(effects,’Consumption’))，使用的时候比较麻烦</li>
+<li><p>修改为jsonb，使用gin索引<br> create index idx_resource_20180926_consum on resource_20180926 USING gin (effects);</p>
+</li>
+<li><p>直接使用json字段索引<br> CREATE INDEX ON resource_20180926((effects-&gt;&gt;’Consumption’));</p>
+</li>
+</ol>
+<h1 id="left-join"><a href="#left-join" class="headerlink" title="left join"></a>left join</h1><ol>
+<li><p>如何让left join走索引</p>
+<p>  SELECT A</p>
+<pre><code>.user_id
+</code></pre><p> FROM</p>
+<pre><code>base.unit
+A LEFT JOIN base.resource b ON A.user_id = b.user_id 
+AND A.auth_id = b.auth_id 
+AND A.campaign_id = b.campaign_id 
+AND A.unit_id = b.unit_id
+LEFT JOIN base.target C ON A.user_id = C.user_id 
+AND A.auth_id = C.auth_id 
+AND A.campaign_id = C.campaign_id 
+AND A.unit_id = C.unit_id
+LEFT JOIN base.creative d ON A.user_id = d.user_id 
+AND A.auth_id = d.auth_id 
+AND A.campaign_id = d.campaign_id 
+AND A.unit_id = d.unit_id 
+</code></pre><p> WHERE</p>
+<pre><code>( A.deleted_at IS NULL AND b.deleted_at IS NULL AND C.deleted_at IS NULL AND d.deleted_at IS NULL ) 
+
+AND (
+    A.platform = 2
+AND A.user_id = &apos;998825031364526080&apos; 
+AND A.auth_id = &apos;1044508644000931840&apos;)
+</code></pre></li>
+</ol>
+<p>上面sql的golang代码</p>
+<pre><code>units := []base.Unit{}
+err := resource.DB.
+    Select(&quot;a.user_id, a.auth_id, a.campaign_id, a.unit_id, b.meta_resource_id, a.unit_name, a.config_status, a.passive_status, a.work_time, a.start_time, a.end_time&quot;).
+    Table(&quot;base.unit a&quot;).
+    Joins(&quot;left join base.resource b on a.user_id = b.user_id and a.auth_id = b.auth_id and a.campaign_id = b.campaign_id and a.unit_id = b.unit_id&quot;).
+    Joins(&quot;left join base.target c on a.user_id = c.user_id and a.auth_id = c.auth_id and a.campaign_id = c.campaign_id and a.unit_id = c.unit_id&quot;).
+    Joins(&quot;left join base.creative d on a.user_id = d.user_id and a.auth_id = d.auth_id and a.campaign_id = d.campaign_id and a.unit_id = d.unit_id&quot;).
+    Where(&quot;a.deleted_at is null and b.deleted_at is null and c.deleted_at is null and d.deleted_at is null&quot;).
+    Where(&quot;a.platform = ? and a.user_id = ? and a.auth_id = ?&quot;, 2, &quot;998825031364526080&quot;, &quot;1044508644000931840&quot;).
+    Limit(1).
+    Scan(&amp;units).Error
+fmt.Println(&quot;err:&quot;, err)
+</code></pre><h1 id="cpu利用率飙高"><a href="#cpu利用率飙高" class="headerlink" title="cpu利用率飙高"></a>cpu利用率飙高</h1><p>消息堆积</p>
+<h1 id="联合索引"><a href="#联合索引" class="headerlink" title="联合索引"></a>联合索引</h1><h2 id="只有带user-id才能走索引"><a href="#只有带user-id才能走索引" class="headerlink" title="只有带user_id才能走索引"></a>只有带user_id才能走索引</h2><pre><code>EXPLAIN ANALYSE SELECT * FROM &quot;base&quot;.&quot;resource&quot; WHERE &quot;base&quot;.&quot;resource&quot;.&quot;deleted_at&quot; IS NULL AND (( auth_id = &apos;1044508644000931840&apos; ) 
+AND ( resource_id = &apos;sc_213523592969230286&apos; ) 
+AND ( user_id = &apos;998825031364526080&apos; ) 
+);
+</code></pre><h2 id="索引不仅仅需要命中"><a href="#索引不仅仅需要命中" class="headerlink" title="索引不仅仅需要命中"></a>索引不仅仅需要命中</h2><p>explain ANALYSE SELECT * FROM “base”.”resource” WHERE “base”.”resource”.”deleted_at” IS NULL AND ((user_id = ‘1046367009123614720’) AND (auth_id = ‘1046367009182326784’) AND (resource_id = ‘sc_-1866255835007264483’) AND (platform = ‘2’)<br>and campaign_id = ‘112455583’ and unit_id = ‘128115026’ )</p>
+<p>VS</p>
+<p>explain ANALYSE SELECT * FROM “base”.”resource” WHERE “base”.”resource”.”deleted_at” IS NULL AND ((user_id = ‘1046367009123614720’) AND (auth_id = ‘1046367009182326784’) AND (resource_id = ‘sc_-1866255835007264483’) AND (platform = ‘2’)<br>)</p>
+<h1 id="写在join中还是where中？"><a href="#写在join中还是where中？" class="headerlink" title="写在join中还是where中？"></a>写在join中还是where中？</h1><h1 id="gin索引对json字段性能提升"><a href="#gin索引对json字段性能提升" class="headerlink" title="gin索引对json字段性能提升"></a>gin索引对json字段性能提升</h1>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/13/snowflake-分布式唯一ID生成器/" rel="next" title="snowflake-分布式唯一ID生成器">
+                <i class="fa fa-chevron-left"></i> snowflake-分布式唯一ID生成器
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/13/docker-compose部署wordpress/" rel="prev" title="docker-compose部署wordpress">
+                docker-compose部署wordpress <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/git.png"
+                alt="Yh Zhang" />
+            
+              <p class="site-author-name" itemprop="name">Yh Zhang</p>
+              <p class="site-description motion-element" itemprop="description">See you again</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#pg-stat-activity"><span class="nav-number">1.</span> <span class="nav-text">pg_stat_activity</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#explain"><span class="nav-number">2.</span> <span class="nav-text">explain</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#json字段优化"><span class="nav-number">3.</span> <span class="nav-text">json字段优化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#left-join"><span class="nav-number">4.</span> <span class="nav-text">left join</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cpu利用率飙高"><span class="nav-number">5.</span> <span class="nav-text">cpu利用率飙高</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#联合索引"><span class="nav-number">6.</span> <span class="nav-text">联合索引</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#只有带user-id才能走索引"><span class="nav-number">6.1.</span> <span class="nav-text">只有带user_id才能走索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#索引不仅仅需要命中"><span class="nav-number">6.2.</span> <span class="nav-text">索引不仅仅需要命中</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#写在join中还是where中？"><span class="nav-number">7.</span> <span class="nav-text">写在join中还是where中？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#gin索引对json字段性能提升"><span class="nav-number">8.</span> <span class="nav-text">gin索引对json字段性能提升</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yh Zhang</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
