@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="年度总结," />
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="坑的起源使用不同的时区操作 后端存储的时间戳数字// 入库操作 now := time.Now().Unix() fmt.Println(now) // 2018-6-11 06:00:00 +0800 CST db.Save(now)  // 查询操作 // 前端从时间框控件筛选时间(2018-6-11)，然后传至后端 startTime = 1528675200000 fmt.Println(">
+<meta name="description" content="2019弹指一挥间，2019已经过去了。 外面关于流感的消息越传越严重，而我选择在工位上安静的写年度总结～ 有人说如何评估自己在过去一年有多少成长？如果你觉得一年前的自己是个zz，那么说明你这一年进步了很多。我当然觉得一年前的自己不是zz，但差不多算是半个zz。 技术上，今年在消息中间件上做了较多研究。Kafka，NSQ，Pulsar还有我们公司自研的LeviMQ我都做了比较深入的学习。 技术能力">
+<meta name="keywords" content="年度总结">
 <meta property="og:type" content="article">
-<meta property="og:title" content="golang的time.Time遇到的坑">
-<meta property="og:url" content="http://yoursite.com/2018/06/11/golang的time-Time遇到的坑/index.html">
+<meta property="og:title" content="2019年度总结">
+<meta property="og:url" content="http://yoursite.com/2020/01/21/2019年度总结/index.html">
 <meta property="og:site_name" content="Z">
-<meta property="og:description" content="坑的起源使用不同的时区操作 后端存储的时间戳数字// 入库操作 now := time.Now().Unix() fmt.Println(now) // 2018-6-11 06:00:00 +0800 CST db.Save(now)  // 查询操作 // 前端从时间框控件筛选时间(2018-6-11)，然后传至后端 startTime = 1528675200000 fmt.Println(">
+<meta property="og:description" content="2019弹指一挥间，2019已经过去了。 外面关于流感的消息越传越严重，而我选择在工位上安静的写年度总结～ 有人说如何评估自己在过去一年有多少成长？如果你觉得一年前的自己是个zz，那么说明你这一年进步了很多。我当然觉得一年前的自己不是zz，但差不多算是半个zz。 技术上，今年在消息中间件上做了较多研究。Kafka，NSQ，Pulsar还有我们公司自研的LeviMQ我都做了比较深入的学习。 技术能力">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-30T03:12:27.210Z">
+<meta property="og:updated_time" content="2020-01-21T08:46:26.558Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="golang的time.Time遇到的坑">
-<meta name="twitter:description" content="坑的起源使用不同的时区操作 后端存储的时间戳数字// 入库操作 now := time.Now().Unix() fmt.Println(now) // 2018-6-11 06:00:00 +0800 CST db.Save(now)  // 查询操作 // 前端从时间框控件筛选时间(2018-6-11)，然后传至后端 startTime = 1528675200000 fmt.Println(">
+<meta name="twitter:title" content="2019年度总结">
+<meta name="twitter:description" content="2019弹指一挥间，2019已经过去了。 外面关于流感的消息越传越严重，而我选择在工位上安静的写年度总结～ 有人说如何评估自己在过去一年有多少成长？如果你觉得一年前的自己是个zz，那么说明你这一年进步了很多。我当然觉得一年前的自己不是zz，但差不多算是半个zz。 技术上，今年在消息中间件上做了较多研究。Kafka，NSQ，Pulsar还有我们公司自研的LeviMQ我都做了比较深入的学习。 技术能力">
 
 
 
@@ -119,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/06/11/golang的time-Time遇到的坑/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/01/21/2019年度总结/"/>
 
 
 
 
 
-  <title>golang的time.Time遇到的坑 | Z</title>
+  <title>2019年度总结 | Z</title>
   
 
 
@@ -242,7 +243,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/golang的time-Time遇到的坑/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/21/2019年度总结/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yh Zhang">
@@ -259,7 +260,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">golang的time.Time遇到的坑</h1>
+          <h1 class="post-title" itemprop="name headline">2019年度总结</h1>
         
 
         <div class="post-meta">
@@ -271,8 +272,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-11T23:20:53+08:00">
-                2018-06-11
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-21T15:48:30+08:00">
+                2020-01-21
               </time>
             
 
@@ -314,33 +315,25 @@
       
 
       
-        <h2 id="坑的起源"><a href="#坑的起源" class="headerlink" title="坑的起源"></a>坑的起源</h2><p>使用不同的时区操作</p>
-<h2 id="后端存储的时间戳数字"><a href="#后端存储的时间戳数字" class="headerlink" title="后端存储的时间戳数字"></a>后端存储的时间戳数字</h2><pre><code>// 入库操作
-now := time.Now().Unix()
-fmt.Println(now) // 2018-6-11 06:00:00 +0800 CST
-db.Save(now)
-
-// 查询操作
-// 前端从时间框控件筛选时间(2018-6-11)，然后传至后端
-startTime = 1528675200000
-fmt.Println(startTime) // 2018-06-11 08:00:00 +0800 CST
-// 错误出现 上面入库的数据因为是在6点(CST时区)入库，所以查询不到
-</code></pre><h2 id="后端存储的是datetime类型"><a href="#后端存储的是datetime类型" class="headerlink" title="后端存储的是datetime类型"></a>后端存储的是datetime类型</h2><pre><code>t,_ := time.Parse(&quot;2006-01-02 15:04:05&quot;,&quot;2018-06-11 06:00:00&quot;) // UTC时区
-db.Save(t)
-</code></pre><h2 id="docker容器时区"><a href="#docker容器时区" class="headerlink" title="docker容器时区"></a>docker容器时区</h2><p>docker容器修改</p>
-<h2 id="time-UnixNano-大于int64的最大值"><a href="#time-UnixNano-大于int64的最大值" class="headerlink" title="time.UnixNano() 大于int64的最大值"></a>time.UnixNano() 大于int64的最大值</h2><p>这个问题，标准包中已经说明了</p>
-<pre><code>// UnixNano returns t as a Unix time, the number of nanoseconds elapsed
-// since January 1, 1970 UTC. The result is undefined if the Unix time
-// in nanoseconds cannot be represented by an int64 (a date before the year
-// 1678 or after 2262). Note that this means the result of calling UnixNano
-// on the zero Time is undefined.
-func (t Time) UnixNano() int64 {
-    return (t.unixSec())*1e9 + int64(t.nsec())
-}
-</code></pre><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
-<li>团队统一使用一个时区</li>
-<li>不用time.Parse()，使用time.ParseInLocation()</li>
+        <h1 id="2019"><a href="#2019" class="headerlink" title="2019"></a>2019</h1><p>弹指一挥间，2019已经过去了。</p>
+<p>外面关于流感的消息越传越严重，而我选择在工位上安静的写年度总结～</p>
+<p>有人说如何评估自己在过去一年有多少成长？如果你觉得一年前的自己是个zz，那么说明你这一年进步了很多。我当然觉得一年前<br>的自己不是zz，但差不多算是半个zz。</p>
+<p>技术上，今年在消息中间件上做了较多研究。Kafka，NSQ，Pulsar还有我们公司自研的LeviMQ我都做了比较深入的学习。</p>
+<h1 id="技术能力"><a href="#技术能力" class="headerlink" title="技术能力"></a>技术能力</h1><h2 id="Kafka"><a href="#Kafka" class="headerlink" title="Kafka"></a>Kafka</h2><p>学习Kafka主要是通过 &lt;深入理解Kafka:核心设计与实践原理&gt; 这本书。让我觉得印象比较深的有几点：</p>
+<ol>
+<li>Kafka读写高性能的实现原理</li>
+<li>分区的设计，这一点和许多分布式系统都有类似的思想</li>
+<li>副本同步的实现</li>
 </ol>
+<p>同时Kafka也存在一些很严重的问题，比如消费者加入/离开集群时会出现一段时间消息无法消费的情况。这也是公司内部<br>某些场景使用NSQ的主要原因</p>
+<h2 id="NSQ"><a href="#NSQ" class="headerlink" title="NSQ"></a>NSQ</h2><p>是我前几年就接触过原始的开源版本，以前对它的认知就停留在：使用<strong>golang</strong>编写，<strong>高性能</strong>，但是对于消息顺序性，高可用<br>方面没有深入研究。有赞对这个开源版本做了较大的改造，借鉴了相当多的kafka设计理念。我们公司主要是在有赞改造的版本基础上，<br>又加了一些定制化功能。12月份的时候在公司内部，做了一个关于<strong>nsq-rebalance</strong>的分享，算是通读了nsq的核心逻辑，<br>学到不少。</p>
+<h2 id="Pulsar"><a href="#Pulsar" class="headerlink" title="Pulsar"></a>Pulsar</h2><p>今年入职的第一个项目就是和Pulsar有关，当时因为官方的pulsar-clieng-go是使用cgo运行，所以就找了一个<br>非官方的pulsar-clieng-go使用。前几个月基本都在踩这个client的坑，遇到了以前项目中没遇到的情况。<br>比如oom，proto编码协议，内存泄漏等各种各样的问题。9月份的时候应Pulsar社区邀请，去上海做了一次关于<br>Pulsar实践的分享，现在想来当时还是挺紧张的～</p>
+<h2 id="K8s"><a href="#K8s" class="headerlink" title="K8s"></a>K8s</h2><p>年底的两个月基本都在忙K8s相关的工作，算是在K8s这方面做到真正的入门级别了</p>
+<h1 id="生活"><a href="#生活" class="headerlink" title="生活"></a>生活</h1><p>今年和湾湾订婚啦！很庆幸能在六年前就遇到她，真希望能一直和她走下去。</p>
+<p>半年前她选择离职，从事自由职业。说实话我当时犹豫了半天，我担心她会不会一个人在家太闷了，担心她<br>会不会只是一时冲动，担心她以后的发展…最终我还是选择充分支持她。年轻的时候不去尝试，难道要等老了再后悔叹息吗？<br>当然从现在来看，她这个选择对我最大的影响就是：我每天都能吃到她做的饭菜，导致我越来越月半！</p>
+<p>对了，还有我和我的乒乓球。以前和小洋哥打球总是输给他，但是某天我突然功力大涨，甚至出现了2-10逆转翻盘的情况。<br>后面和他交手也是至少55开的胜率，真是神奇。明年乒乓球积分赛走起？</p>
+<p>2019有很多收获，当然也有遗憾。</p>
+<p>年初的时候报了一个吉他班，也参加了公司的乐队，只可惜后面荒废了。<br>家里人有些健康问题，让我只能觉得无能为力。<br>我自己的身体抵抗力好像也变差很多，年中有一次感冒咳嗽持续了2个月。</p>
 
       
     </div>
@@ -356,6 +349,12 @@ func (t Time) UnixNano() int64 {
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/年度总结/" rel="tag"># 年度总结</a>
+          
+        </div>
+      
 
       
       
@@ -365,8 +364,8 @@ func (t Time) UnixNano() int64 {
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/06/06/优雅关闭的几种实现/" rel="next" title="优雅关闭的几种实现">
-                <i class="fa fa-chevron-left"></i> 优雅关闭的几种实现
+              <a href="/2020/01/20/golang内存泄漏排查/" rel="next" title="golang内存泄漏排查">
+                <i class="fa fa-chevron-left"></i> golang内存泄漏排查
               </a>
             
           </div>
@@ -374,10 +373,6 @@ func (t Time) UnixNano() int64 {
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/06/12/golang的OpenTracing和jeager使用/" rel="prev" title="golang的OpenTracing和jaeger使用">
-                golang的OpenTracing和jaeger使用 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -504,7 +499,7 @@ func (t Time) UnixNano() int64 {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#坑的起源"><span class="nav-number">1.</span> <span class="nav-text">坑的起源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后端存储的时间戳数字"><span class="nav-number">2.</span> <span class="nav-text">后端存储的时间戳数字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后端存储的是datetime类型"><span class="nav-number">3.</span> <span class="nav-text">后端存储的是datetime类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#docker容器时区"><span class="nav-number">4.</span> <span class="nav-text">docker容器时区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#time-UnixNano-大于int64的最大值"><span class="nav-number">5.</span> <span class="nav-text">time.UnixNano() 大于int64的最大值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2019"><span class="nav-number">1.</span> <span class="nav-text">2019</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#技术能力"><span class="nav-number">2.</span> <span class="nav-text">技术能力</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Kafka"><span class="nav-number">2.1.</span> <span class="nav-text">Kafka</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NSQ"><span class="nav-number">2.2.</span> <span class="nav-text">NSQ</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pulsar"><span class="nav-number">2.3.</span> <span class="nav-text">Pulsar</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#K8s"><span class="nav-number">2.4.</span> <span class="nav-text">K8s</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#生活"><span class="nav-number">3.</span> <span class="nav-text">生活</span></a></li></ol></div>
             
 
           </div>
