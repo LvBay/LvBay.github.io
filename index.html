@@ -1,0 +1,2883 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="See you again">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Z">
+<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:site_name" content="Z">
+<meta property="og:description" content="See you again">
+<meta property="og:locale" content="zh-Hans">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Z">
+<meta name="twitter:description" content="See you again">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/"/>
+
+
+
+
+
+  <title>Z</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right 
+  page-home">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Z</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/23/我们是如何在微服务集群中找出内存泄漏的-译/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yh Zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/git.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Z">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/09/23/我们是如何在微服务集群中找出内存泄漏的-译/" itemprop="url">我们是如何在微服务集群中找出内存泄漏的--译</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-23T20:32:48+08:00">
+                2020-09-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Detectify后端团队的博客:</p>
+<p>Detectify的后端团队已经使用Go有一些年头了，Go是我们提供为服务所选择的语言。我们认为Go是一个令人着迷的语言，而且它
+被证明可以很好地为我们所用。它提供了一系列很棒的工具，比如接下来我们将要接触到的pprof。</p>
+<p>然而，尽管Go表现地很好，我们发现其中一个微服务有一些很像内存泄漏的行为。</p>
+<p>这篇文章将沿着我们如何发现这个问题、我们决策背后的思考过程、需要理解的细节和修复这个问题，一步一步探索下去。</p>
+<h2 id="它是如何开始的"><a href="#它是如何开始的" class="headerlink" title="它是如何开始的"></a>它是如何开始的</h2><p>我们可以从监控系统中看到这个微服务的内存占用在逐渐累计并且不会下降，直到触发了OOM(Out of Memory) 的错误，或者我们
+重启服务。</p>
+<p>尽管Go有许多优秀的工具，但在这次调试过程中，我们想研究完整的内核转储，但是我们发现直到撰写本文时，使用pprof（包括
+其他Go工具）并不能完成这个事。pprof有其局限性，但是它提供的功能依然有助于我们追寻此内存问题的根本原因。</p>
+<h2 id="Profiling-Go-with-pprof"><a href="#Profiling-Go-with-pprof" class="headerlink" title="Profiling Go with pprof"></a>Profiling Go with pprof</h2><p>pprof是一个Go工具，用于可视化和分析profiling数据。它作用于CPU和内存的profiling，但是这里我们将不讨论CPU profiling。</p>
+<p>在你的服务中设置pprof非常简单。你可以直接调用pprof函数，例如：pprof.WriteHeapProfile，或者你可以设置pprof
+http入口，我们发现后者更有趣。</p>
+<p>对于后者，你只需要import <strong>pprof</strong>这个<strong>package</strong>，它将注册路由<strong>/debug/pprof</strong>。有了这个，你可以通过向这个endpoint发送GET请求
+就能获取pprof数据，这个方式对于在容器中运行的环境非常方便。根据pprof的文档，在生产环境中使用它是安全的，因为pprof
+几乎没有额外的开销。但是注意，pprof这个http endpoints不应该被公共网络访问，因为它包含了你服务的敏感数据。</p>
+<p>以下是你需要添加到代码中的内容：
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import (</span><br><span class="line">&quot;net/http&quot;</span><br><span class="line">_ &quot;net/http/pprof&quot;</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+<p>之后，你应该可以在/debug/pprof端点访问不同的pprof配置文件。例如，如果要使用heap profile，则可以执行以下操作
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl https://myservice/debug/pprof/heap &gt; heap.out</span><br></pre></td></tr></table></figure></p>
+<p>该工具有多个内置配置文件，例如：</p>
+<ul>
+<li><p><strong>heap</strong>: 堆中对象内存分配的采样数据.</p>
+</li>
+<li><p><strong>goroutine</strong>: 所有goroutine的堆栈追踪.</p>
+</li>
+<li><p><strong>allocs</strong>: 内存分配的采样数据.</p>
+</li>
+<li><p><strong>threadcreate</strong>: 系统线程的堆栈追踪.</p>
+</li>
+<li><p><strong>block</strong>: 导致阻塞的堆栈追踪.</p>
+</li>
+<li><p><strong>mutex</strong>: 堆栈中的锁状态信息.</p>
+</li>
+</ul>
+<p>你可以在pprof.go文件中找到有关它们的更多详细信息。</p>
+<p>我们将会花费大部分时间在heap profile上。如果在heap pprof上你无法发现任何有用的信息，可以尝试下检查其他类型的pprof。
+我们也检查了goroutine profile以确保没有任何goroutine泄露和内存泄漏。</p>
+<h2 id="我们在找什么？"><a href="#我们在找什么？" class="headerlink" title="我们在找什么？"></a>我们在找什么？</h2><p>在深入调查兔子洞之前，往回走一步然后搞清楚我们到底在找什么，这个很重要。换句话说，Go中会以什么方式出现内存泄漏（
+或者其他形式的内存压力）？</p>
+<p>Go是一个自带垃圾回收的语言，这个降低了开发者管理内存的压力，但是我们仍然需要谨慎那些不会被垃圾回收的内存。</p>
+<p>在Go中，有几种方式会导致内存泄漏。大部分是由于：</p>
+<ul>
+<li>创建子字符串和子切片</li>
+<li>错误使用defer语法</li>
+<li>没有关闭HTTP的response body（或者其他未关闭的资源）</li>
+<li>被遗忘的goroutine</li>
+<li>全局变量</li>
+</ul>
+<p>你可从<a href="https://go101.org/article/memory-leaking.html" target="_blank" rel="noopener">go101</a>, 
+<a href="https://www.vividcortex.com/blog/2014/01/15/two-go-memory-leaks/" target="_blank" rel="noopener">vividcortex</a>, 
+<a href="https://hackernoon.com/avoiding-memory-leak-in-golang-api-1843ef45fca8" target="_blank" rel="noopener">hackernoon</a>了解更多</p>
+<p>现在我们对Go的内存泄漏已经有了大概的认知，此时你可能想说：”那么我就不需要任何profiling了，我可以直接看我的代码”</p>
+<p>实际上，一个服务都会有超过10行以上的代码和许多结构体，尽管示例代码可以很明显地展示内存泄漏，但是在没有任何提示的情况
+下搜索服务源代码就如同大海捞针，我们建议你在直接查看源码前使用pprof，这样你就可以找到一些问题所在的好线索。</p>
+<p>Heap profile总是一个很好的开端，因为heap是发生内存分配的地方。堆不是发生内存分配的唯一地方，某些内存分配也会发生
+在栈中，但是接下来我们不会讨论内存管理系统的内部工作原理，你可以在文章末尾找到更多相关资源。</p>
+<h2 id="寻找内存泄漏"><a href="#寻找内存泄漏" class="headerlink" title="寻找内存泄漏"></a>寻找内存泄漏</h2><p>万事俱备，开始调试，我们开始查看服务的heap profile：
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl https://services/domain-service/debug/pprof/heap &gt; heap.out</span><br></pre></td></tr></table></figure></p>
+<p>现在我们有了heap profile，接下来我们来分析它。运行下面的命令以开启命令行：
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go tool pprof heap.out</span><br></pre></td></tr></table></figure></p>
+<p>命令行看起来是这样：</p>
+<img src="/2020/09/23/我们是如何在微服务集群中找出内存泄漏的-译/1.png" title="右键新标签页打开,可看大图">
+<p>Type部分：inuse_space表示正在使用模式，它还可以是：</p>
+<ul>
+<li><p>inuse_space: 表示pprof展示的是还未释放的内存占用空间 </p>
+</li>
+<li><p>inuse_objects: 表示pprof展示的是还未释放的对象数量 </p>
+</li>
+<li><p>alloc_space: 表示pprof展示的是所有内存占用空间，不管是否被释放 </p>
+</li>
+<li><p>alloc_objects: 表示pprof展示的是所有对象数量，不管是否被释放</p>
+</li>
+</ul>
+<p>如果你想改变模式，可以执行：
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go tool pprof -&lt;mode&gt; heap.out</span><br></pre></td></tr></table></figure></p>
+<p>好的，现在回到提示符，最常见的命令是top，它显示了内存消耗最大的用户。这是我们得到的：</p>
+<img src="/2020/09/23/我们是如何在微服务集群中找出内存泄漏的-译/top-1.png" title="右键新标签页打开,可看大图">
+<p>当我们看到这种情况时，我们的第一个想法就是pprof或监视系统出现了问题，因为我们稳定地看到400MB的内存消耗，
+但是pprof报告的内存约为7MB。我们登录计算机检查docker stats，他们还是报告了400MB内存消耗。 </p>
+<h2 id="pprof-怎么了"><a href="#pprof-怎么了" class="headerlink" title="pprof 怎么了?"></a>pprof 怎么了?</h2><p>这是其中一些术语的简要说明：</p>
+<ul>
+<li>flat：表示由函数本身分配的内存。</li>
+<li>cum：表示一个函数或者它下游调用的所有函数所分配的内存。</li>
+</ul>
+<p>我们还在pprof提示符下运行了png命令，以生成调用及其内存消耗的图表。</p>
+<img src="/2020/09/23/我们是如何在微服务集群中找出内存泄漏的-译/graph.png" title="右键新标签页打开,可看大图">
+<p>在这一点上，要特别提到的是pprof还支持Web UI。您还可以通过运行以下命令在浏览器中查看所有数据：
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go tool pprof -http=:8080 heap.out</span><br></pre></td></tr></table></figure></p>
+<p>通过上面的图，我们决定看一看 GetByAPEX 这个函数，因为从图表来看大量的内存压力由这个函数产生（尽管
+最大是7M）。果然，我们发现了许多可能会导致内存压力的代码，比如大量使用 <code>json.Unmarshal</code> , 而且
+还会向切片追加许多结构体。简单来说，<code>GetByAPEX</code>所做的就是从Elastic集群拉取一些数据，做一些转换，然后
+将它们追加到切片中再返回它。</p>
+<p>尽管如此，这不足以造成内存泄漏，它仅仅会导致内存压力，更不用说pprof中报告的7MB和我们在监控系统中看到的
+相比并没有什么。</p>
+<p>如果您正在运行Web UI，则可以转到“Source”选项卡以逐行检查带有内存消耗注释的源代码。在命令行中使用 list 命令
+也可以做到这一点。它使用正则表达式作为输入，将过滤后的源码显示给你。因此，你可以在 top 显示最占用内存的关键
+函数上使用 list 。</p>
+<p>我们决定看看被分配的对象数量，这是我们得到的结果：</p>
+<img src="/2020/09/23/我们是如何在微服务集群中找出内存泄漏的-译/objects-1.png" title="右键新标签页打开,可看大图">
+<p>在看到上面的图片后，我们认为罪魁祸首是以某种方式将结构体追加到切片中，但是分析了代码后这里不可能导致内存泄漏，因为
+没有其他代码去一直保持着引用这个切片，或者引用这个切片的子切片。</p>
+<p>此时我们想到或许是这个Elastic<a href="https://github.com/olivere/elastic" target="_blank" rel="noopener">库</a>导致了内存泄漏，长话短说，在这里我们也没有
+发现任何问题。</p>
+<h2 id="在pprof的范围之外会出问题吗？"><a href="#在pprof的范围之外会出问题吗？" class="headerlink" title="在pprof的范围之外会出问题吗？"></a>在pprof的范围之外会出问题吗？</h2><p>我们开始认为我们应该查看完整的核心转储，或许在向Elastic集群发出请求的时候，某些连接和goroutine被hang住？所以
+我们查看了goroutine profile：
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl https://services/domain-service/debug/pprof/goroutine &gt; goroutine.out</span><br><span class="line">go tool pprof goroutine.out</span><br></pre></td></tr></table></figure></p>
+<img src="/2020/09/23/我们是如何在微服务集群中找出内存泄漏的-译/goroutine-1.png" title="右键新标签页打开,可看大图">
+<p>一切都看起来很正常，没有异常的goroutine出现。我们也使用了netstat去检查服务容器的TCP连接的数量，也没有异常信息，
+所有的TCP连接都被正常的关闭。我们发现了一些 idle 状态的连接，但是它们最终也被关闭了。</p>
+<p>此时我们不得不面对现实，即这不是内存泄漏。那个函数造成许多内存压力，而且go的垃圾回收或者运行时也在消耗内存。
+我们能做的只有将那个函数优化成流式数据，而不是将结构体保存在内存中。但同时，我们对这种奇怪的现象产生了兴趣，
+我们开始重新研究Go的内存管理系统。</p>
+<p>关于Go运行时，我们尝试了两件事：使用 runtime.GC 手动出发垃圾回收，然后调用 runtime/debug 的 FreeOSMemory。</p>
+<p>它们都不起作用，但是我们感觉我们离罪魁祸首越来越近了。 因为我们发现一些仍然是 open 状态的 关于Go内存管理的issue，
+其他人也遇到了Go运行时没有释放内存给操作系统的问题。FreeOSMemory 被认为是强制释放内存，但在我们看来它并没有生效。</p>
+<p>我们发现Go非常依赖它分配的内存，这意味着在释放内存给操作系统之前，它将持有这些内存一段时间。如果你的应用有一个
+内存消耗的峰值，然后又有至少5分钟的静默期，Go将会把内存释放给操作系统。在这之前Go将持有它，防止它需要这些内存的
+时候又重新向操作系统申请。</p>
+<p>这个听起来很好，但是我们发现5分钟后内存还是没有释放。所以我们决定做一个小实验，确认问题是否出在Go的运行时。我们
+将重启应用，然后运行一个脚本，它会一段时间内请求大量数据（我们称这段时间的请求量为 x ），然后在发现一个内存峰值
+的时候，我们会再多运行5秒钟然后停止。接下来，我们会重新跑这个脚本（没有5秒钟的等待期），这样我们去验证Go是否会
+请求更多的内存，还是仅使用它持有的内存量。这是我们得到的结果：</p>
+<img src="/2020/09/23/我们是如何在微服务集群中找出内存泄漏的-译/domain-service-usage-1.png" title="右键新标签页打开,可看大图">
+<p>实际上，Go并没有要求操作系统提供更多的内存，而是在使用它之前保留的内存。问题是5分钟规则未得到遵守，
+运行时从未向操作系统释放内存。</p>
+<p>现在我们可以确定这不是内存泄漏，但是它仍然是一个不好的表现，因为这样会浪费很多内存。</p>
+<p>我们虽然发现了罪魁祸首，但是我们仍然感到沮丧，因为这是我们无法修复的问题，这是Go的运行时方式。我们最初的想法
+是到这里停止下来，然后优化服务。但是随着我们继续深入研究，在Go<a href="https://github.com/golang/go" target="_blank" rel="noopener">仓库</a>
+发现了一些讨论Go内存管理方式变更的issue：</p>
+<ul>
+<li><a href="https://github.com/golang/go/issues/16843" target="_blank" rel="noopener">runtime: mechanism for monitoring heap size</a></li>
+<li><a href="https://github.com/golang/go/issues/29844" target="_blank" rel="noopener">runtime: scavenging doesn’t reduce reported RSS on darwin, may lead to OOMs on iOS</a></li>
+<li><a href="https://github.com/golang/go/issues/28466" target="_blank" rel="noopener">runtime: provide way to disable MADV_FREE</a></li>
+<li><a href="https://github.com/golang/go/issues/32124" target="_blank" rel="noopener">runtime: Go routine and writer memory not being released</a></li>
+</ul>
+<p>事实证明，在Go1.12中，关于运行时通知操作系统可以回收未使用的内存的方式，发生了一些变化，在Go1.12之前，运行时
+在未使用的内存上发送一个 <code>MADV_DONTNEED</code> 信号给操作系统，操作系统立刻回收这些内存页。从Go1.12开始，信号变成了
+<code>MADV_FREE</code>，这会告诉操作系统如果需要的话可以回收这块不使用的内存，这也意味操作系统如果没有来自其他进程的内存压力
+，它将永远不会这样做。</p>
+<p>除非你有其他正在运行的服务并且也很消耗内存，否则RSS（常驻内存，基本上是该服务正在消耗的内存）将不会消失。</p>
+<p>从这个Go仓库的issue上看，这个问题仅仅会出现在iOS系统，而不会在Linux上，但是我们在Linux上遇到了相同的问题。
+然后我们发现在运行Go服务的时候使用<code>GODEBUG=madvdontneed=1</code>去强制运行时使用<code>MADV_DONTNEED</code>而不是
+<code>MADV_FREE</code>。我们决定试一试！</p>
+<p>首先，我们在/freememory中添加了一个新HTTP端点，该端点只会调用FreeOSMemory。
+这样，我们可以检查它是否确实适用于新信号。这是我们得到的：</p>
+<img src="/2020/09/23/我们是如何在微服务集群中找出内存泄漏的-译/domain-service-madv-1.png" title="右键新标签页打开,可看大图">
+<p>绿线（服务-a）是我们在14:13到14:14之间调用 /freememory 的线，您可以看到它实际上将几乎所有内容释放到了操作系统。
+我们没有在services-b（黄线）上调用 /freememory，但是它显然遵守了5分钟规则，并且运行时最终释放了未使用的内存！</p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>要对编程语言的运行时如何运行以及它所经历的更改有所了解！ 
+Go是一门很棒的语言，提供了许多惊人的工具，例如pprof（一直以来都是正确的，并且没有显示任何内存泄漏的迹象）。
+学习如何使用它并读取其输出是我们从此“错误”中学到的最有价值的技能，因此一定要检查一下！</p>
+<hr>
+<h2 id="我们一路发现的所有链接"><a href="#我们一路发现的所有链接" class="headerlink" title="我们一路发现的所有链接:"></a>我们一路发现的所有链接:</h2><ul>
+<li><a href="https://www.freecodecamp.org/news/how-i-investigated-memory-leaks-in-go-using-pprof-on-a-large-codebase-4bec4325e192/" target="_blank" rel="noopener">Jonathan Levison on how he used pprof to debug a memory leak.</a></li>
+<li><a href="https://www.youtube.com/watch?v=ydWFpcoYraU" target="_blank" rel="noopener">[VIDEO] Memory leaks in Go and how they look like.</a></li>
+<li><a href="https://medium.com/dm03514-tech-blog/sre-debugging-simple-memory-leaks-in-go-e0a9e6d63d4d" target="_blank" rel="noopener">Another memory leak debugging journey!</a></li>
+<li><a href="https://syslog.ravelin.com/lemony-scale-its-a-series-of-unfortunate-decisions-b16a59833146" target="_blank" rel="noopener">How to optimize your code if it’s suffering from memory pressure, and 
+also general tips on how the Go memory model works.</a></li>
+<li><a href="https://blog.golang.org/ismmkeynote" target="_blank" rel="noopener">How the Go garbage collector works.</a></li>
+<li><a href="https://utcc.utoronto.ca/~cks/space/blog/programming/GoNoMemoryFreeing" target="_blank" rel="noopener">Go’s behavior on not releasing memory to the operating system.</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/21/2019年度总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yh Zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/git.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Z">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/01/21/2019年度总结/" itemprop="url">2019年度总结</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-21T15:48:30+08:00">
+                2020-01-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="2019"><a href="#2019" class="headerlink" title="2019"></a>2019</h1><p>弹指一挥间，2019已经过去了。</p>
+<p>外面关于流感的消息越传越严重，而我选择在工位上安静的写年度总结～</p>
+<p>有人说如何评估自己在过去一年有多少成长？如果你觉得一年前的自己是个zz，那么说明你这一年进步了很多。我当然觉得一年前
+的自己不是zz，但差不多算是半个zz。</p>
+<h1 id="技术能力"><a href="#技术能力" class="headerlink" title="技术能力"></a>技术能力</h1><p>技术上，今年在消息中间件上做了较多研究。Kafka，NSQ，Pulsar还有我们公司自研的LeviMQ我都做了比较深入的学习。</p>
+<h2 id="Kafka"><a href="#Kafka" class="headerlink" title="Kafka"></a>Kafka</h2><p>学习Kafka主要是通过 &lt;深入理解Kafka:核心设计与实践原理&gt; 这本书。让我觉得印象比较深的有几点：</p>
+<ol>
+<li>Kafka读写高性能的实现原理</li>
+<li>分区的设计，这一点和许多分布式系统都有类似的思想</li>
+<li>副本同步的实现</li>
+</ol>
+<p>同时Kafka也存在一些很严重的问题，比如消费者加入/离开集群时会出现一段时间消息无法消费的情况。这也是公司内部
+某些场景使用NSQ的主要原因</p>
+<h2 id="NSQ"><a href="#NSQ" class="headerlink" title="NSQ"></a>NSQ</h2><p>是我前几年就接触过原始的开源版本，以前对它的认知就停留在：使用<strong>golang</strong>编写，<strong>高性能</strong>，但是对于消息顺序性，高可用
+方面没有深入研究。有赞对这个开源版本做了较大的改造，借鉴了相当多的kafka设计理念。我们公司主要是在有赞改造的版本基础上，
+又加了一些定制化功能。12月份的时候在公司内部，做了一个关于<strong>nsq-rebalance</strong>的分享，算是通读了nsq的核心逻辑，
+学到不少。</p>
+<h2 id="Pulsar"><a href="#Pulsar" class="headerlink" title="Pulsar"></a>Pulsar</h2><p>今年入职的第一个项目就是和Pulsar有关，当时因为官方的pulsar-clieng-go是使用cgo运行，所以就找了一个
+非官方的pulsar-clieng-go使用。前几个月基本都在踩这个client的坑，遇到了以前项目中没遇到的情况。
+比如oom，proto编码协议，内存泄漏等各种各样的问题。9月份的时候应Pulsar社区邀请，去上海做了一次关于
+Pulsar实践的分享，现在想来当时还是挺紧张的～</p>
+<h2 id="K8s"><a href="#K8s" class="headerlink" title="K8s"></a>K8s</h2><p>年底的两个月基本都在忙K8s相关的工作，算是在K8s这方面做到真正的入门级别了</p>
+<h1 id="生活"><a href="#生活" class="headerlink" title="生活"></a>生活</h1><p>今年和湾湾订婚啦！很庆幸能在六年前就遇到她，真希望能一直和她走下去。</p>
+<p>半年前她选择离职，从事自由职业。说实话我当时犹豫了半天，我担心她会不会一个人在家太闷了，担心她
+会不会只是一时冲动，担心她以后的发展…最终我还是选择充分支持她。年轻的时候不去尝试，难道要等老了再后悔叹息吗？
+当然从现在来看，她这个选择对我最大的影响就是：我每天都能吃到她做的饭菜，导致我越来越月半！</p>
+<p>对了，还有我和我的乒乓球。以前和小洋哥打球总是输给他，但是某天我突然功力大涨，甚至出现了2-10逆转翻盘的情况。
+后面和他交手也是至少55开的胜率，真是神奇。明年乒乓球积分赛走起？</p>
+<p>2019有很多收获，当然也有遗憾。</p>
+<p>年初的时候报了一个吉他班，也参加了公司的乐队，只可惜后面荒废了。
+家里人有些健康问题，让我只能觉得无能为力。
+我自己的身体抵抗力好像也变差很多，年中有一次感冒咳嗽持续了2个月。</p>
+<p>希望以后能坚持锻炼，少留遗憾。2020，奥利给！</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/20/golang内存泄漏排查/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yh Zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/git.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Z">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/01/20/golang内存泄漏排查/" itemprop="url">golang内存泄漏排查</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-20T17:51:17+08:00">
+                2020-01-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="golang内存泄漏排查"><a href="#golang内存泄漏排查" class="headerlink" title="golang内存泄漏排查"></a>golang内存泄漏排查</h1><p>最近有一个项目主要是从pulsar中接收数据，再推送到其他topic中。在重启pulsar的时候会触发重连，同时也会出现内存泄漏。
+因为这个泄漏比较缓慢，从docker stats可以发现每天泄漏10M左右的内存</p>
+<h1 id="主题"><a href="#主题" class="headerlink" title="主题"></a>主题</h1><ul>
+<li>解决内存泄漏问题</li>
+<li>理解golang-pprof的相关数据</li>
+<li>理解golang的内存分配</li>
+</ul>
+<h1 id="复盘过程"><a href="#复盘过程" class="headerlink" title="复盘过程"></a>复盘过程</h1><p>之前我一直想从内存的pprof数据中查出内存泄漏的原因，事实证明这条路线不是很好，有以下原因：</p>
+<ol>
+<li>heap-profiling它通过采样，比较直观的反映了内存分配情况。一般我们的注意力会放在内存占用较多的代码块，
+但是内存泄漏不一定就意味着占用较多</li>
+<li>heap-profiling是采样数据， 存在不确定性。有可能某段代码循环调用了100次，但是profiling只采集了50次</li>
+<li>dave.cheney 在<a href="https://dave.cheney.net/high-performance-go-workshop/dotgo-paris.html#memory_profiling" target="_blank" rel="noopener">博客</a>中提到一个个人观点：memory profiling对内存泄漏排查作用不大</li>
+</ol>
+<p>实际上我们完全可以换个方向，从goroutine-profiling入手</p>
+<img src="/2020/01/20/golang内存泄漏排查/granfana.png">
+<p>从图中可以看出在经历过项目初始化 -&gt; 消息推送 -&gt; 停止推送后，goroutine数量比初始化时高了一些，而且一直没有降下去。</p>
+<p>通过收集go-prometheus上报的metrics数据，可以看到goroutine数量出现了上升且不释放的情况</p>
+<p>通过对比两个时间点的gorourtine-profiling文件，找到新增的goroutine，然后再通过堆栈信息去/debug/pprof/goroutine?debug=2
+返回的结果中查询，果不其然，有些goroutine被意外阻塞了。</p>
+<p>例如send(ctx context.Context)，ack(ctx context.Context)这些函数本不该阻塞，它们之所以被阻塞住，是因为之前在做一些
+封装的时候，随意传了一个不带超时时间的context对象</p>
+<h1 id="runtime-Memstats解读"><a href="#runtime-Memstats解读" class="headerlink" title="runtime.Memstats解读"></a>runtime.Memstats解读</h1><p>之前一直对golang的runtime.Memstats各个字段有些模糊的认知，这次我们来彻底把它们搞清楚！</p>
+<h2 id="runtime-Memstats各字段的关系"><a href="#runtime-Memstats各字段的关系" class="headerlink" title="runtime.Memstats各字段的关系"></a>runtime.Memstats各字段的关系</h2><p>具体每个字段代表什么意思，就不细说了。可以去读标准包的代码注释，或者<a href="https://colobu.com/2019/08/28/go-memory-leak-i-dont-think-so/" target="_blank" rel="noopener">这里</a>
+我们主要理清楚各个字段之间的关系
+<img src="/2020/01/20/golang内存泄漏排查/runtime.Memstats.png"></p>
+<h2 id="debug-pprof-heap-debug-1-和-debug-pprof-heap的inuse-space数据不一致"><a href="#debug-pprof-heap-debug-1-和-debug-pprof-heap的inuse-space数据不一致" class="headerlink" title="debug/pprof/heap?debug=1 和 debug/pprof/heap的inuse-space数据不一致"></a>debug/pprof/heap?debug=1 和 debug/pprof/heap的inuse-space数据不一致</h2><img src="/2020/01/20/golang内存泄漏排查/inuse-space.png">
+<img src="/2020/01/20/golang内存泄漏排查/inuse-space_proto.png">
+<p>一个是61KB，另一个是5662KB</p>
+<p>其实关键点就在runtime.MemProfileRate
+在runtime/pprof/protomem.go</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">  <span class="comment">// runtime/pprof/protomem.go</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// scaleHeapSample adjusts the data from a heap Sample to</span></span><br><span class="line">  <span class="comment">// account for its probability of appearing in the collected</span></span><br><span class="line">  <span class="comment">// data. heap profiles are a sampling of the memory allocations</span></span><br><span class="line">  <span class="comment">// requests in a program. We estimate the unsampled value by dividing</span></span><br><span class="line">  <span class="comment">// each collected sample by its probability of appearing in the</span></span><br><span class="line">  <span class="comment">// profile. heap profiles rely on a poisson process to determine</span></span><br><span class="line">  <span class="comment">// which samples to collect, based on the desired average collection</span></span><br><span class="line">  <span class="comment">// rate R. The probability of a sample of size S to appear in that</span></span><br><span class="line">  <span class="comment">// profile is 1-exp(-S/R).</span></span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">scaleHeapSample</span><span class="params">(count, size, rate <span class="keyword">int64</span>)</span> <span class="params">(<span class="keyword">int64</span>, <span class="keyword">int64</span>)</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> count == <span class="number">0</span> || size == <span class="number">0</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> rate &lt;= <span class="number">1</span> &#123;</span><br><span class="line">      <span class="comment">// if rate==1 all samples were collected so no adjustment is needed.</span></span><br><span class="line">      <span class="comment">// if rate&lt;1 treat as unknown and skip scaling.</span></span><br><span class="line">      <span class="keyword">return</span> count, size</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    avgSize := <span class="keyword">float64</span>(size) / <span class="keyword">float64</span>(count)</span><br><span class="line">    scale := <span class="number">1</span> / (<span class="number">1</span> - math.Exp(-avgSize/<span class="keyword">float64</span>(rate)))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">int64</span>(<span class="keyword">float64</span>(count) * scale), <span class="keyword">int64</span>(<span class="keyword">float64</span>(size) * scale)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在protomem中会对数据根据runtime.MemProfileRate进行一次scale</p>
+<p>当runtime.MemProfileRate=1时，两个profiling的inuse-space就是一致的</p>
+<h2 id="inuse-space和runtime-Memstats-HeapAlloc字段不一致"><a href="#inuse-space和runtime-Memstats-HeapAlloc字段不一致" class="headerlink" title="inuse-space和runtime.Memstats.HeapAlloc字段不一致"></a>inuse-space和runtime.Memstats.HeapAlloc字段不一致</h2><p>因为inuse-space是一份采样数据，不是全量的内存分配数据。有些博客说是采样频率是1/1000而且可以配置，
+这个我还没有找到具体出处。</p>
+<h2 id="docker-stats-proc-pid-status-ps-top"><a href="#docker-stats-proc-pid-status-ps-top" class="headerlink" title="docker-stats, /proc/pid/status, ps, top"></a>docker-stats, /proc/pid/status, ps, top</h2><p>上面几个命令都是查看进程的内存占用情况</p>
+<p>docker-stats 反应的是物理内存占用的一部分，和/proc/pid/status中RssAnon大致相等</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CONTAINER ID        NAME                CPU %               MEM USAGE / LIMIT     MEM %               NET I/O             BLOCK I/O           PIDS</span><br><span class="line">ca75e73e0bfe        pulsar-util-or      0.19%               42.8MiB / 1.952GiB    2.14%               1.24MB / 2.23MB     1.65MB / 0B         8</span><br></pre></td></tr></table></figure>
+<p>/proc/1/status</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">/data <span class="comment"># cat /proc/1/status</span></span><br><span class="line">Name: pulsar-util</span><br><span class="line">...</span><br><span class="line">VmPeak:   115852 kB</span><br><span class="line">VmSize:   115852 kB</span><br><span class="line">VmLck:       0 kB</span><br><span class="line">VmPin:       0 kB</span><br><span class="line">VmHWM:   52568 kB</span><br><span class="line">VmRSS:   52568 kB</span><br><span class="line">RssAnon:   42584 kB</span><br><span class="line">RssFile:    9984 kB</span><br><span class="line">RssShmem:       0 kB</span><br><span class="line">VmData:  103536 kB</span><br><span class="line">VmStk:     132 kB</span><br><span class="line">VmExe:    5516 kB</span><br><span class="line">VmLib:       8 kB</span><br><span class="line">VmPTE:     148 kB</span><br><span class="line">VmPMD:      16 kB</span><br><span class="line">VmSwap:       0 kB</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>ps命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/data <span class="comment"># ps -o 'pid,rss,vsz'</span></span><br><span class="line">PID   RSS  VSZ</span><br><span class="line">    1  51m 113m</span><br><span class="line">   12 1040 1592</span><br><span class="line">   22    4 1516</span><br></pre></td></tr></table></figure>
+<p>top命令 S</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Mem total:2047036 anon:913928 map:103176 free:192520</span><br><span class="line"> slab:62844 buf:31100 cache:816244 dirty:3856 write:0</span><br><span class="line">Swap total:1048572 free:1011520</span><br><span class="line">  PID   VSZ^VSZRW^  RSS (SHR) DIRTY (SHR) STACK COMMAND</span><br><span class="line">    1  113m  101m 59600     4 39760     0   132 ./pulsar-util</span><br><span class="line">   12  1596   228  1040   760   136     0   132 /bin/sh</span><br><span class="line">   23  1528   160   824   760    60     0   132 top</span><br></pre></td></tr></table></figure>
+<h2 id="runtime-Memstats-Sys-和-top，ps命令不一致"><a href="#runtime-Memstats-Sys-和-top，ps命令不一致" class="headerlink" title="runtime.Memstats.Sys 和 top，ps命令不一致"></a>runtime.Memstats.Sys 和 top，ps命令不一致</h2><p>top,ps 显示虚拟内存占用113M，runtime.Memstats.Sys却只有71M左右</p>
+<p>目前我理解113M是进程初始化时申请的虚拟内存大小，早期版本的go程序在初始化时甚至会申请更多。
+71M是当前程序实打实使用的虚拟内存</p>
+<p>其实这个我暂时还没有找到源码或者官方解释。。。欢迎大家补充</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ul>
+<li>程序出现内存泄漏时，先做好数据收集工作，利用prometheus+granfana收集metrics</li>
+<li>heap-profiling数据并不能很好的帮助定位内存泄漏，可以优先从goroutine追查</li>
+<li>内存泄漏可以分为暂时性泄漏和永久性泄漏，其中后者十有八九是由于goroutine泄漏导致</li>
+<li>上述排查过程中对比两份profiling文件的工作，可以编写一个工具来实现，后续完善以后会分享出来</li>
+</ul>
+<h1 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h1><ol>
+<li><a href="https://colobu.com/2019/08/28/go-memory-leak-i-dont-think-so/" target="_blank" rel="noopener">https://colobu.com/2019/08/28/go-memory-leak-i-dont-think-so/</a></li>
+<li><a href="https://dave.cheney.net/high-performance-go-workshop/dotgo-paris.html" target="_blank" rel="noopener">https://dave.cheney.net/high-performance-go-workshop/dotgo-paris.html</a></li>
+<li><a href="https://github.com/golang/go/issues/32284" target="_blank" rel="noopener">https://github.com/golang/go/issues/32284</a></li>
+<li><a href="https://gfw.go101.org/article/memory-leaking.html" target="_blank" rel="noopener">https://gfw.go101.org/article/memory-leaking.html</a></li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/20/mysql事务与锁/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yh Zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/git.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Z">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/02/20/mysql事务与锁/" itemprop="url">mysql事务与锁</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-20T18:20:16+08:00">
+                2019-02-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="mysql事务"><a href="#mysql事务" class="headerlink" title="mysql事务"></a>mysql事务</h1><h2 id="什么是mysql事务"><a href="#什么是mysql事务" class="headerlink" title="什么是mysql事务"></a>什么是mysql事务</h2><p>数据库操作的最小工作单元，是作为单个逻辑工作单元执行的一系列操作。</p>
+<p>事务是一组不可再分割的操作单元</p>
+<h3 id="哪些存储引擎支持事务"><a href="#哪些存储引擎支持事务" class="headerlink" title="哪些存储引擎支持事务"></a>哪些存储引擎支持事务</h3><p>innodb myisam</p>
+<h3 id="update-xxx-set-xxx-xxx-where-xxx-有事务吗"><a href="#update-xxx-set-xxx-xxx-where-xxx-有事务吗" class="headerlink" title="update xxx set xxx = xxx where xxx=? 有事务吗"></a>update xxx set xxx = xxx where xxx=? 有事务吗</h3><p>有。通过会话层autocommit变量来控制，默认自动提交</p>
+<h2 id="事务的四大特性"><a href="#事务的四大特性" class="headerlink" title="事务的四大特性"></a>事务的四大特性</h2><p>原子性，一致性，隔离性，持久性</p>
+<h2 id="事务并发的三个问题"><a href="#事务并发的三个问题" class="headerlink" title="事务并发的三个问题"></a>事务并发的三个问题</h2><h3 id="脏读-多个事务并发，导致脏读"><a href="#脏读-多个事务并发，导致脏读" class="headerlink" title="脏读:多个事务并发，导致脏读"></a>脏读:多个事务并发，导致脏读</h3><table>
+<thead>
+<tr>
+<th>r1</th>
+<th>r2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>update</td>
+</tr>
+<tr>
+<td>read（脏读）</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>rollback</td>
+</tr>
+</tbody>
+</table>
+<h3 id="不可重复读-一个事务的前后两次读取之间，有其他事务对数据做了修改，导致两次读取数据不一致"><a href="#不可重复读-一个事务的前后两次读取之间，有其他事务对数据做了修改，导致两次读取数据不一致" class="headerlink" title="不可重复读:一个事务的前后两次读取之间，有其他事务对数据做了修改，导致两次读取数据不一致"></a>不可重复读:一个事务的前后两次读取之间，有其他事务对数据做了修改，导致两次读取数据不一致</h3><table>
+<thead>
+<tr>
+<th>r1</th>
+<th>r2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>read</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>update</td>
+</tr>
+<tr>
+<td></td>
+<td>commit</td>
+</tr>
+<tr>
+<td>read  (不可重复读)</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h3 id="幻读"><a href="#幻读" class="headerlink" title="幻读"></a>幻读</h3><table>
+<thead>
+<tr>
+<th>r1</th>
+<th>r2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>read (where id&gt;1)</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>insert(id=2)</td>
+</tr>
+<tr>
+<td></td>
+<td>commit</td>
+</tr>
+<tr>
+<td>read (where id&gt;1)（幻读）</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h2 id="解决事务并发的方案：事务隔离"><a href="#解决事务并发的方案：事务隔离" class="headerlink" title="解决事务并发的方案：事务隔离"></a>解决事务并发的方案：事务隔离</h2><p>通过数据库引擎的事务隔离级别</p>
+<p>serializable（串行化）</p>
+<table>
+<thead>
+<tr>
+<th>隔离级别</th>
+<th>并发问题</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>read uncommited（未提交读)</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>脏读</td>
+</tr>
+<tr>
+<td>read commited（已提交读) 只读取已提交的数据，解决了脏读</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>不可重复读</td>
+</tr>
+<tr>
+<td>repeatable read（可重复读） 在同一事务中多次读取同样的数据结果是一样的，解决不可重复读的问题，未解决幻读(innodb解决了幻读)</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>read 幻读</td>
+</tr>
+<tr>
+<td>serializable（串行化）</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h2 id="事务隔离级别的实现方案"><a href="#事务隔离级别的实现方案" class="headerlink" title="事务隔离级别的实现方案"></a>事务隔离级别的实现方案</h2><ol>
+<li>LBCC(Lock Base concurrency control) 在读取数据之前，对其加锁，阻止其他事务对数据进行修改</li>
+<li>MVCC(Multi Version concurrency control) 生成一个快照</li>
+</ol>
+<p>解决脏读：在r2事务(write/rollback)开始的时候，拿到排它锁，阻塞r1的读操作</p>
+<p>解决不可重复读: 在r1开始的时候，拿到共享锁,阻塞r2的写操作</p>
+<p>解决幻读：使用自增主键，行锁算法（范围）走临键锁</p>
+<h2 id="事务隔离级别的实现细节–’读’操作"><a href="#事务隔离级别的实现细节–’读’操作" class="headerlink" title="事务隔离级别的实现细节–’读’操作"></a>事务隔离级别的实现细节–’读’操作</h2><h3 id="当前读"><a href="#当前读" class="headerlink" title="当前读"></a>当前读</h3><p>即加锁读，读取记录的最新版本，会加锁保证其他并发事务不能修改当前记录，直至获取锁的事务释放锁；</p>
+<p>使用当前读的操作主要包括：显式加锁的读操作与插入/更新/删除等写操作，如下所示：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">table</span> <span class="keyword">where</span> ? <span class="keyword">lock</span> <span class="keyword">in</span> <span class="keyword">share</span> <span class="keyword">mode</span>;</span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">table</span> <span class="keyword">where</span> ? <span class="keyword">for</span> <span class="keyword">update</span>;</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> <span class="keyword">table</span> <span class="keyword">values</span> (…);</span><br><span class="line"><span class="keyword">update</span> <span class="keyword">table</span> <span class="keyword">set</span> ? <span class="keyword">where</span> ?;</span><br><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> <span class="keyword">table</span> <span class="keyword">where</span> ?;</span><br></pre></td></tr></table></figure>
+<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">注：当Update SQL被发给MySQL后，MySQL Server会根据where条件，读取第一条满足条件的记录，然后InnoDB引擎</span><br><span class="line"></span><br><span class="line">会将第一条记录返回，并加锁，待MySQL Server收到这条加锁的记录之后，会再发起一个Update请求，更新这条记录。</span><br><span class="line"></span><br><span class="line">一条记录操作完成，再读取下一条记录，直至没有满足条件的记录为止。因此，Update操作内部，就包含了当前读。同理，</span><br><span class="line"></span><br><span class="line">Delete操作也一样。Insert操作会稍微有些不同，简单来说，就是Insert操作可能会触发Unique Key的冲突检查，也</span><br><span class="line"></span><br><span class="line">会进行一个当前读。</span><br></pre></td></tr></table></figure>
+<h3 id="快照读"><a href="#快照读" class="headerlink" title="快照读"></a>快照读</h3><p>即不加锁读，读取记录的快照版本而非最新版本，通过MVCC实现；</p>
+<p>InnoDB默认的RR事务隔离级别下，不显式加『lock in share mode』与『for update』的『select』操作都属于快照读，保证事务执行过程中只有第一次读之前提交的修改和自己的修改可见，其他的均不可见；</p>
+<h2 id="事务隔离级别的实现细节–’写’操作"><a href="#事务隔离级别的实现细节–’写’操作" class="headerlink" title="事务隔离级别的实现细节–’写’操作"></a>事务隔离级别的实现细节–’写’操作</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> <span class="keyword">table</span> <span class="keyword">values</span> (…);</span><br><span class="line"><span class="keyword">update</span> <span class="keyword">table</span> <span class="keyword">set</span> ? <span class="keyword">where</span> ?;</span><br><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> <span class="keyword">table</span> <span class="keyword">where</span> ?;</span><br></pre></td></tr></table></figure>
+<h2 id="锁"><a href="#锁" class="headerlink" title="锁"></a>锁</h2><p>myisam 只支持表锁
+innodb 支持表锁和行锁</p>
+<h2 id="innodb-锁类型"><a href="#innodb-锁类型" class="headerlink" title="innodb 锁类型"></a>innodb 锁类型</h2><ul>
+<li>共享锁（行锁）</li>
+<li>排它锁（行锁）</li>
+<li>意向共享锁（表锁）</li>
+<li>意向排它锁（表锁）</li>
+</ul>
+<h3 id="共享锁"><a href="#共享锁" class="headerlink" title="共享锁"></a>共享锁</h3><p>多个事务获取同一条数据的共享锁。在共享锁期间，其他事务不能对数据进行写操作</p>
+<h3 id="排它锁"><a href="#排它锁" class="headerlink" title="排它锁"></a>排它锁</h3><p>只能有一个事务对一条数据创建排它锁。其他事务不能读也不能写</p>
+<p>在一个事务中，update，delete，insert会自动针对数据加一个排它锁</p>
+<h2 id="锁的算法（范围）"><a href="#锁的算法（范围）" class="headerlink" title="锁的算法（范围）"></a>锁的算法（范围）</h2><ul>
+<li>记录锁</li>
+<li>间隙锁</li>
+<li>临键锁</li>
+</ul>
+<p>不同的事务隔离级别、不同的索引类型、是否为等值查询，使用的行锁算法也会有所不同；</p>
+<p>当等值查询，有命中行数，且有命中唯一索引（唯一索引，主键索引）的时候，使用 记录锁</p>
+<p>当范围查询，未命中的时候，使用 间隙锁。 间隙锁只在rr事务隔离级别存在</p>
+<p>当范围查询，且有命中行数的时候，使用 临键锁。或者理解为除了（间隙锁，记录锁以外，其他都是临键锁）</p>
+<h2 id="主键索引和唯一索引"><a href="#主键索引和唯一索引" class="headerlink" title="主键索引和唯一索引"></a>主键索引和唯一索引</h2><p>主键索引和唯一索引。 主键索引是特殊的唯一索引。 主键索引不允许为null值，唯一索引允许存在一个null值</p>
+<h2 id="关于是否阻塞的总结"><a href="#关于是否阻塞的总结" class="headerlink" title="关于是否阻塞的总结"></a>关于是否阻塞的总结</h2><p>定值查询</p>
+<table>
+<thead>
+<tr>
+<th>r1</th>
+<th>r2</th>
+<th>是否命中相同数据</th>
+<th>r2是否阻塞</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>走索引</td>
+<td>没走索引</td>
+<td></td>
+<td>阻塞</td>
+</tr>
+<tr>
+<td>走索引</td>
+<td>走索引</td>
+<td>是</td>
+<td>阻塞</td>
+</tr>
+<tr>
+<td>走索引</td>
+<td>走索引</td>
+<td>否</td>
+<td>不阻塞</td>
+</tr>
+<tr>
+<td>没走索引</td>
+<td>走索引</td>
+<td></td>
+<td>阻塞</td>
+</tr>
+<tr>
+<td>没走索引</td>
+<td>没走索引</td>
+<td></td>
+<td>阻塞</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Q-amp-A"><a href="#Q-amp-A" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h2><h3 id="非唯一索引，等值查询命中后，会使用哪种锁算法（记录锁，间隙锁，临键锁）？"><a href="#非唯一索引，等值查询命中后，会使用哪种锁算法（记录锁，间隙锁，临键锁）？" class="headerlink" title="非唯一索引，等值查询命中后，会使用哪种锁算法（记录锁，间隙锁，临键锁）？"></a>非唯一索引，等值查询命中后，会使用哪种锁算法（记录锁，间隙锁，临键锁）？</h3><h3 id="如果行锁会造成表锁（意向锁），那么行锁的意义是什么？"><a href="#如果行锁会造成表锁（意向锁），那么行锁的意义是什么？" class="headerlink" title="如果行锁会造成表锁（意向锁），那么行锁的意义是什么？"></a>如果行锁会造成表锁（意向锁），那么行锁的意义是什么？</h3><h3 id="以不可重复读或者幻读为例，为什么同一事务不能出现两次读取不一致的问题？"><a href="#以不可重复读或者幻读为例，为什么同一事务不能出现两次读取不一致的问题？" class="headerlink" title="以不可重复读或者幻读为例，为什么同一事务不能出现两次读取不一致的问题？"></a>以不可重复读或者幻读为例，为什么同一事务不能出现两次读取不一致的问题？</h3><p>因为会破坏事务的一致性</p>
+<h3 id="对上面概念的梳理"><a href="#对上面概念的梳理" class="headerlink" title="对上面概念的梳理"></a>对上面概念的梳理</h3><img src="/2019/02/20/mysql事务与锁/事务.png" title="右键新标签页打开,可看大图">
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a href="https://pan.baidu.com/s/1RTtrmm5RqtdztUpfhIoFeg?fid=1099705773141400" target="_blank" rel="noopener">mysql事务与锁 视频</a>
+<a href="https://segmentfault.com/a/1190000014133576#articleHeader5" target="_blank" rel="noopener">mysql锁</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/13/docker-compose部署wordpress/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yh Zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/git.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Z">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/02/13/docker-compose部署wordpress/" itemprop="url">docker-compose部署wordpress</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-13T19:18:37+08:00">
+                2019-02-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="体验wordpress"><a href="#体验wordpress" class="headerlink" title="体验wordpress"></a>体验wordpress</h1><p>使用docker-compose安装wordpress</p>
+<h2 id="安装docker"><a href="#安装docker" class="headerlink" title="安装docker"></a>安装docker</h2><p>移除旧的版本：</p>
+<pre><code>$ sudo yum remove docker \
+    docker-client \
+    docker-client-latest \
+    docker-common \
+    docker-latest \
+    docker-latest-logrotate \
+    docker-logrotate \
+    docker-selinux \
+    docker-engine-selinux \
+    docker-engine
+</code></pre><p>安装一些必要的系统工具：</p>
+<pre><code>sudo yum install -y yum-utils device-mapper-persistent-data lvm2
+</code></pre><p>添加软件源信息：</p>
+<pre><code>sudo yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+</code></pre><p>更新 yum 缓存：</p>
+<pre><code>sudo yum makecache fast
+</code></pre><p>安装 Docker-ce：</p>
+<pre><code>sudo yum -y install docker-ce
+</code></pre><p>启动 Docker 后台服务</p>
+<pre><code>sudo systemctl start docker
+</code></pre><h2 id="安装docker-compose"><a href="#安装docker-compose" class="headerlink" title="安装docker-compose"></a>安装docker-compose</h2><p>需要先安装企业版linux附加包（epel)</p>
+<pre><code>yum -y install epel-release
+</code></pre><p>安装pip</p>
+<pre><code>yum -y install python-pip
+</code></pre><p>更新pip</p>
+<pre><code>pip install --upgrade pip
+</code></pre><p>安装docker-compose</p>
+<pre><code>pip install docker-compose
+</code></pre><h2 id="docker-compose-yml"><a href="#docker-compose-yml" class="headerlink" title="docker-compose.yml"></a>docker-compose.yml</h2><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">"3"</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line"></span><br><span class="line"><span class="attr">   db:</span></span><br><span class="line"><span class="attr">     image:</span> <span class="attr">mysql:5.7</span></span><br><span class="line"><span class="attr">     volumes:</span></span><br><span class="line"><span class="attr">       - db_data:</span><span class="string">/var/lib/mysql</span></span><br><span class="line"><span class="attr">     restart:</span> <span class="string">always</span></span><br><span class="line"><span class="attr">     environment:</span></span><br><span class="line"><span class="attr">       MYSQL_ROOT_PASSWORD:</span> <span class="string">wordpress</span></span><br><span class="line"><span class="attr">       MYSQL_DATABASE:</span> <span class="string">wordpress</span></span><br><span class="line"><span class="attr">       MYSQL_USER:</span> <span class="string">wordpress</span></span><br><span class="line"><span class="attr">       MYSQL_PASSWORD:</span> <span class="string">wordpress</span></span><br><span class="line"></span><br><span class="line"><span class="attr">   wordpress:</span></span><br><span class="line"><span class="attr">     depends_on:</span></span><br><span class="line"><span class="bullet">       -</span> <span class="string">db</span></span><br><span class="line"><span class="attr">     image:</span> <span class="attr">wordpress:latest</span></span><br><span class="line"><span class="attr">     ports:</span></span><br><span class="line"><span class="bullet">       -</span> <span class="string">"8000:80"</span></span><br><span class="line"><span class="attr">     restart:</span> <span class="string">always</span></span><br><span class="line"><span class="attr">     environment:</span></span><br><span class="line"><span class="attr">       WORDPRESS_DB_HOST:</span> <span class="attr">db:3306</span></span><br><span class="line"><span class="attr">       WORDPRESS_DB_USER:</span> <span class="string">wordpress</span></span><br><span class="line"><span class="attr">       WORDPRESS_DB_PASSWORD:</span> <span class="string">wordpress</span></span><br><span class="line"><span class="attr">volumes:</span></span><br><span class="line"><span class="attr">  db_data:</span></span><br></pre></td></tr></table></figure>
+<h2 id="遇到的坑"><a href="#遇到的坑" class="headerlink" title="遇到的坑"></a>遇到的坑</h2><p>中间出现过一次Access denied for user ‘wordpress‘@’172.18.0.3’的错误，原因是之前有一份yml文件，设置的 MYSQL_PASSWORD和本次不一样。</p>
+<p>网上资料上的解决方案是</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker-compose stop</span><br><span class="line">docker-compose rm -v 删除之前容器的的volumes文件（一般是在/var/lib/docker/volumes）</span><br></pre></td></tr></table></figure>
+<p>但是我使用 docker-compose rm -v，并没有删除文件</p>
+<p>最后我索性直接把docker卸载重装了</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/13/snowflake-分布式唯一ID生成器/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yh Zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/git.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Z">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/13/snowflake-分布式唯一ID生成器/" itemprop="url">snowflake-分布式唯一ID生成器</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-13T14:10:04+08:00">
+                2018-09-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="为什么要了解snowflake"><a href="#为什么要了解snowflake" class="headerlink" title="为什么要了解snowflake"></a>为什么要了解snowflake</h1><ol>
+<li><p>数据库分表以后，数据库自增id无法满足全局唯一的性质</p>
+</li>
+<li><p>uuid作为主键无法保证id递增</p>
+</li>
+</ol>
+<h1 id="snowflake算法原理"><a href="#snowflake算法原理" class="headerlink" title="snowflake算法原理"></a>snowflake算法原理</h1><img src="/2018/09/13/snowflake-分布式唯一ID生成器/snowflake.jpg" title="snowflake">
+<p>首先我们需要的是一个int64的id，可以通过对这64位bit划分命名空间，分别用来表示 时间戳，机器等来实现id唯一性。</p>
+<p>41-bit的时间可以表示（1L&lt;&lt;41）/(1000L<em>3600</em>24*365)=69年的时间</p>
+<p>10-bit机器可以分别表示1024台机器（5个bit是数据中心，5个bit的机器ID），这种5-5的划分实际上是可以自定义的。</p>
+<p>12个自增序列号表示同一时间戳，同一机器下的自增流水号.</p>
+<p>上面的设计保证了理论上snowflake方案的QPS约为409.6w/s（2^12*1000）。</p>
+<h1 id="snowflake实现"><a href="#snowflake实现" class="headerlink" title="snowflake实现"></a>snowflake实现</h1><p>直接参考github上的一个snowflake实现，代码略有删减</p>
+<pre><code>var (
+    // 起始时间戳 这个可以根据实际情况定义，如果项目是从2018-01-01运行，就可以设置为2018-01-01的时间戳，可以使用到2087年
+    Epoch int64 = 1288834974657
+
+    // 机器标识位
+    NodeBits uint8 = 10
+
+    // 自增序列号
+    StepBits uint8 = 12
+
+    // 机器标识最大值，实例化node时不能大于nodeMax
+    nodeMax   int64 = -1 ^ (-1 &lt;&lt; NodeBits)
+
+    // 用于step循环的一个标识
+    stepMask  int64 = -1 ^ (-1 &lt;&lt; StepBits)
+
+    // snowflake需要的一个参数
+    timeShift uint8 = NodeBits + StepBits
+
+    // 相当于自增序列号
+    nodeShift uint8 = StepBits
+)
+
+// 生成id的节点服务
+type Node struct {
+    mu   sync.Mutex
+    time int64 // 最近使用的时间戳
+    node int64 // 机器标识
+    step int64 // 自增序列
+}
+
+// 实例化一个节点服务
+func NewNode(node int64) (*Node, error) {
+    if node &lt; 0 || node &gt; nodeMax {
+        return nil, errors.New(&quot;Node number must be between 0 and &quot; + strconv.FormatInt(nodeMax, 10))
+    }
+
+    return &amp;Node{
+        time: 0,
+        node: node,
+        step: 0,
+    }, nil
+}
+
+// 生成id
+func (n *Node) Generate() ID {
+
+    n.mu.Lock()
+
+    now := time.Now().UnixNano() / 1000000
+
+    if n.time == now {
+        n.step = (n.step + 1) &amp; stepMask
+
+        // 如果某一时间戳下的自增序列用完了，则切换时间戳
+        if n.step == 0 {
+            for now &lt;= n.time {
+                now = time.Now().UnixNano() / 1000000
+            }
+        }
+    } else {
+        n.step = 0
+    }
+
+    n.time = now
+
+    // snowflake算法
+    r := ID((now-Epoch)&lt;&lt;timeShift |
+        (n.node &lt;&lt; nodeShift) |
+        (n.step),
+    )
+
+    n.mu.Unlock()
+    return r
+}
+</code></pre><h1 id="如何保证多个snowflake节点生成的id不重复"><a href="#如何保证多个snowflake节点生成的id不重复" class="headerlink" title="如何保证多个snowflake节点生成的id不重复"></a>如何保证多个snowflake节点生成的id不重复</h1><p>试想一下，如果部署两个snowflake节点，初始化的时候node值都为1，那么在同一毫秒内两个请求分别打在了两个节点上，那么有可能将会获取两个同样的id（time,node,step全部相同）。所以问题的关键是保证部署的时候，初始化workId(node)值不能重复。</p>
+<p>其中一种解决方案是，通过etcd存储node列表</p>
+<ul>
+<li>服务初始化时，连接etcd服务，获取指定key下的node列表 list</li>
+<li>遍历list，取出一个最小的已过期的key值作为workId返回</li>
+<li>定时刷新该key值的过期时间，如果服务挂掉，超过过期时间后该key值可能会被其他服务占用</li>
+</ul>
+<h1 id="唯一ID的其他解决方案"><a href="#唯一ID的其他解决方案" class="headerlink" title="唯一ID的其他解决方案"></a>唯一ID的其他解决方案</h1><ul>
+<li>UUID</li>
+<li>数据库自增长序列或字段</li>
+<li>步长+数据库自增序列</li>
+</ul>
+<h1 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h1><h2 id="什么是趋势递增"><a href="#什么是趋势递增" class="headerlink" title="什么是趋势递增"></a>什么是趋势递增</h2><p>趋势递增指的是同一节点下产生的id是递增的。</p>
+<p>在多个snowflake节点的情况下，因为节点的workId不同，同一时间下获取的id有可能是多个节点产生的，此时就无法保证全局递增</p>
+<h2 id="如果etcd挂了怎么办？"><a href="#如果etcd挂了怎么办？" class="headerlink" title="如果etcd挂了怎么办？"></a>如果etcd挂了怎么办？</h2><p>可以在每次获取workId后，将workId存到本地。</p>
+<h2 id="解决时钟回退问题"><a href="#解决时钟回退问题" class="headerlink" title="解决时钟回退问题"></a>解决时钟回退问题</h2><p>时间回流的原因一般是因为服务器做时间同步，此时可能出现生成重复id的情况。</p>
+<p>首先判断node.time是否大于当前服务器时间，如果大于说明发生了时间回流，返回错误并报警</p>
+<p>每隔一段时间(3s)上报自身系统时间写入</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://tech.meituan.com/MT_Leaf.html" target="_blank" rel="noopener">Leaf——美团点评分布式ID生成系统</a>
+<a href="https://juejin.im/post/5a7f9176f265da4e721c73a8" target="_blank" rel="noopener">分布式唯一id：snowflake算法思考</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/10/设计模式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yh Zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/git.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Z">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/10/设计模式/" itemprop="url">设计模式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-10T22:54:42+08:00">
+                2018-09-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="HeadFirst设计模式"><a href="#HeadFirst设计模式" class="headerlink" title="HeadFirst设计模式"></a>HeadFirst设计模式</h1><p>花了一周时间把这本书读完了，感觉受益良多。其中有几个模式让我感觉相见恨晚，之前有几个项目场景如果能结合设计模式来实现，应该能节省很多维护的工作。还有其他几种设计模式，并没有感觉到它们的威力。另外，各个设计模式之间的差异也让我有点绕不出来，这个只能靠以后慢慢理清了。</p>
+<h1 id="模式是什么？"><a href="#模式是什么？" class="headerlink" title="模式是什么？"></a>模式是什么？</h1><p>书中提到: 模式是在某情景下，针对某问题的某种解决方案。</p>
+<ul>
+<li>情景（情景）</li>
+<li>问题（需求）</li>
+<li>解决方案（模式）</li>
+</ul>
+<p>举个例子：</p>
+<p>情景-我要准时上班
+问题-我将钥匙锁在车里了
+解决方案1-打破窗户，进入车内，启动引擎，然后开车上班</p>
+<h1 id="设计模式是什么？"><a href="#设计模式是什么？" class="headerlink" title="设计模式是什么？"></a>设计模式是什么？</h1><p>设计模式在模式的基础上，还包括了适用性，即最佳实践。</p>
+<p>上述的例子，打破窗户虽然是一种解决方案，但是没有解决成本约束，可能不是一个很好的解决方案。</p>
+<h1 id="为什么要学习设计模式？"><a href="#为什么要学习设计模式？" class="headerlink" title="为什么要学习设计模式？"></a>为什么要学习设计模式？</h1><p>设计模式虽然不是原则，更不是法律，但是它提供了一种指导方针。</p>
+<p>我最近几个月一直在纠结一个问题，如何才能写出优秀甚至完美的代码？之前的很多项目代码，我觉得用另外一种结构也可以实现，但是我不知道哪种选择才是最正确的，甚至我一度认为之前的代码都是垃圾代码。</p>
+<p>了解了设计模式之后，我找到了一些答案。目前我现在认为在当前情境下，满足以下三个条件，就是优秀的代码</p>
+<ul>
+<li>条理清晰</li>
+<li>易于维护</li>
+<li>方便扩展</li>
+</ul>
+<p>至于完美的代码，当然存在，但是只有极少情况下才会出现：需求不会再更改了。</p>
+<p>从这个角度上来说，<code>fmt.Pritln(&quot;Hello World&quot;)&quot;</code>也算是一句”完美”代码了 -_-</p>
+<h1 id="如何学习设计模式？"><a href="#如何学习设计模式？" class="headerlink" title="如何学习设计模式？"></a>如何学习设计模式？</h1><h2 id="“反设计模式”-vs-设计模式"><a href="#“反设计模式”-vs-设计模式" class="headerlink" title="“反设计模式” vs 设计模式"></a>“反设计模式” vs 设计模式</h2><p>没有对比就没有伤害，针对遇到的问题，思考一些”反设计模式”,然后与设计模式做对比</p>
+<h2 id="设计模式-vs-设计模式"><a href="#设计模式-vs-设计模式" class="headerlink" title="设计模式 vs 设计模式"></a>设计模式 vs 设计模式</h2><p>同一个问题，既能抽象工厂模式能解决，也能使用模版方法解决。横向对比设计模式之间的差异</p>
+<h2 id="发掘开源项目中的设计模式"><a href="#发掘开源项目中的设计模式" class="headerlink" title="发掘开源项目中的设计模式"></a>发掘开源项目中的设计模式</h2><p>我在读这本书的时候，读到观察者模式会想到nsq，读到模版方法会想到beego controller的设计，读到工厂方法会想到jaeger中初始化存储组件的代码，读到go-redis客户端代码会想到命令模式。</p>
+<p>优秀的开源项目肯定包含了大量的设计模式，以后阅读的时候可以好好品味。</p>
+<h1 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h1><p>毕业两年半，来到新公司已经半年了，博客也停更半年了。接下来的2018希望能更认真的对待博客～</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/12/golang的OpenTracing和jeager使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yh Zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/git.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Z">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/12/golang的OpenTracing和jeager使用/" itemprop="url">golang的OpenTracing和jaeger使用</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-12T16:23:13+08:00">
+                2018-06-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="OpenTracing是什么？"><a href="#OpenTracing是什么？" class="headerlink" title="OpenTracing是什么？"></a>OpenTracing是什么？</h2><p>当代分布式跟踪系统（例如，Zipkin, Dapper, HTrace, X-Trace等）旨在解决这些问题，但是他们使用不兼容的API来实现各自的应用需求。尽管这些分布式追踪系统有着相似的API语法，但各种语言的开发人员依然很难将他们各自的系统（使用不同的语言和技术）和特定的分布式追踪系统进行整合.</p>
+<p>OpenTracing通过提供平台无关、厂商无关的API，使得开发人员能够方便的添加（或更换）追踪系统的实现。 OpenTracing提供了用于运营支撑系统的和针对特定平台的辅助程序库。</p>
+<p>已经实现OpenTracing协议的项目有：</p>
+<ul>
+<li>Zipkin</li>
+<li>Jaeger</li>
+<li>Appdash</li>
+</ul>
+<h2 id="jaeger和OpenTracing"><a href="#jaeger和OpenTracing" class="headerlink" title="jaeger和OpenTracing"></a>jaeger和OpenTracing</h2><p>jaeger实现了OpenTracing，而且后端存储支持memry(默认)，elasticsearch,cassandra</p>
+<h2 id="jaeger使用"><a href="#jaeger使用" class="headerlink" title="jaeger使用"></a>jaeger使用</h2><p>创建一个支持serve模式和client模式的web服务</p>
+<pre><code>// main.go
+package main
+import (
+    &quot;flag&quot;
+    &quot;log&quot;
+
+    jaegerClientConfig &quot;github.com/uber/jaeger-client-go/config&quot;
+)
+
+var (
+    serverPort = flag.String(&quot;port&quot;, &quot;8000&quot;, &quot;server port&quot;)
+    // 默认为服务模式
+    actorKind  = flag.String(&quot;actor&quot;, &quot;server&quot;, &quot;server or client&quot;)
+)
+
+const (
+    server = &quot;server&quot;
+    client = &quot;client&quot;
+)
+
+func main() {
+    flag.Parse()
+
+    if *actorKind != server &amp;&amp; *actorKind != client {
+        log.Fatal(&quot;Please specify &apos;-actor server&apos; or &apos;-actor client&apos;&quot;)
+    }
+
+    cfg := jaegerClientConfig.Configuration{
+        Sampler: &amp;jaegerClientConfig.SamplerConfig{
+            Type:  &quot;const&quot;,
+            Param: 1.0, // sample all traces
+        },
+    }
+    // jaeger.NewRemoteReporter(transport)
+    tracer, closer, _ := cfg.New(*actorKind)
+    defer closer.Close()
+
+    if *actorKind == server {
+        runServer(tracer)
+        return
+    }
+
+    runClient(tracer)
+
+    // Close the tracer to guarantee that all spans that could
+    // be still buffered in memory are sent to the tracing backend
+    closer.Close()
+}
+</code></pre><p>服务器模式</p>
+<pre><code>// server.go
+package main
+
+import (
+    &quot;fmt&quot;
+    &quot;io&quot;
+    &quot;log&quot;
+    &quot;net/http&quot;
+    &quot;time&quot;
+
+    &quot;github.com/opentracing-contrib/go-stdlib/nethttp&quot;
+    &quot;github.com/opentracing/opentracing-go&quot;
+)
+
+func getTime(w http.ResponseWriter, r *http.Request) {
+    log.Print(&quot;Received getTime request&quot;)
+    t := time.Now()
+    ts := t.Format(&quot;Mon Jan _2 15:04:05 2006&quot;)
+    io.WriteString(w, fmt.Sprintf(&quot;The time is %s&quot;, ts))
+}
+
+func redirect(w http.ResponseWriter, r *http.Request) {
+    http.Redirect(w, r,
+        fmt.Sprintf(&quot;http://localhost:%s/gettime&quot;, *serverPort), 301)
+}
+
+func runServer(tracer opentracing.Tracer) {
+    http.HandleFunc(&quot;/gettime&quot;, getTime)
+    http.HandleFunc(&quot;/&quot;, redirect)
+    log.Printf(&quot;Starting server on port %s&quot;, *serverPort)
+    err := http.ListenAndServe(
+        fmt.Sprintf(&quot;:%s&quot;, *serverPort),
+        // use nethttp.Middleware to enable OpenTracing for server
+        nethttp.Middleware(tracer, http.DefaultServeMux))
+    if err != nil {
+        log.Fatalf(&quot;Cannot start server: %s&quot;, err)
+    }
+}
+</code></pre><p>客户端模式</p>
+<pre><code>// client.go
+package main
+
+import (
+    &quot;fmt&quot;
+    &quot;io/ioutil&quot;
+    &quot;log&quot;
+    &quot;net/http&quot;
+
+    &quot;github.com/opentracing-contrib/go-stdlib/nethttp&quot;
+    &quot;github.com/opentracing/opentracing-go&quot;
+    &quot;github.com/opentracing/opentracing-go/ext&quot;
+    otlog &quot;github.com/opentracing/opentracing-go/log&quot;
+    &quot;golang.org/x/net/context&quot;
+)
+
+func runClient(tracer opentracing.Tracer) {
+    // nethttp.Transport from go-stdlib will do the tracing
+    c := &amp;http.Client{Transport: &amp;nethttp.Transport{}}
+
+    // create a top-level span to represent full work of the client
+    span := tracer.StartSpan(client)
+    span.SetTag(string(ext.Component), client)
+    defer span.Finish()
+    ctx := opentracing.ContextWithSpan(context.Background(), span)
+
+    req, err := http.NewRequest(
+        &quot;GET&quot;,
+        fmt.Sprintf(&quot;http://localhost:%s/&quot;, *serverPort),
+        nil,
+    )
+    if err != nil {
+        onError(span, err)
+        return
+    }
+
+    req = req.WithContext(ctx)
+    // wrap the request in nethttp.TraceRequest
+    req, ht := nethttp.TraceRequest(tracer, req)
+    defer ht.Finish()
+
+    res, err := c.Do(req)
+    if err != nil {
+        onError(span, err)
+        return
+    }
+    defer res.Body.Close()
+    body, err := ioutil.ReadAll(res.Body)
+    if err != nil {
+        onError(span, err)
+        return
+    }
+    fmt.Printf(&quot;Received result: %s\n&quot;, string(body))
+}
+
+func onError(span opentracing.Span, err error) {
+    // handle errors by recording them in the span
+    span.SetTag(string(ext.Error), true)
+    span.LogKV(otlog.Error(err))
+    log.Print(err)
+}
+</code></pre><p>编译
+go build</p>
+<p>执行客户端请求代码
+    ./opentracing-go-nethttp-demo</p>
+<p>运行jaeger的docker镜像
+    docker run -d -p5775:5775/udp -p16686:16686 jaegertracing/all-in-one:latest</p>
+<p>执行客户端代码
+    ./opentracing-go-nethttp-demo -actor client</p>
+<p>此时访问 <a href="http://localhost:16686就可以看到jaeger上的记录了。" target="_blank" rel="noopener">http://localhost:16686就可以看到jaeger上的记录了。</a></p>
+<img src="/2018/06/12/golang的OpenTracing和jeager使用/jaeger1.png">
+<p>但是记录好像少了点，只有jaeger-query的，client和server的信息都没记录，查了下资料发现是因为启动jaeger的时候有些端口没开放。</p>
+<pre><code>docker run \
+-p 5775:5775/udp \
+-p 16686:16686 \
+-p 6831:6831/udp \
+-p 6832:6832/udp \
+-p 5778:5778 \
+-p 14268:14268 \
+jaegertracing/all-in-one:latest
+</code></pre><h2 id="封装http请求"><a href="#封装http请求" class="headerlink" title="封装http请求"></a>封装http请求</h2><p>上面的例子就是对http请求的trace</p>
+<h2 id="将数据存储在es中"><a href="#将数据存储在es中" class="headerlink" title="将数据存储在es中"></a>将数据存储在es中</h2><p>暂时还没成功，后面会更新。这里先把目前的操作记录下来。</p>
+<p>在本地用docker启动了elasticsearch</p>
+<pre><code>docker run -d -p 9200:9200 -e &quot;http.host=0.0.0.0&quot; -e &quot;transport.host=127.0.0.1&quot; docker.elastic.co/elasticsearch/elasticsearch:5.4.0
+</code></pre><p>在本地用docker-compose启动jaeger</p>
+<p>doker-compose.yaml:</p>
+<pre><code>jaegertracing:
+image: jaegertracing/all-in-one:latest
+ports:
+    - &quot;5775:5775/udp&quot;
+    - &quot;6831:6831/udp&quot;
+    - &quot;6832:6832/udp&quot;
+    - &quot;5778:5778&quot;
+    - &quot;16686:16686&quot;
+    - &quot;14268:14268&quot;
+command:
+    - &quot;/go/bin/standalone-linux&quot;
+    - &quot;--span-storage.type=elasticsearch&quot;
+    - &quot;--query.static-files=/go/src/jaeger-ui-build/build/&quot;
+environment:
+  - SPAN_STORAGE_TYPE=elasticsearch
+</code></pre><p>报错：
+    {“level”:”fatal”,”ts”:1528814826.4817529,”caller”:”standalone/main.go:106”,”msg”:”Failed to init storage factory”,”error”:”health check timeout: no Elasticsearch node available”,”errorVerbose”:”no Elasticsearch node available…</p>
+<p>解决：</p>
+<h3 id="启动es的方式改为："><a href="#启动es的方式改为：" class="headerlink" title="启动es的方式改为："></a>启动es的方式改为：</h3><pre><code>docker run -it --rm -p 9200:9200 -p 9300:9300 -e &quot;discovery.type=single-node&quot; -e &quot;xpack.security.enabled=false&quot; docker.elastic.co/elasticsearch/elasticsearch:5.4.0
+</code></pre><h3 id="启动jaeger前将宿主主机ip写入到环境变量："><a href="#启动jaeger前将宿主主机ip写入到环境变量：" class="headerlink" title="启动jaeger前将宿主主机ip写入到环境变量："></a>启动jaeger前将宿主主机ip写入到环境变量：</h3><pre><code>export DOCKERHOST=$(ifconfig | grep -E &quot;([0-9]{1,3}\.){3}[0-9]{1,3}&quot; | grep -v 127.0.0.1 | awk &apos;{ print $2 }&apos; | cut -f2 -d: | head -n1)
+</code></pre><h3 id="修改docker-compose文件"><a href="#修改docker-compose文件" class="headerlink" title="修改docker-compose文件"></a>修改docker-compose文件</h3><pre><code>jaegertracing:
+image: jaegertracing/all-in-one:latest
+ports:
+    - &quot;5775:5775/udp&quot;
+    - &quot;6831:6831/udp&quot;
+    - &quot;6832:6832/udp&quot;
+    - &quot;5778:5778&quot;
+    - &quot;16686:16686&quot;
+    - &quot;14268:14268&quot;
+command:
+    - &quot;/go/bin/standalone-linux&quot;
+    - &quot;--span-storage.type=elasticsearch&quot;
+    - &quot;--query.static-files=/go/src/jaeger-ui-build/build/&quot;
+environment:
+    - SPAN_STORAGE_TYPE=elasticsearch
+    - ES_SERVER_URLS=http://$DOCKERHOST:9200
+</code></pre><h3 id="启动jaeger"><a href="#启动jaeger" class="headerlink" title="启动jaeger"></a>启动jaeger</h3><pre><code>docker-compose -f jaeger-start-docker.yaml up
+</code></pre><h3 id="大功告成"><a href="#大功告成" class="headerlink" title="大功告成"></a>大功告成</h3><img src="/2018/06/12/golang的OpenTracing和jeager使用/jaeger-es.png" title="启动成功">
+<h3 id="补充几个es的查询语句"><a href="#补充几个es的查询语句" class="headerlink" title="补充几个es的查询语句"></a>补充几个es的查询语句</h3><ul>
+<li><p>检查es状态
+  curl <a href="http://127.0.0.1:9200" target="_blank" rel="noopener">http://127.0.0.1:9200</a></p>
+</li>
+<li><p>检查节点状态
+  curl <a href="http://127.0.0.1:9200/_cat/health" target="_blank" rel="noopener">http://127.0.0.1:9200/_cat/health</a></p>
+</li>
+<li><p>查询某天的数据
+  curl <a href="http://localhost:9200/jaeger-span-2018-06-14/_search" target="_blank" rel="noopener">http://localhost:9200/jaeger-span-2018-06-14/_search</a></p>
+</li>
+<li><p>查询数据数量
+  curl <a href="http://localhost:9200/jaeger-span-\*/_count" target="_blank" rel="noopener">http://localhost:9200/jaeger-span-\*/_count</a></p>
+</li>
+</ul>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a href="https://github.com/jaegertracing/jaeger-performance/blob/master/standalone/README.md" target="_blank" rel="noopener">jaeger test文档</a></p>
+<p><a href="https://medium.com/opentracing/tracing-http-request-latency-in-go-with-opentracing-7cc1282a100a" target="_blank" rel="noopener">httptrace和opentracing</a></p>
+<p><a href="https://www.jaegertracing.io/docs/getting-started/" target="_blank" rel="noopener">jaeger官方文档</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/golang的time-Time遇到的坑/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yh Zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/git.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Z">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/11/golang的time-Time遇到的坑/" itemprop="url">golang的time.Time遇到的坑</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-11T23:20:53+08:00">
+                2018-06-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="坑的起源"><a href="#坑的起源" class="headerlink" title="坑的起源"></a>坑的起源</h2><p>使用不同的时区操作</p>
+<h2 id="后端存储的时间戳数字"><a href="#后端存储的时间戳数字" class="headerlink" title="后端存储的时间戳数字"></a>后端存储的时间戳数字</h2><pre><code>// 入库操作
+now := time.Now().Unix()
+fmt.Println(now) // 2018-6-11 06:00:00 +0800 CST
+db.Save(now)
+
+// 查询操作
+// 前端从时间框控件筛选时间(2018-6-11)，然后传至后端
+startTime = 1528675200000
+fmt.Println(startTime) // 2018-06-11 08:00:00 +0800 CST
+// 错误出现 上面入库的数据因为是在6点(CST时区)入库，所以查询不到
+</code></pre><h2 id="后端存储的是datetime类型"><a href="#后端存储的是datetime类型" class="headerlink" title="后端存储的是datetime类型"></a>后端存储的是datetime类型</h2><pre><code>t,_ := time.Parse(&quot;2006-01-02 15:04:05&quot;,&quot;2018-06-11 06:00:00&quot;) // UTC时区
+db.Save(t)
+</code></pre><h2 id="docker容器时区"><a href="#docker容器时区" class="headerlink" title="docker容器时区"></a>docker容器时区</h2><p>docker容器修改</p>
+<h2 id="time-UnixNano-大于int64的最大值"><a href="#time-UnixNano-大于int64的最大值" class="headerlink" title="time.UnixNano() 大于int64的最大值"></a>time.UnixNano() 大于int64的最大值</h2><p>这个问题，标准包中已经说明了</p>
+<pre><code>// UnixNano returns t as a Unix time, the number of nanoseconds elapsed
+// since January 1, 1970 UTC. The result is undefined if the Unix time
+// in nanoseconds cannot be represented by an int64 (a date before the year
+// 1678 or after 2262). Note that this means the result of calling UnixNano
+// on the zero Time is undefined.
+func (t Time) UnixNano() int64 {
+    return (t.unixSec())*1e9 + int64(t.nsec())
+}
+</code></pre><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
+<li>团队统一使用一个时区</li>
+<li>不用time.Parse()，使用time.ParseInLocation()</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/06/优雅关闭的几种实现/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yh Zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/git.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Z">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/06/优雅关闭的几种实现/" itemprop="url">优雅关闭的几种实现</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-06T09:43:07+08:00">
+                2018-06-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="优雅关闭"><a href="#优雅关闭" class="headerlink" title="优雅关闭"></a>优雅关闭</h2><h3 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h3><p>等待进程处理完任务，关闭进程</p>
+<h3 id="go1-8之后标准包实现优雅关闭"><a href="#go1-8之后标准包实现优雅关闭" class="headerlink" title="go1.8之后标准包实现优雅关闭"></a>go1.8之后标准包实现优雅关闭</h3><pre><code>package main
+
+import (
+    &quot;context&quot;
+    &quot;fmt&quot;
+    &quot;log&quot;
+    &quot;net/http&quot;
+    &quot;os&quot;
+    &quot;os/signal&quot;
+    &quot;syscall&quot;
+    &quot;time&quot;
+)
+
+func main() {
+    http.HandleFunc(&quot;/&quot;, func(w http.ResponseWriter, r *http.Request) {
+        time.Sleep(5 * time.Second)
+        fmt.Fprintf(w, &quot;Hello World, %v\n&quot;, time.Now())
+        fmt.Println(&quot;hello:&quot;, time.Now())
+    })
+
+    s := &amp;http.Server{
+        Addr:           &quot;:8080&quot;,
+        Handler:        http.DefaultServeMux,
+        ReadTimeout:    10 * time.Second,
+        WriteTimeout:   10 * time.Second,
+        MaxHeaderBytes: 1 &lt;&lt; 20,
+    }
+
+    go func() {
+        log.Println(s.ListenAndServe())
+        log.Println(&quot;server shutdown&quot;)
+    }()
+
+    // Handle SIGINT and SIGTERM.
+    ch := make(chan os.Signal)
+    signal.Notify(ch, syscall.SIGINT, syscall.SIGTERM)
+    log.Println(&quot;ch:&quot;, &lt;-ch)
+
+    // Stop the service gracefully.
+    ctx := context.Background()
+    log.Println(&quot;shut:&quot;, s.Shutdown(ctx))
+
+    log.Println(&quot;done.&quot;)
+}
+</code></pre><h3 id="通过waitgroup实现"><a href="#通过waitgroup实现" class="headerlink" title="通过waitgroup实现"></a>通过waitgroup实现</h3><pre><code>参考beego.graceful.shutdown
+</code></pre><h2 id="优雅重启"><a href="#优雅重启" class="headerlink" title="优雅重启"></a>优雅重启</h2><p>优雅关闭可以防止程序强制终止，导致的脏数据问题。但是在关闭到重启的期间，有一个真空期，用户的请求是不会被接收到的。优雅重启可以解决这类问题</p>
+<h3 id="实现原理-1"><a href="#实现原理-1" class="headerlink" title="实现原理"></a>实现原理</h3><ol>
+<li>fork子进程</li>
+<li>父进程优雅关闭</li>
+</ol>
+<h3 id="通过共享listener，即socket文件，fork子进程"><a href="#通过共享listener，即socket文件，fork子进程" class="headerlink" title="通过共享listener，即socket文件，fork子进程"></a>通过共享listener，即socket文件，fork子进程</h3><pre><code>func forkAndRun(ln net.Listener) {
+    l := ln.(*net.TCPListener)
+    newFile, _ := l.File()
+
+    cmd := exec.Command(os.Args[0], &quot;-graceful&quot;)
+    cmd.Stdin, cmd.Stdout, cmd.Stderr = os.Stdin, os.Stdout, os.Stderr
+    cmd.ExtraFiles = []*os.File{newFile}
+    fmt.Printf(&quot;cmd:%#v&quot;, cmd)
+    cmd.Run()
+}
+</code></pre><h3 id="fork子进程的时候，获取ppid，关闭父进程"><a href="#fork子进程的时候，获取ppid，关闭父进程" class="headerlink" title="fork子进程的时候，获取ppid，关闭父进程"></a>fork子进程的时候，获取ppid，关闭父进程</h3><pre><code>if graceful {
+    process, err := os.FindProcess(os.Getppid())
+    fmt.Println(&quot;ppid:&quot;, os.Getppid())
+    if err != nil {
+        log.Println(err)
+        return err
+    }
+    err = process.Signal(syscall.SIGTERM)
+    if err != nil {
+        return err
+    }
+}
+</code></pre><h3 id="160行代码实现一个graceful-server"><a href="#160行代码实现一个graceful-server" class="headerlink" title="160行代码实现一个graceful server"></a>160行代码实现一个graceful server</h3><pre><code>package mygrace
+
+import (
+    &quot;context&quot;
+    &quot;flag&quot;
+    &quot;fmt&quot;
+    &quot;log&quot;
+    &quot;net&quot;
+    &quot;net/http&quot;
+    &quot;os&quot;
+    &quot;os/exec&quot;
+    &quot;os/signal&quot;
+    &quot;syscall&quot;
+    &quot;time&quot;
+)
+
+var (
+    graceful bool
+)
+
+func init() {
+    // 第一次启动时不要添加graceful，否则会报错
+    flag.BoolVar(&amp;graceful, &quot;graceful&quot;, false, &quot;is graceful&quot;)
+}
+
+type Server struct {
+    ln net.Listener
+    *http.Server
+    Done chan bool
+}
+
+func NewServer(addr string, handler http.Handler) (srv *Server) {
+    if !flag.Parsed() {
+        flag.Parse()
+    }
+    srv = &amp;Server{Done: make(chan bool)}
+    hsrv := &amp;http.Server{
+        Addr:           addr,
+        Handler:        handler,
+        ReadTimeout:    10 * time.Second, // 值如果过小，会导致client端读取resp失败
+        WriteTimeout:   10 * time.Second,
+        MaxHeaderBytes: 1 &lt;&lt; 20,
+    }
+    srv.Server = hsrv
+    return
+}
+
+// 这里addr可以不用传，因为下面
+func ListenAndServe(addr string, handler http.Handler) error {
+    s := NewServer(addr, handler)
+    err := s.ListenAndServe()
+    return err
+}
+
+func (srv *Server) ListenAndServe() error {
+    // 这里获取listener
+    // 如果是第一次启动，是从net.Listen获取
+    // 其余情况，是根据文件描述符获取
+    ln, err := srv.getListener()
+    if err != nil {
+        log.Println(&quot;srv.getListener():&quot;, err)
+        return err
+    }
+    srv.ln = ln
+
+    if graceful {
+        process, err := os.FindProcess(os.Getppid())
+        log.Println(&quot;ppid:&quot;, os.Getppid())
+        if err != nil {
+            log.Println(err)
+            return err
+        }
+        err = process.Signal(syscall.SIGTERM)
+        if err != nil {
+            return err
+        }
+    }
+    log.Println(os.Getpid(), srv.Addr)
+    go srv.Serve(srv.ln)
+    go srv.handleSignals()
+    &lt;-srv.Done
+    log.Println(&quot;srv done!!!&quot;)
+    return nil
+}
+
+func (srv *Server) shutdown() error {
+    ctx := context.Background()
+    err := srv.Shutdown(ctx)
+    srv.Done &lt;- true
+    return err
+}
+
+func (srv *Server) fork() error {
+
+    tl := srv.ln.(*net.TCPListener)
+    file, err := tl.File()
+    if err != nil {
+        log.Println(&quot;ln.File() err:&quot;, err)
+        return err
+    }
+
+    cmd := exec.Command(os.Args[0], &quot;-graceful&quot;)
+    cmd.Stdout = os.Stdout
+    cmd.Stderr = os.Stderr
+    cmd.Stdin = os.Stdin
+    cmd.ExtraFiles = []*os.File{file}
+    err = cmd.Start()
+    if err != nil {
+        log.Fatalf(&quot;Restart: Failed to launch, error: %v&quot;, err)
+    }
+    return nil
+}
+
+func (srv *Server) handleSignals() {
+    for {
+        sig := make(chan os.Signal, 1)
+        signal.Notify(sig, syscall.SIGHUP, syscall.SIGINT, syscall.SIGTERM)
+
+        sigMsg := &lt;-sig
+        switch sigMsg {
+        case syscall.SIGHUP:
+            log.Println(&quot;receive syscall.SIGHUP&quot;)
+            err := srv.fork()
+            if err != nil {
+                log.Println(&quot;srv.fork() err:&quot;, err)
+            }
+        case syscall.SIGINT:
+            log.Println(&quot;receive syscall.SIGINT&quot;)
+            err := srv.shutdown()
+            if err != nil {
+                log.Println(&quot;srv.fork() err:&quot;, err)
+            }
+            return
+        case syscall.SIGTERM:
+            log.Println(&quot;receive syscall.SIGTERM&quot;)
+            err := srv.shutdown()
+            if err != nil {
+                log.Println(&quot;srv.fork() err:&quot;, err)
+            }
+            return
+        }
+    }
+    return
+}
+
+func (srv *Server) getListener() (l net.Listener, err error) {
+    if graceful {
+        f := os.NewFile(uintptr(3), &quot;&quot;)
+        l, err = net.FileListener(f)
+        if err != nil {
+            err = fmt.Errorf(&quot;net.FileListener error: %v&quot;, err)
+            return
+        }
+    } else {
+        l, err = net.Listen(&quot;tcp&quot;, srv.Addr)
+        if err != nil {
+            err = fmt.Errorf(&quot;net.Listen error: %v&quot;, err)
+            return
+        }
+    }
+    return
+}
+</code></pre><h2 id="Q-amp-A"><a href="#Q-amp-A" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h2><ol>
+<li><p>在分布式的环境下，有必要优雅重启吗？
+虽然分布式环境可以避免用户请求的真空期，但是还是会可能产生脏数据。</p>
+</li>
+<li><p>有时候出现服务端执行完成，但是客户端读取response失败？
+也许可以尝试：在服务端初始化http.Server的时候，可以把ReadTimeout，WriteTimeout时间调长一点</p>
+</li>
+<li><p>beego的grace正确使用姿势？
+在配置文件中，Graceful设置为true，重启时使用kill -1 xxx来结束程序。另外第一次执行程序时不要加参数 -graceful=true，否则getListener会因为查找listener失败的，并且因为这个时候程序的ppid为1，是没有权限杀死的，beego这一块没有做错误处理。</p>
+</li>
+<li><p>os.FindProcess(os.Getppid()) 查出来的ppid等于1？
+有两种可能，1.直接调用了-graceful参数；2.find的时候父进程已经结束，该进程会转移为1下面的子进程</p>
+</li>
+<li><p>getListener方法中，为什么根据 os.NewFile(uintptr(3), “”) 就能获取之前的socket文件？
+有待研究</p>
+</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a href="https://jiajunhuang.com/articles/2017_10_25-golang_graceful_restart.md.html" target="_blank" rel="noopener">Golang实现平滑重启(优雅重启)</a></p>
+<p><a href="https://github.com/astaxie/beego/tree/master/grace" target="_blank" rel="noopener">beego的graceful实现</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/git.png"
+                alt="Yh Zhang" />
+            
+              <p class="site-author-name" itemprop="name">Yh Zhang</p>
+              <p class="site-description motion-element" itemprop="description">See you again</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yh Zhang</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
