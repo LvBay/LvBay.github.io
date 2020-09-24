@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="简介椭圆曲线密码学（英语：Elliptic curve cryptography，缩写为 ECC），一种建立公开密钥加密的算法，基于椭圆曲线数学。椭圆曲线在密码学中的使用是在1985年由Neal Koblitz和Victor Miller分别独立提出的。 ECC的主要优势是在某些情况下它比其他的方法使用更小的密钥——比如RSA加密算法——提供相当的或更高等级的安全。 椭圆曲线密码学的许多形式有稍微">
+<meta property="og:type" content="article">
+<meta property="og:title" content="golang实现ECC加密">
+<meta property="og:url" content="http://yoursite.com/2018/05/13/golang实现ECC加密/index.html">
+<meta property="og:site_name" content="Z">
+<meta property="og:description" content="简介椭圆曲线密码学（英语：Elliptic curve cryptography，缩写为 ECC），一种建立公开密钥加密的算法，基于椭圆曲线数学。椭圆曲线在密码学中的使用是在1985年由Neal Koblitz和Victor Miller分别独立提出的。 ECC的主要优势是在某些情况下它比其他的方法使用更小的密钥——比如RSA加密算法——提供相当的或更高等级的安全。 椭圆曲线密码学的许多形式有稍微">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-05-30T03:12:27.199Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="golang实现ECC加密">
+<meta name="twitter:description" content="简介椭圆曲线密码学（英语：Elliptic curve cryptography，缩写为 ECC），一种建立公开密钥加密的算法，基于椭圆曲线数学。椭圆曲线在密码学中的使用是在1985年由Neal Koblitz和Victor Miller分别独立提出的。 ECC的主要优势是在某些情况下它比其他的方法使用更小的密钥——比如RSA加密算法——提供相当的或更高等级的安全。 椭圆曲线密码学的许多形式有稍微">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/05/13/golang实现ECC加密/"/>
+
+
+
+
+
+  <title>golang实现ECC加密 | Z</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Z</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/13/golang实现ECC加密/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yh Zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/git.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Z">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">golang实现ECC加密</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-13T10:46:39+08:00">
+                2018-05-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>椭圆曲线密码学（英语：Elliptic curve cryptography，缩写为 ECC），一种建立公开密钥加密的算法，基于椭圆曲线数学。椭圆曲线在密码学中的使用是在1985年由Neal Koblitz和Victor Miller分别独立提出的。</p>
+<p>ECC的主要优势是在某些情况下它比其他的方法使用更小的密钥——比如RSA加密算法——提供相当的或更高等级的安全。</p>
+<p>椭圆曲线密码学的许多形式有稍微的不同，所有的都依赖于被广泛承认的解决椭圆曲线离散对数问题的困难性上.</p>
+<h2 id="数学原理"><a href="#数学原理" class="headerlink" title="数学原理"></a>数学原理</h2><p>不管是RSA还是ECC或者其它，公钥加密算法都是依赖于某个正向计算很简单（多项式时间复杂度），而逆向计算很难（指数级时间复杂度）的数学问题。</p>
+<p>椭圆曲线依赖的数学难题是:</p>
+<pre><code>k为正整数，P是椭圆曲线上的点（称为基点）, k*P=Q , 已知q和P，很难计算出k
+</code></pre><h2 id="密钥生成"><a href="#密钥生成" class="headerlink" title="密钥生成"></a>密钥生成</h2><p>golang 标准包中直接提供了密钥生成的方法</p>
+<pre><code>// 初始化椭圆曲线
+pubkeyCurve := elliptic.P256()
+// 随机挑选基点,生成私钥
+p, err := ecdsa.GenerateKey(pubkeyCurve, rand.Reader)
+if err != nil {
+    fmt.Println(&quot;1&quot;, err)
+    os.Exit(1)
+}
+PRIVATE = p
+</code></pre><h2 id="加密和解密"><a href="#加密和解密" class="headerlink" title="加密和解密"></a>加密和解密</h2><p>golang标准包中没有提供加密和解密算法,但是以太坊go-ethereum实现了相关算法,这里对其进行二次封装</p>
+<pre><code>// 将标准包生成私钥转化为ecies私钥
+prv2 = ecies.ImportECDSA(PRIVATE)
+// ecc(ecies)加密
+func ECCEncrypt(pt []byte) ([]byte, error) {
+    ct, err := ecies.Encrypt(rand.Reader, &amp;prv2.PublicKey, pt, nil, nil)
+    return ct, err
+}
+// ecc(ecies)解密
+func ECCDecrypt(ct []byte) ([]byte, error) {
+    pt, err := prv2.Decrypt(ct, nil, nil)
+    return pt, err
+}
+</code></pre><h2 id="签名和验签"><a href="#签名和验签" class="headerlink" title="签名和验签"></a>签名和验签</h2><p>golang标准包中提供了相关方法</p>
+<pre><code>func EccSign(pt []byte) (sign []byte, err error) {
+    // 根据明文plaintext和私钥，生成两个big.Ing
+    r, s, err := ecdsa.Sign(rand.Reader, PRIVATE, pt)
+    if err != nil {
+        fmt.Println(err)
+        return nil, err
+    }
+    rs, err := r.MarshalText()
+    if err != nil {
+        return nil, err
+    }
+    ss, err := s.MarshalText()
+    if err != nil {
+        return nil, err
+    }
+    // 将r，s合并（以“+”分割），作为签名返回
+    var b bytes.Buffer
+    b.Write(rs)
+    b.Write([]byte(`+`))
+    b.Write(ss)
+    return b.Bytes(), nil
+}
+
+func EccSignVer(pt, sign []byte) bool {
+    var rint, sint big.Int
+    // 根据sign，解析出r，s
+    rs := bytes.Split(sign, []byte(&quot;+&quot;))
+    rint.UnmarshalText(rs[0])
+    sint.UnmarshalText(rs[1])
+    // 根据公钥，明文，r，s验证签名
+    v := ecdsa.Verify(&amp;PRIVATE.PublicKey, pt, &amp;rint, &amp;sint)
+    return v
+}
+</code></pre><h2 id="Q-amp-A"><a href="#Q-amp-A" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h2><h3 id="ECC-ECIES-ECDSA-ECDH-是什么关系-有哪些区别"><a href="#ECC-ECIES-ECDSA-ECDH-是什么关系-有哪些区别" class="headerlink" title="ECC,ECIES,ECDSA,ECDH 是什么关系,有哪些区别?"></a>ECC,ECIES,ECDSA,ECDH 是什么关系,有哪些区别?</h3><ul>
+<li>ECC,全称椭圆曲线密码学（英语：Elliptic curve cryptography，缩写为 ECC）,主要是指相关数学原理</li>
+<li>ECIES,在ECC原理的基础上实现的一种公钥加密方法,和RSA类似</li>
+<li>ECDSA,在ECC原理上实现的签名方法</li>
+<li>ECDH在ECC和DH的基础上实现的密钥交换算法</li>
+</ul>
+<h3 id="RSA算法的密钥对可以通过-pem文件来保存-ECC的密钥对要如何保存呢"><a href="#RSA算法的密钥对可以通过-pem文件来保存-ECC的密钥对要如何保存呢" class="headerlink" title="RSA算法的密钥对可以通过.pem文件来保存,ECC的密钥对要如何保存呢?"></a>RSA算法的密钥对可以通过.pem文件来保存,ECC的密钥对要如何保存呢?</h3><p>go-ethereum提供了两种对外接口.</p>
+<p>密钥对和[]byte之间的转换</p>
+<pre><code>// 私钥 -&gt; []byte
+// FromECDSA exports a private key into a binary dump.
+func FromECDSA(priv *ecdsa.PrivateKey) []byte {
+    if priv == nil {
+        return nil
+    }
+    return math.PaddedBigBytes(priv.D, priv.Params().BitSize/8)
+}
+
+// []byte -&gt; 私钥
+// ToECDSA creates a private key with the given D value.
+func ToECDSA(d []byte) (*ecdsa.PrivateKey, error) {
+    return toECDSA(d, true)
+}
+
+// 公钥 -&gt; []byte
+func FromECDSAPub(pub *ecdsa.PublicKey) []byte {
+    if pub == nil || pub.X == nil || pub.Y == nil {
+        return nil
+    }
+    return elliptic.Marshal(S256(), pub.X, pub.Y)
+}
+
+// []byte -&gt; 公钥
+    func ToECDSAPub(pub []byte) *ecdsa.PublicKey {
+    if len(pub) == 0 {
+        return nil
+    }
+    x, y := elliptic.Unmarshal(S256(), pub)
+    return &amp;ecdsa.PublicKey{Curve: S256(), X: x, Y: y}
+}
+</code></pre><p><strong>公钥转换的时候需要注意,eth中默认使用的椭圆曲线是S256().生成密钥对时,如果使用的是其他椭圆曲线(如P256),需要对FromECDSAPub,ToECDSAPub稍作修改</strong></p>
+<p>密钥对和文件之间的转换,其实就是在中间加一层hex编码</p>
+<pre><code>// 私钥 -&gt; 文件
+// SaveECDSA saves a secp256k1 private key to the given file with
+// restrictive permissions. The key data is saved hex-encoded.
+func SaveECDSA(file string, key *ecdsa.PrivateKey) error {
+    k := hex.EncodeToString(FromECDSA(key))
+    return ioutil.WriteFile(file, []byte(k), 0600)
+}
+
+// 文件 -&gt; 私钥
+func LoadECDSA(file string) (*ecdsa.PrivateKey, error) {
+    buf := make([]byte, 64)
+    fd, err := os.Open(file)
+    if err != nil {
+        return nil, err
+    }
+    defer fd.Close()
+    if _, err := io.ReadFull(fd, buf); err != nil {
+        return nil, err
+    }
+
+    key, err := hex.DecodeString(string(buf))
+    if err != nil {
+        return nil, err
+    }
+    return ToECDSA(key)
+}
+</code></pre><h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a href="https://zhuanlan.zhihu.com/p/35225057" target="_blank" rel="noopener">椭圆曲线数学原理 (上篇)</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/35587405" target="_blank" rel="noopener">椭圆曲线数学原理 (下篇)</a></p>
+<p><a href="https://crypto.stackexchange.com/questions/12823/ecdsa-vs-ecies-vs-ecdh" target="_blank" rel="noopener">ECIES,ECDSA,ECDH三者的区别</a></p>
+<p><a href="https://github.com/ethereum/go-ethereum/tree/master/crypto/ecies" target="_blank" rel="noopener">以太坊ecies实现</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/05/golang实现RSA加密/" rel="next" title="golang实现RSA加密">
+                <i class="fa fa-chevron-left"></i> golang实现RSA加密
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/06/优雅关闭的几种实现/" rel="prev" title="优雅关闭的几种实现">
+                优雅关闭的几种实现 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/git.png"
+                alt="Yh Zhang" />
+            
+              <p class="site-author-name" itemprop="name">Yh Zhang</p>
+              <p class="site-description motion-element" itemprop="description">See you again</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数学原理"><span class="nav-number">2.</span> <span class="nav-text">数学原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#密钥生成"><span class="nav-number">3.</span> <span class="nav-text">密钥生成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加密和解密"><span class="nav-number">4.</span> <span class="nav-text">加密和解密</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#签名和验签"><span class="nav-number">5.</span> <span class="nav-text">签名和验签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Q-amp-A"><span class="nav-number">6.</span> <span class="nav-text">Q&amp;A</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ECC-ECIES-ECDSA-ECDH-是什么关系-有哪些区别"><span class="nav-number">6.1.</span> <span class="nav-text">ECC,ECIES,ECDSA,ECDH 是什么关系,有哪些区别?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RSA算法的密钥对可以通过-pem文件来保存-ECC的密钥对要如何保存呢"><span class="nav-number">6.2.</span> <span class="nav-text">RSA算法的密钥对可以通过.pem文件来保存,ECC的密钥对要如何保存呢?</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关链接"><span class="nav-number">7.</span> <span class="nav-text">相关链接</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yh Zhang</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

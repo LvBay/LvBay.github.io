@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="mysql事务什么是mysql事务数据库操作的最小工作单元，是作为单个逻辑工作单元执行的一系列操作。 事务是一组不可再分割的操作单元 哪些存储引擎支持事务innodb myisam update xxx set xxx = xxx where xxx=? 有事务吗有。通过会话层autocommit变量来控制，默认自动提交 事务的四大特性原子性，一致性，隔离性，持久性 事务并发的三个问题脏读:多个事">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql事务与锁">
+<meta property="og:url" content="http://yoursite.com/2019/02/20/mysql事务与锁/index.html">
+<meta property="og:site_name" content="Z">
+<meta property="og:description" content="mysql事务什么是mysql事务数据库操作的最小工作单元，是作为单个逻辑工作单元执行的一系列操作。 事务是一组不可再分割的操作单元 哪些存储引擎支持事务innodb myisam update xxx set xxx = xxx where xxx=? 有事务吗有。通过会话层autocommit变量来控制，默认自动提交 事务的四大特性原子性，一致性，隔离性，持久性 事务并发的三个问题脏读:多个事">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2019/02/20/mysql事务与锁/事务.png">
+<meta property="og:updated_time" content="2019-05-30T03:12:27.211Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mysql事务与锁">
+<meta name="twitter:description" content="mysql事务什么是mysql事务数据库操作的最小工作单元，是作为单个逻辑工作单元执行的一系列操作。 事务是一组不可再分割的操作单元 哪些存储引擎支持事务innodb myisam update xxx set xxx = xxx where xxx=? 有事务吗有。通过会话层autocommit变量来控制，默认自动提交 事务的四大特性原子性，一致性，隔离性，持久性 事务并发的三个问题脏读:多个事">
+<meta name="twitter:image" content="http://yoursite.com/2019/02/20/mysql事务与锁/事务.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/02/20/mysql事务与锁/"/>
+
+
+
+
+
+  <title>mysql事务与锁 | Z</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Z</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/20/mysql事务与锁/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yh Zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/git.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Z">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">mysql事务与锁</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-20T18:20:16+08:00">
+                2019-02-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="mysql事务"><a href="#mysql事务" class="headerlink" title="mysql事务"></a>mysql事务</h1><h2 id="什么是mysql事务"><a href="#什么是mysql事务" class="headerlink" title="什么是mysql事务"></a>什么是mysql事务</h2><p>数据库操作的最小工作单元，是作为单个逻辑工作单元执行的一系列操作。</p>
+<p>事务是一组不可再分割的操作单元</p>
+<h3 id="哪些存储引擎支持事务"><a href="#哪些存储引擎支持事务" class="headerlink" title="哪些存储引擎支持事务"></a>哪些存储引擎支持事务</h3><p>innodb myisam</p>
+<h3 id="update-xxx-set-xxx-xxx-where-xxx-有事务吗"><a href="#update-xxx-set-xxx-xxx-where-xxx-有事务吗" class="headerlink" title="update xxx set xxx = xxx where xxx=? 有事务吗"></a>update xxx set xxx = xxx where xxx=? 有事务吗</h3><p>有。通过会话层autocommit变量来控制，默认自动提交</p>
+<h2 id="事务的四大特性"><a href="#事务的四大特性" class="headerlink" title="事务的四大特性"></a>事务的四大特性</h2><p>原子性，一致性，隔离性，持久性</p>
+<h2 id="事务并发的三个问题"><a href="#事务并发的三个问题" class="headerlink" title="事务并发的三个问题"></a>事务并发的三个问题</h2><h3 id="脏读-多个事务并发，导致脏读"><a href="#脏读-多个事务并发，导致脏读" class="headerlink" title="脏读:多个事务并发，导致脏读"></a>脏读:多个事务并发，导致脏读</h3><table>
+<thead>
+<tr>
+<th>r1</th>
+<th>r2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>update</td>
+</tr>
+<tr>
+<td>read（脏读）</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>rollback</td>
+</tr>
+</tbody>
+</table>
+<h3 id="不可重复读-一个事务的前后两次读取之间，有其他事务对数据做了修改，导致两次读取数据不一致"><a href="#不可重复读-一个事务的前后两次读取之间，有其他事务对数据做了修改，导致两次读取数据不一致" class="headerlink" title="不可重复读:一个事务的前后两次读取之间，有其他事务对数据做了修改，导致两次读取数据不一致"></a>不可重复读:一个事务的前后两次读取之间，有其他事务对数据做了修改，导致两次读取数据不一致</h3><table>
+<thead>
+<tr>
+<th>r1</th>
+<th>r2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>read</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>update</td>
+</tr>
+<tr>
+<td></td>
+<td>commit</td>
+</tr>
+<tr>
+<td>read  (不可重复读)</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h3 id="幻读"><a href="#幻读" class="headerlink" title="幻读"></a>幻读</h3><table>
+<thead>
+<tr>
+<th>r1</th>
+<th>r2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>read (where id&gt;1)</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>insert(id=2)</td>
+</tr>
+<tr>
+<td></td>
+<td>commit</td>
+</tr>
+<tr>
+<td>read (where id&gt;1)（幻读）</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h2 id="解决事务并发的方案：事务隔离"><a href="#解决事务并发的方案：事务隔离" class="headerlink" title="解决事务并发的方案：事务隔离"></a>解决事务并发的方案：事务隔离</h2><p>通过数据库引擎的事务隔离级别</p>
+<p>serializable（串行化）</p>
+<table>
+<thead>
+<tr>
+<th>隔离级别</th>
+<th>并发问题</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>read uncommited（未提交读)</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>脏读</td>
+</tr>
+<tr>
+<td>read commited（已提交读) 只读取已提交的数据，解决了脏读</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>不可重复读</td>
+</tr>
+<tr>
+<td>repeatable read（可重复读） 在同一事务中多次读取同样的数据结果是一样的，解决不可重复读的问题，未解决幻读(innodb解决了幻读)</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>read 幻读</td>
+</tr>
+<tr>
+<td>serializable（串行化）</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h2 id="事务隔离级别的实现方案"><a href="#事务隔离级别的实现方案" class="headerlink" title="事务隔离级别的实现方案"></a>事务隔离级别的实现方案</h2><ol>
+<li>LBCC(Lock Base concurrency control) 在读取数据之前，对其加锁，阻止其他事务对数据进行修改</li>
+<li>MVCC(Multi Version concurrency control) 生成一个快照</li>
+</ol>
+<p>解决脏读：在r2事务(write/rollback)开始的时候，拿到排它锁，阻塞r1的读操作</p>
+<p>解决不可重复读: 在r1开始的时候，拿到共享锁,阻塞r2的写操作</p>
+<p>解决幻读：使用自增主键，行锁算法（范围）走临键锁</p>
+<h2 id="事务隔离级别的实现细节–’读’操作"><a href="#事务隔离级别的实现细节–’读’操作" class="headerlink" title="事务隔离级别的实现细节–’读’操作"></a>事务隔离级别的实现细节–’读’操作</h2><h3 id="当前读"><a href="#当前读" class="headerlink" title="当前读"></a>当前读</h3><p>即加锁读，读取记录的最新版本，会加锁保证其他并发事务不能修改当前记录，直至获取锁的事务释放锁；</p>
+<p>使用当前读的操作主要包括：显式加锁的读操作与插入/更新/删除等写操作，如下所示：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">table</span> <span class="keyword">where</span> ? <span class="keyword">lock</span> <span class="keyword">in</span> <span class="keyword">share</span> <span class="keyword">mode</span>;</span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">table</span> <span class="keyword">where</span> ? <span class="keyword">for</span> <span class="keyword">update</span>;</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> <span class="keyword">table</span> <span class="keyword">values</span> (…);</span><br><span class="line"><span class="keyword">update</span> <span class="keyword">table</span> <span class="keyword">set</span> ? <span class="keyword">where</span> ?;</span><br><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> <span class="keyword">table</span> <span class="keyword">where</span> ?;</span><br></pre></td></tr></table></figure>
+<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">注：当Update SQL被发给MySQL后，MySQL Server会根据where条件，读取第一条满足条件的记录，然后InnoDB引擎</span><br><span class="line"></span><br><span class="line">会将第一条记录返回，并加锁，待MySQL Server收到这条加锁的记录之后，会再发起一个Update请求，更新这条记录。</span><br><span class="line"></span><br><span class="line">一条记录操作完成，再读取下一条记录，直至没有满足条件的记录为止。因此，Update操作内部，就包含了当前读。同理，</span><br><span class="line"></span><br><span class="line">Delete操作也一样。Insert操作会稍微有些不同，简单来说，就是Insert操作可能会触发Unique Key的冲突检查，也</span><br><span class="line"></span><br><span class="line">会进行一个当前读。</span><br></pre></td></tr></table></figure>
+<h3 id="快照读"><a href="#快照读" class="headerlink" title="快照读"></a>快照读</h3><p>即不加锁读，读取记录的快照版本而非最新版本，通过MVCC实现；</p>
+<p>InnoDB默认的RR事务隔离级别下，不显式加『lock in share mode』与『for update』的『select』操作都属于快照读，保证事务执行过程中只有第一次读之前提交的修改和自己的修改可见，其他的均不可见；</p>
+<h2 id="事务隔离级别的实现细节–’写’操作"><a href="#事务隔离级别的实现细节–’写’操作" class="headerlink" title="事务隔离级别的实现细节–’写’操作"></a>事务隔离级别的实现细节–’写’操作</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> <span class="keyword">table</span> <span class="keyword">values</span> (…);</span><br><span class="line"><span class="keyword">update</span> <span class="keyword">table</span> <span class="keyword">set</span> ? <span class="keyword">where</span> ?;</span><br><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> <span class="keyword">table</span> <span class="keyword">where</span> ?;</span><br></pre></td></tr></table></figure>
+<h2 id="锁"><a href="#锁" class="headerlink" title="锁"></a>锁</h2><p>myisam 只支持表锁
+innodb 支持表锁和行锁</p>
+<h2 id="innodb-锁类型"><a href="#innodb-锁类型" class="headerlink" title="innodb 锁类型"></a>innodb 锁类型</h2><ul>
+<li>共享锁（行锁）</li>
+<li>排它锁（行锁）</li>
+<li>意向共享锁（表锁）</li>
+<li>意向排它锁（表锁）</li>
+</ul>
+<h3 id="共享锁"><a href="#共享锁" class="headerlink" title="共享锁"></a>共享锁</h3><p>多个事务获取同一条数据的共享锁。在共享锁期间，其他事务不能对数据进行写操作</p>
+<h3 id="排它锁"><a href="#排它锁" class="headerlink" title="排它锁"></a>排它锁</h3><p>只能有一个事务对一条数据创建排它锁。其他事务不能读也不能写</p>
+<p>在一个事务中，update，delete，insert会自动针对数据加一个排它锁</p>
+<h2 id="锁的算法（范围）"><a href="#锁的算法（范围）" class="headerlink" title="锁的算法（范围）"></a>锁的算法（范围）</h2><ul>
+<li>记录锁</li>
+<li>间隙锁</li>
+<li>临键锁</li>
+</ul>
+<p>不同的事务隔离级别、不同的索引类型、是否为等值查询，使用的行锁算法也会有所不同；</p>
+<p>当等值查询，有命中行数，且有命中唯一索引（唯一索引，主键索引）的时候，使用 记录锁</p>
+<p>当范围查询，未命中的时候，使用 间隙锁。 间隙锁只在rr事务隔离级别存在</p>
+<p>当范围查询，且有命中行数的时候，使用 临键锁。或者理解为除了（间隙锁，记录锁以外，其他都是临键锁）</p>
+<h2 id="主键索引和唯一索引"><a href="#主键索引和唯一索引" class="headerlink" title="主键索引和唯一索引"></a>主键索引和唯一索引</h2><p>主键索引和唯一索引。 主键索引是特殊的唯一索引。 主键索引不允许为null值，唯一索引允许存在一个null值</p>
+<h2 id="关于是否阻塞的总结"><a href="#关于是否阻塞的总结" class="headerlink" title="关于是否阻塞的总结"></a>关于是否阻塞的总结</h2><p>定值查询</p>
+<table>
+<thead>
+<tr>
+<th>r1</th>
+<th>r2</th>
+<th>是否命中相同数据</th>
+<th>r2是否阻塞</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>走索引</td>
+<td>没走索引</td>
+<td></td>
+<td>阻塞</td>
+</tr>
+<tr>
+<td>走索引</td>
+<td>走索引</td>
+<td>是</td>
+<td>阻塞</td>
+</tr>
+<tr>
+<td>走索引</td>
+<td>走索引</td>
+<td>否</td>
+<td>不阻塞</td>
+</tr>
+<tr>
+<td>没走索引</td>
+<td>走索引</td>
+<td></td>
+<td>阻塞</td>
+</tr>
+<tr>
+<td>没走索引</td>
+<td>没走索引</td>
+<td></td>
+<td>阻塞</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Q-amp-A"><a href="#Q-amp-A" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h2><h3 id="非唯一索引，等值查询命中后，会使用哪种锁算法（记录锁，间隙锁，临键锁）？"><a href="#非唯一索引，等值查询命中后，会使用哪种锁算法（记录锁，间隙锁，临键锁）？" class="headerlink" title="非唯一索引，等值查询命中后，会使用哪种锁算法（记录锁，间隙锁，临键锁）？"></a>非唯一索引，等值查询命中后，会使用哪种锁算法（记录锁，间隙锁，临键锁）？</h3><h3 id="如果行锁会造成表锁（意向锁），那么行锁的意义是什么？"><a href="#如果行锁会造成表锁（意向锁），那么行锁的意义是什么？" class="headerlink" title="如果行锁会造成表锁（意向锁），那么行锁的意义是什么？"></a>如果行锁会造成表锁（意向锁），那么行锁的意义是什么？</h3><h3 id="以不可重复读或者幻读为例，为什么同一事务不能出现两次读取不一致的问题？"><a href="#以不可重复读或者幻读为例，为什么同一事务不能出现两次读取不一致的问题？" class="headerlink" title="以不可重复读或者幻读为例，为什么同一事务不能出现两次读取不一致的问题？"></a>以不可重复读或者幻读为例，为什么同一事务不能出现两次读取不一致的问题？</h3><p>因为会破坏事务的一致性</p>
+<h3 id="对上面概念的梳理"><a href="#对上面概念的梳理" class="headerlink" title="对上面概念的梳理"></a>对上面概念的梳理</h3><img src="/2019/02/20/mysql事务与锁/事务.png" title="右键新标签页打开,可看大图">
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a href="https://pan.baidu.com/s/1RTtrmm5RqtdztUpfhIoFeg?fid=1099705773141400" target="_blank" rel="noopener">mysql事务与锁 视频</a>
+<a href="https://segmentfault.com/a/1190000014133576#articleHeader5" target="_blank" rel="noopener">mysql锁</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/13/docker-compose部署wordpress/" rel="next" title="docker-compose部署wordpress">
+                <i class="fa fa-chevron-left"></i> docker-compose部署wordpress
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/01/20/golang内存泄漏排查/" rel="prev" title="golang内存泄漏排查">
+                golang内存泄漏排查 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/git.png"
+                alt="Yh Zhang" />
+            
+              <p class="site-author-name" itemprop="name">Yh Zhang</p>
+              <p class="site-description motion-element" itemprop="description">See you again</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#mysql事务"><span class="nav-number">1.</span> <span class="nav-text">mysql事务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是mysql事务"><span class="nav-number">1.1.</span> <span class="nav-text">什么是mysql事务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#哪些存储引擎支持事务"><span class="nav-number">1.1.1.</span> <span class="nav-text">哪些存储引擎支持事务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#update-xxx-set-xxx-xxx-where-xxx-有事务吗"><span class="nav-number">1.1.2.</span> <span class="nav-text">update xxx set xxx = xxx where xxx=? 有事务吗</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事务的四大特性"><span class="nav-number">1.2.</span> <span class="nav-text">事务的四大特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事务并发的三个问题"><span class="nav-number">1.3.</span> <span class="nav-text">事务并发的三个问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#脏读-多个事务并发，导致脏读"><span class="nav-number">1.3.1.</span> <span class="nav-text">脏读:多个事务并发，导致脏读</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不可重复读-一个事务的前后两次读取之间，有其他事务对数据做了修改，导致两次读取数据不一致"><span class="nav-number">1.3.2.</span> <span class="nav-text">不可重复读:一个事务的前后两次读取之间，有其他事务对数据做了修改，导致两次读取数据不一致</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#幻读"><span class="nav-number">1.3.3.</span> <span class="nav-text">幻读</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决事务并发的方案：事务隔离"><span class="nav-number">1.4.</span> <span class="nav-text">解决事务并发的方案：事务隔离</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事务隔离级别的实现方案"><span class="nav-number">1.5.</span> <span class="nav-text">事务隔离级别的实现方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事务隔离级别的实现细节–’读’操作"><span class="nav-number">1.6.</span> <span class="nav-text">事务隔离级别的实现细节–’读’操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#当前读"><span class="nav-number">1.6.1.</span> <span class="nav-text">当前读</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#快照读"><span class="nav-number">1.6.2.</span> <span class="nav-text">快照读</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事务隔离级别的实现细节–’写’操作"><span class="nav-number">1.7.</span> <span class="nav-text">事务隔离级别的实现细节–’写’操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#锁"><span class="nav-number">1.8.</span> <span class="nav-text">锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#innodb-锁类型"><span class="nav-number">1.9.</span> <span class="nav-text">innodb 锁类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#共享锁"><span class="nav-number">1.9.1.</span> <span class="nav-text">共享锁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#排它锁"><span class="nav-number">1.9.2.</span> <span class="nav-text">排它锁</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#锁的算法（范围）"><span class="nav-number">1.10.</span> <span class="nav-text">锁的算法（范围）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主键索引和唯一索引"><span class="nav-number">1.11.</span> <span class="nav-text">主键索引和唯一索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于是否阻塞的总结"><span class="nav-number">1.12.</span> <span class="nav-text">关于是否阻塞的总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Q-amp-A"><span class="nav-number">1.13.</span> <span class="nav-text">Q&amp;A</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#非唯一索引，等值查询命中后，会使用哪种锁算法（记录锁，间隙锁，临键锁）？"><span class="nav-number">1.13.1.</span> <span class="nav-text">非唯一索引，等值查询命中后，会使用哪种锁算法（记录锁，间隙锁，临键锁）？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如果行锁会造成表锁（意向锁），那么行锁的意义是什么？"><span class="nav-number">1.13.2.</span> <span class="nav-text">如果行锁会造成表锁（意向锁），那么行锁的意义是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#以不可重复读或者幻读为例，为什么同一事务不能出现两次读取不一致的问题？"><span class="nav-number">1.13.3.</span> <span class="nav-text">以不可重复读或者幻读为例，为什么同一事务不能出现两次读取不一致的问题？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对上面概念的梳理"><span class="nav-number">1.13.4.</span> <span class="nav-text">对上面概念的梳理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关链接"><span class="nav-number">1.14.</span> <span class="nav-text">相关链接</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yh Zhang</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="年度总结," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="2019弹指一挥间，2019已经过去了。 外面关于流感的消息越传越严重，而我选择在工位上安静的写年度总结～ 有人说如何评估自己在过去一年有多少成长？如果你觉得一年前的自己是个zz，那么说明你这一年进步了很多。我当然觉得一年前 的自己不是zz，但差不多算是半个zz。 技术能力技术上，今年在消息中间件上做了较多研究。Kafka，NSQ，Pulsar还有我们公司自研的LeviMQ我都做了比较深入的学习。">
+<meta name="keywords" content="年度总结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2019年度总结">
+<meta property="og:url" content="http://yoursite.com/2020/01/21/2019年度总结/index.html">
+<meta property="og:site_name" content="Z">
+<meta property="og:description" content="2019弹指一挥间，2019已经过去了。 外面关于流感的消息越传越严重，而我选择在工位上安静的写年度总结～ 有人说如何评估自己在过去一年有多少成长？如果你觉得一年前的自己是个zz，那么说明你这一年进步了很多。我当然觉得一年前 的自己不是zz，但差不多算是半个zz。 技术能力技术上，今年在消息中间件上做了较多研究。Kafka，NSQ，Pulsar还有我们公司自研的LeviMQ我都做了比较深入的学习。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-01-21T09:02:16.390Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2019年度总结">
+<meta name="twitter:description" content="2019弹指一挥间，2019已经过去了。 外面关于流感的消息越传越严重，而我选择在工位上安静的写年度总结～ 有人说如何评估自己在过去一年有多少成长？如果你觉得一年前的自己是个zz，那么说明你这一年进步了很多。我当然觉得一年前 的自己不是zz，但差不多算是半个zz。 技术能力技术上，今年在消息中间件上做了较多研究。Kafka，NSQ，Pulsar还有我们公司自研的LeviMQ我都做了比较深入的学习。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/01/21/2019年度总结/"/>
+
+
+
+
+
+  <title>2019年度总结 | Z</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Z</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/21/2019年度总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yh Zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/git.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Z">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">2019年度总结</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-21T15:48:30+08:00">
+                2020-01-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="2019"><a href="#2019" class="headerlink" title="2019"></a>2019</h1><p>弹指一挥间，2019已经过去了。</p>
+<p>外面关于流感的消息越传越严重，而我选择在工位上安静的写年度总结～</p>
+<p>有人说如何评估自己在过去一年有多少成长？如果你觉得一年前的自己是个zz，那么说明你这一年进步了很多。我当然觉得一年前
+的自己不是zz，但差不多算是半个zz。</p>
+<h1 id="技术能力"><a href="#技术能力" class="headerlink" title="技术能力"></a>技术能力</h1><p>技术上，今年在消息中间件上做了较多研究。Kafka，NSQ，Pulsar还有我们公司自研的LeviMQ我都做了比较深入的学习。</p>
+<h2 id="Kafka"><a href="#Kafka" class="headerlink" title="Kafka"></a>Kafka</h2><p>学习Kafka主要是通过 &lt;深入理解Kafka:核心设计与实践原理&gt; 这本书。让我觉得印象比较深的有几点：</p>
+<ol>
+<li>Kafka读写高性能的实现原理</li>
+<li>分区的设计，这一点和许多分布式系统都有类似的思想</li>
+<li>副本同步的实现</li>
+</ol>
+<p>同时Kafka也存在一些很严重的问题，比如消费者加入/离开集群时会出现一段时间消息无法消费的情况。这也是公司内部
+某些场景使用NSQ的主要原因</p>
+<h2 id="NSQ"><a href="#NSQ" class="headerlink" title="NSQ"></a>NSQ</h2><p>是我前几年就接触过原始的开源版本，以前对它的认知就停留在：使用<strong>golang</strong>编写，<strong>高性能</strong>，但是对于消息顺序性，高可用
+方面没有深入研究。有赞对这个开源版本做了较大的改造，借鉴了相当多的kafka设计理念。我们公司主要是在有赞改造的版本基础上，
+又加了一些定制化功能。12月份的时候在公司内部，做了一个关于<strong>nsq-rebalance</strong>的分享，算是通读了nsq的核心逻辑，
+学到不少。</p>
+<h2 id="Pulsar"><a href="#Pulsar" class="headerlink" title="Pulsar"></a>Pulsar</h2><p>今年入职的第一个项目就是和Pulsar有关，当时因为官方的pulsar-clieng-go是使用cgo运行，所以就找了一个
+非官方的pulsar-clieng-go使用。前几个月基本都在踩这个client的坑，遇到了以前项目中没遇到的情况。
+比如oom，proto编码协议，内存泄漏等各种各样的问题。9月份的时候应Pulsar社区邀请，去上海做了一次关于
+Pulsar实践的分享，现在想来当时还是挺紧张的～</p>
+<h2 id="K8s"><a href="#K8s" class="headerlink" title="K8s"></a>K8s</h2><p>年底的两个月基本都在忙K8s相关的工作，算是在K8s这方面做到真正的入门级别了</p>
+<h1 id="生活"><a href="#生活" class="headerlink" title="生活"></a>生活</h1><p>今年和湾湾订婚啦！很庆幸能在六年前就遇到她，真希望能一直和她走下去。</p>
+<p>半年前她选择离职，从事自由职业。说实话我当时犹豫了半天，我担心她会不会一个人在家太闷了，担心她
+会不会只是一时冲动，担心她以后的发展…最终我还是选择充分支持她。年轻的时候不去尝试，难道要等老了再后悔叹息吗？
+当然从现在来看，她这个选择对我最大的影响就是：我每天都能吃到她做的饭菜，导致我越来越月半！</p>
+<p>对了，还有我和我的乒乓球。以前和小洋哥打球总是输给他，但是某天我突然功力大涨，甚至出现了2-10逆转翻盘的情况。
+后面和他交手也是至少55开的胜率，真是神奇。明年乒乓球积分赛走起？</p>
+<p>2019有很多收获，当然也有遗憾。</p>
+<p>年初的时候报了一个吉他班，也参加了公司的乐队，只可惜后面荒废了。
+家里人有些健康问题，让我只能觉得无能为力。
+我自己的身体抵抗力好像也变差很多，年中有一次感冒咳嗽持续了2个月。</p>
+<p>希望以后能坚持锻炼，少留遗憾。2020，奥利给！</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/年度总结/" rel="tag"># 年度总结</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/01/20/golang内存泄漏排查/" rel="next" title="golang内存泄漏排查">
+                <i class="fa fa-chevron-left"></i> golang内存泄漏排查
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/09/23/我们是如何在微服务集群中找出内存泄漏的-译/" rel="prev" title="我们是如何在微服务集群中找出内存泄漏的--译">
+                我们是如何在微服务集群中找出内存泄漏的--译 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/git.png"
+                alt="Yh Zhang" />
+            
+              <p class="site-author-name" itemprop="name">Yh Zhang</p>
+              <p class="site-description motion-element" itemprop="description">See you again</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2019"><span class="nav-number">1.</span> <span class="nav-text">2019</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#技术能力"><span class="nav-number">2.</span> <span class="nav-text">技术能力</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Kafka"><span class="nav-number">2.1.</span> <span class="nav-text">Kafka</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NSQ"><span class="nav-number">2.2.</span> <span class="nav-text">NSQ</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pulsar"><span class="nav-number">2.3.</span> <span class="nav-text">Pulsar</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#K8s"><span class="nav-number">2.4.</span> <span class="nav-text">K8s</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#生活"><span class="nav-number">3.</span> <span class="nav-text">生活</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yh Zhang</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
